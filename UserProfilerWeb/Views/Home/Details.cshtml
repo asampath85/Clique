@@ -1,0 +1,135 @@
+﻿@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Score Details</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse1">Event List</a>
+                    </h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse">
+
+                    <table id="eventsTable" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Event Name</th>
+                                <th>Event Description</th>
+                                <th>Venue</th>
+                                <th>From Date</th>
+                                <th>To Date</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind=" foreach: eventList ">
+                            <tr>
+                                <td data-bind="text: Id"></td>
+                                <td data-bind="text: Name"></td>
+                                <td data-bind="text: Description"></td>
+                                <td data-bind="text: Venue"></td>
+                                <td data-bind="text: StartDate"></td>
+                                <td data-bind="text: EndDate"></td>
+                                <td data-bind="text: Score"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse2">Location Tweet List</a>
+                    </h4>
+                </div>
+                <div id="collapse2" class="panel-collapse collapse">
+                    <table id="locationTable" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Tweet Text</th>
+                                <th>Profile URL</th>
+                                <th>Posted By</th>
+                                <th>Posted At</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind=" foreach: locationTweetList ">
+                            <tr>
+                                <td data-bind="text: Id"></td>
+                                <td data-bind="text: Text"></td>
+                                <td></td>
+                                <td data-bind="text: PostedBy"></td>
+                                <td></td>
+                                <td data-bind="text: Score"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse3">User Tweet List</a>
+                    </h4>
+                </div>
+                <div id="collapse3" class="panel-collapse collapse">
+                    <table id="userTable" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Tweet Text</th>
+                                <th>Profile URL</th>
+                                <th>Posted By</th>
+                                <th>Posted At</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind=" foreach: userTweetList ">
+                            <tr>
+                                <td data-bind="text: Id"></td>
+                                <td data-bind="text: Text"></td>
+                                <td></td>
+                                <td data-bind="text: PostedBy"></td>
+                                <td data-bind="text: PostedAt"></td>
+                                <td data-bind="text: Score"></td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script type="text/javascript">
+        var requestId = @ViewBag.RequestId;
+        $(document).ready(function () {
+            var viewModel = new DetailsViewModel();
+            ko.applyBindings(viewModel);
+
+        });
+    </script>
+}

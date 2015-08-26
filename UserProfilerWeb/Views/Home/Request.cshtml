@@ -1,0 +1,170 @@
+﻿@{
+    ViewBag.Title = "Request";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+
+
+        <h4 style="color: #4099ff">Insurance Request Form </h4> 
+
+</div>
+
+<!-- Row start -->
+<div class="row">
+    <div class="col-md-11 col-sm-11 col-xs-11">
+        <div class="panel panel-info">
+            <div class="panel-heading  clearfix">
+                <i class="icon-calendar"></i>
+                <h3 class="panel-title">Owner Details</h3>
+            </div>
+
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-3">
+                        <label for="InputName">Mobile No</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">@@</span>
+                            <input type="text" name="InputName" id="InputName" class="form-control" placeholder="Enter your mobile no" data-bind="value: model().mobileNo">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-3">
+                        <label for="InputName">Name</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">@@</span>
+                            <input type="text" class="form-control" placeholder="Enter your name" data-bind="value: model().userName">                            
+                        </div>
+                    </div>
+            
+                    <div class="col-lg-3 col-sm-3">
+                        <label for="InputName">User Name</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">$</span>
+                            <input type="text" class="form-control" placeholder="Enter your username" data-bind="value: model().twitterUserName">
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-3">
+                        <label for="InputName">Email Address</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">@@</span>
+                            <input type="text" name="InputName" id="InputName" class="form-control" placeholder="Enter your email address" data-bind="value: model().emailId">
+                        </div>
+                    </div>
+
+                
+
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+<!-- Row end -->
+<!-- Row start -->
+<div class="row">
+    <div class="col-md-11 col-sm-11 col-xs-11">
+        <div class="panel panel-info">
+            <div class="panel-heading clearfix">
+                <i class="icon-calendar"></i>
+                <h3 class="panel-title">House Details</h3>
+            </div>
+
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6">
+                        <label for="InputName">Building Name</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">@@</span>
+                            <input type="text" name="InputName" id="InputName" class="form-control" placeholder="Enter Building/house name" data-bind="value: model().buildingName">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-3">
+                        <label for="InputName">From Date</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">@@</span>
+                            <input type="date" class="form-control" id="inputError" data-bind="value: model().fromDate">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-3">
+                        <label for="InputMessage">To Date</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">@@</span>
+                            <input type="date" class="form-control" id="inputError" data-bind="value: model().toDate">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-11 col-sm-11">
+                        <label for="InputMessage">Address Details</label>
+                        <div class="input-group">
+                            <textarea name="InputMessage" id="InputMessage" class="form-control" rows="3" cols="150" placeholder="Enter Address details" data-bind="value: model().address"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Row end -->
+<!-- Row start -->
+<div class="row">
+    <div class="col-md-11 col-sm-11 col-xs-11">
+        <div class="panel panel-info">
+            <div class="panel-heading clearfix">
+                <i class="icon-calendar"></i>
+                <h3 class="panel-title">Location Details</h3>
+            </div>
+
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3 col-sm-3">
+                        <label for="InputName">Pincode</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">@@</span>
+                            <input type="text" name="InputName" id="InputName" class="form-control" placeholder="Enter your pin code" data-bind="value: model().pinCode">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                        <label for="InputName">City</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">@@</span>
+                            <input type="text" name="InputName" id="InputName" class="form-control" placeholder="Enter your city name" data-bind="value: model().city">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                        <label for="InputName">State</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">@@</span>
+                            <input type="text" name="InputName" id="InputName" class="form-control" placeholder="Enter your state" data-bind="value: model().state">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                        <label for="InputName">Country</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">@@</span>
+                            <input type="text" name="InputName" id="InputName" class="form-control" placeholder="Enter your country" data-bind="value: model().country">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-10 text-center">
+        <button id="singlebutton" name="singlebutton" class="btn btn-primary" data-bind="click: add">Submit</button>
+        <button id="singlebutton" name="singlebutton" class="btn btn-warning">Cancel</button>
+    </div>
+</div>
+@section scripts{
+    <script type="text/javascript">
+    
+        $(document).ready(function () {
+            var viewModel = new RequestViewModel();
+            ko.applyBindings(viewModel);
+
+        });
+    </script>
+}
+

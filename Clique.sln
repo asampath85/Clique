@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessQueueJob", "ProcessQueueJob\ProcessQueueJob.csproj", "{87188574-7F6B-408C-AB04-507969055757}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserProfilerCommon", "UserProfilerCommon\UserProfilerCommon.csproj", "{DA8B60A3-DFBC-4205-8C5C-BA5AF545584B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserProfilerWeb", "UserProfilerWeb\UserProfilerWeb.csproj", "{1983D1A9-1DBE-41A5-A09E-764B767C071C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserProfilerService", "UserProfilerService\UserProfilerService.csproj", "{382D7C95-B0F4-48C4-BEC6-F843EADDDC23}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserProfilerHelper", "UserProfilerHelper\UserProfilerHelper.csproj", "{EE11A52D-25F8-4E3C-B82A-EAA023CD242C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserProfilerModel", "UserProfilerModel\UserProfilerModel.csproj", "{2E515347-26BC-4E91-AE44-CA4FBEFB8328}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserProfilerBatchJob", "UserProfilerBatchJob\UserProfilerBatchJob.csproj", "{21CA4934-46F5-446E-A547-A5F25BCBBC0C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{87188574-7F6B-408C-AB04-507969055757}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87188574-7F6B-408C-AB04-507969055757}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87188574-7F6B-408C-AB04-507969055757}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87188574-7F6B-408C-AB04-507969055757}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA8B60A3-DFBC-4205-8C5C-BA5AF545584B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA8B60A3-DFBC-4205-8C5C-BA5AF545584B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA8B60A3-DFBC-4205-8C5C-BA5AF545584B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA8B60A3-DFBC-4205-8C5C-BA5AF545584B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1983D1A9-1DBE-41A5-A09E-764B767C071C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1983D1A9-1DBE-41A5-A09E-764B767C071C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1983D1A9-1DBE-41A5-A09E-764B767C071C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1983D1A9-1DBE-41A5-A09E-764B767C071C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{382D7C95-B0F4-48C4-BEC6-F843EADDDC23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{382D7C95-B0F4-48C4-BEC6-F843EADDDC23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{382D7C95-B0F4-48C4-BEC6-F843EADDDC23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{382D7C95-B0F4-48C4-BEC6-F843EADDDC23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE11A52D-25F8-4E3C-B82A-EAA023CD242C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE11A52D-25F8-4E3C-B82A-EAA023CD242C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE11A52D-25F8-4E3C-B82A-EAA023CD242C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE11A52D-25F8-4E3C-B82A-EAA023CD242C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E515347-26BC-4E91-AE44-CA4FBEFB8328}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E515347-26BC-4E91-AE44-CA4FBEFB8328}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E515347-26BC-4E91-AE44-CA4FBEFB8328}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E515347-26BC-4E91-AE44-CA4FBEFB8328}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21CA4934-46F5-446E-A547-A5F25BCBBC0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21CA4934-46F5-446E-A547-A5F25BCBBC0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21CA4934-46F5-446E-A547-A5F25BCBBC0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21CA4934-46F5-446E-A547-A5F25BCBBC0C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
