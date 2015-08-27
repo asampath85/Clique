@@ -52,10 +52,10 @@
             </div>
         </nav>*@
 
-    <div class="container">     
+    <div class="container">
 
-                @RenderBody()
-          
+        @RenderBody()
+
         <div class="row">
             <footer id="footer"></footer>
         </div>
@@ -67,7 +67,7 @@
     @Scripts.Render("~/Scripts/Dashboard/DashboardViewModel.js")
     @Scripts.Render("~/Scripts/Dashboard/DetailsViewModel.js")
 
-       <!-- KnockoutJS Mapping http://knockoutjs.com/documentation/plugins-mapping.html -->
+    <!-- KnockoutJS Mapping http://knockoutjs.com/documentation/plugins-mapping.html -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.min.js"></script>
 
     <!-- jQuery DataTables http://datatables.net -->
@@ -78,14 +78,14 @@
 
     <!-- Responsive DataTables http://www.datatables.net/extensions/responsive/ -->
     <script src="//cdn.datatables.net/responsive/1.0.1/js/dataTables.responsive.js"></script>
-    
+
     @RenderSection("scripts", required: false)
 
     @*<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>*@
 
     <script type="text/javascript">
- var baseUrl = '@Url.Content("~/")';
-    //var baseUrl = 'http://helloworldipl.azurewebsites.net/';
+        var baseUrl = '@Url.Content("~/")';
+        //var baseUrl = 'http://helloworldipl.azurewebsites.net/';
         $(document).ready(function () {
             $('.nav li a').click(function (e) {
                 debugger;
