@@ -1,13 +1,10 @@
-﻿@{
-    ViewBag.Title = "Request";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-<div class="row">
-
-
-        <h4 style="color: #4099ff">Insurance Request Form </h4> 
-
+﻿<h1>
+    Insurance request Form
+</h1>
+<div class="right_b">
+    <span>Post your request of the property.</span>
+    <br />
+    <br />
 </div>
 
 <!-- Row start -->
@@ -32,10 +29,10 @@
                         <label for="InputName">Name</label>
                         <div class="input-group">
                             <span class="input-group-addon">@@</span>
-                            <input type="text" class="form-control" placeholder="Enter your name" data-bind="value: model().userName">                            
+                            <input type="text" class="form-control" placeholder="Enter your name" data-bind="value: model().userName">
                         </div>
                     </div>
-            
+
                     <div class="col-lg-3 col-sm-3">
                         <label for="InputName">User Name</label>
                         <div class="input-group">
@@ -52,10 +49,10 @@
                         </div>
                     </div>
 
-                
 
-                    </div>
+
                 </div>
+            </div>
         </div>
     </div>
 </div>
@@ -159,7 +156,7 @@
 </div>
 @section scripts{
     <script type="text/javascript">
-    
+
         $(document).ready(function () {
             var viewModel = new RequestViewModel();
             ko.applyBindings(viewModel);

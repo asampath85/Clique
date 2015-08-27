@@ -158,12 +158,32 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\bg.jpg" />
+    <Content Include="Content\images\bg_but.jpg" />
+    <Content Include="Content\images\big_img.jpg" />
+    <Content Include="Content\images\bottom.gif" />
+    <Content Include="Content\images\but.gif" />
+    <Content Include="Content\images\b_read.gif" />
+    <Content Include="Content\images\content.gif" />
+    <Content Include="Content\images\fish.png" />
+    <Content Include="Content\images\footer.jpg" />
+    <Content Include="Content\images\img.jpg" />
+    <Content Include="Content\images\left_bot.gif" />
+    <Content Include="Content\images\left_bot_2.gif" />
+    <Content Include="Content\images\left_top.gif" />
+    <Content Include="Content\images\over.gif" />
+    <Content Include="Content\images\over.jpg" />
+    <Content Include="Content\images\right_bg.jpg" />
+    <Content Include="Content\images\right_bg_2.jpg" />
+    <Content Include="Content\images\top.gif" />
+    <Content Include="Content\styles.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\images\Thumbs.db" />
     <None Include="Properties\PublishProfiles\helloworldipl.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Dashboard\DashboardViewModel.js" />
@@ -204,6 +224,7 @@
     <Content Include="Views\Twitter\Index.cshtml" />
     <Content Include="Views\Home\Request.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\Shared\CliqueLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
