@@ -17,7 +17,6 @@ namespace UserProfilerCommon
         public CliqueUser()
         {
             this.CliqueRequests = new HashSet<CliqueRequest>();
-            this.CliqueUserTweets = new HashSet<CliqueUserTweet>();
         }
     
         public int Id { get; set; }
@@ -27,9 +26,8 @@ namespace UserProfilerCommon
         public string EmailId { get; set; }
         public System.DateTime CreatedAt { get; set; }
         public System.DateTime ModifiedAt { get; set; }
-        public Nullable<decimal> Score { get; set; }
+        public Nullable<double> Score { get; set; }
     
         public virtual ICollection<CliqueRequest> CliqueRequests { get; set; }
-        public virtual ICollection<CliqueUserTweet> CliqueUserTweets { get; set; }
     }
 }

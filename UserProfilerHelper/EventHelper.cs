@@ -18,25 +18,26 @@ namespace UserProfilerHelper
             var service = new RequestService();
             foreach (var item in requestList)
             {
-                if (!service.IsEventExist(item.LocationId))
+                if (!service.IsEventExist(item))
                 {
-                    EventWrapper eventWrapper = ExtractEventsFromAPI(item.City);
-                    if (eventWrapper != null)
-                        service.AddEvent(MapEventModel(eventWrapper, item.LocationId));
+                    var eventList = ExtractEventsFromAPI(item.City);
+                    service.AddEvent(MapEventModel(eventList, item));
                 }
+               
             }
            
 
         }
 
-        public static List<EventModel> MapEventModel(EventWrapper wrapper, int locationId)
+        public static List<EventModel> MapEventModel(List<Event> eventList, RequestModel requestModel)
         {
             List<EventModel> response = new List<EventModel>();
-            foreach (var item in wrapper.events.@event)
+            foreach (var item in eventList)
             {
                 response.Add(new EventModel
                 {
-                    LocationId = locationId,
+                    EventId = item.eventId,  
+                    RequestId = requestModel.Id,
                     Name = item.title,
                     Description = item.description,
                     StartDate = item.start_time ?? DateTime.Now,
@@ -49,9 +50,9 @@ namespace UserProfilerHelper
             return response;
         }
 
-        public static EventWrapper ExtractEventsFromAPI(string location)
+        public static List<Event> ExtractEventsFromAPI(string location)
         {
-            EventWrapper returnObject = null;
+            List<Event> returnObject = null;
 
             try
             {
@@ -66,11 +67,12 @@ namespace UserProfilerHelper
                 dynamic wrapper = JsonConvert.DeserializeObject<object>(response);
                 var eventList = (wrapper.events.@event as IEnumerable<dynamic>);
 
-                 returnObject = new EventWrapper { events = new EventObject { @event = new List<Event>() } };
+                returnObject = new List<Event>();
                 foreach (var item in eventList)
                 {
-                    returnObject.events.@event.Add(
+                    returnObject.Add(
                         new Event {
+                            eventId = item.id,
                             city_name = item.city_name.Value,
                             description = item.description.Value,
                             start_time = DateTime.Parse(item.start_time.Value),
@@ -91,16 +93,7 @@ namespace UserProfilerHelper
         }
     }
 
-    public class EventWrapper
-    {
-        public EventObject events { get; set; }
 
-    }
-
-    public class EventObject
-    {
-        public IList<Event> @event { get; set; }
-    }
 
     public class Event
     {
@@ -110,6 +103,7 @@ namespace UserProfilerHelper
         public string title { get; set; }
         public string description { get; set; }
         public string city_name { get; set; }
+        public string eventId { get; set; }
 
     }
 }

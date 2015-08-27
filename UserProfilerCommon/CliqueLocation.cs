@@ -18,18 +18,15 @@ namespace UserProfilerCommon
         {
             this.CliqueRequests = new HashSet<CliqueRequest>();
             this.CliqueWeathers = new HashSet<CliqueWeather>();
-            this.CliqueLocationTweets = new HashSet<CliqueLocationTweet>();
-            this.CliqueEvents = new HashSet<CliqueEvent>();
         }
     
         public int Id { get; set; }
         public string City { get; set; }
         public string Pincode { get; set; }
         public Nullable<decimal> Score { get; set; }
+        public string Locality { get; set; }
     
         public virtual ICollection<CliqueRequest> CliqueRequests { get; set; }
         public virtual ICollection<CliqueWeather> CliqueWeathers { get; set; }
-        public virtual ICollection<CliqueLocationTweet> CliqueLocationTweets { get; set; }
-        public virtual ICollection<CliqueEvent> CliqueEvents { get; set; }
     }
 }

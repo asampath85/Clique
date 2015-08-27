@@ -14,8 +14,13 @@ namespace UserProfilerCommon
     
     public partial class CliqueEvent
     {
+        public CliqueEvent()
+        {
+            this.CliqueLocationEvents = new HashSet<CliqueLocationEvent>();
+        }
+    
         public int Id { get; set; }
-        public int LocationId { get; set; }
+        public string EventId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public System.DateTime StartDate { get; set; }
@@ -25,6 +30,6 @@ namespace UserProfilerCommon
         public string Venue { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
     
-        public virtual CliqueLocation CliqueLocation { get; set; }
+        public virtual ICollection<CliqueLocationEvent> CliqueLocationEvents { get; set; }
     }
 }

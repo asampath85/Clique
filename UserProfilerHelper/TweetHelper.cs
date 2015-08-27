@@ -34,16 +34,16 @@ namespace UserProfilerHelper
             return item["access_token"];
         }
 
-        public static void ExtractUserTweets(string userName, int userId)
+        public static void ExtractUserTweets(RequestModel model)
         {
 
             string url = "";
             var max_id = "";
             if (string.IsNullOrEmpty(max_id))
-                url = string.Format("https://api.twitter.com/1.1/statuses/user_timeline.json?count={0}&screen_name={1}", "100", userName);
+                url = string.Format("https://api.twitter.com/1.1/statuses/user_timeline.json?count={0}&screen_name={1}", "100", model.TwitterUserName);
             else
                 url = string.Format("https://api.twitter.com/1.1/statuses/user_timeline.json?count={0}&screen_name={1}&trim_user=1&max_id={2}&since_id={3}",
-                        "100", userName, userName, userName);
+                        "100", model.TwitterUserName, model.TwitterUserName, model.TwitterUserName);
 
             var requestUserTimeline = new HttpRequestMessage(System.Net.Http.HttpMethod.Get, url);
             var accessToken = GetAccessToken();
@@ -64,7 +64,7 @@ namespace UserProfilerHelper
                     PostedAt = item.created_at.Value,
                     ProfileImageURL = item.user.profile_image_url_https.Value,
                     TweetIdStr = item.id_str.Value,
-                    UserId = userId,
+                    RequestId = model.Id,
                 });
                
             }
@@ -77,7 +77,7 @@ namespace UserProfilerHelper
 
         }
 
-        public static void ExtractLocationTweets(string buildingName, string city, int locationId)
+        public static void ExtractLocationTweets(RequestModel model)
         {
 
             string url = "";
@@ -85,11 +85,11 @@ namespace UserProfilerHelper
             if (string.IsNullOrEmpty(max_id))
             {
                 //url = string.Format("https://api.twitter.com/1.1/search/tweets.json?q='{0}'%20AND%20{1}", buildingName, city);
-                url = string.Format("https://api.twitter.com/1.1/search/tweets.json?q='{0}'", city);
+                url = string.Format("https://api.twitter.com/1.1/search/tweets.json?q='{0}'", model.City);
             }
             else
                 url = string.Format("https://api.twitter.com/1.1/statuses/user_timeline.json?count={0}&screen_name={1}&trim_user=1&max_id={2}&since_id={3}",
-                        "100", city, city, city);
+                        "100", model.Locality, model.Locality, model.Locality);
 
             var requestUserTimeline = new HttpRequestMessage(System.Net.Http.HttpMethod.Get, url);
             var accessToken = GetAccessToken();
@@ -111,7 +111,7 @@ namespace UserProfilerHelper
                     PostedAt = item.created_at.Value,
                     ProfileImageURL = item.user.profile_image_url_https.Value,
                     TweetIdStr = item.id_str.Value,
-                    LocationId = locationId,
+                    RequestId = model.Id,
                 });
 
             }

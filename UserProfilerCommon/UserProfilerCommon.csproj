@@ -54,6 +54,9 @@
     <Compile Include="CliqueLocation.cs">
       <DependentUpon>UserProfilerEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="CliqueLocationEvent.cs">
+      <DependentUpon>UserProfilerEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="CliqueLocationTweet.cs">
       <DependentUpon>UserProfilerEntity.tt</DependentUpon>
     </Compile>
@@ -73,15 +76,6 @@
       <DependentUpon>UserProfilerEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TwitterKeyword.cs">
-      <DependentUpon>UserProfilerEntity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TwitterMessage.cs">
-      <DependentUpon>UserProfilerEntity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TwitterUser.cs">
-      <DependentUpon>UserProfilerEntity.tt</DependentUpon>
-    </Compile>
     <Compile Include="UserProfilerEntity.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -99,7 +93,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <EntityDeploy Include="UserProfilerEntity.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

@@ -15,8 +15,7 @@ namespace UserProfilerModel
         public Nullable<double> Score { get; set; }
         public string ProfileImageURL { get; set; }
         public string TweetIdStr { get; set; }
-        public int UserId { get; set; }
-        public int LocationId { get; set; }
+        public int RequestId { get; set; }
        
     }
 }

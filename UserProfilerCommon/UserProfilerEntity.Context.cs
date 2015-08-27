@@ -25,16 +25,14 @@ namespace UserProfilerCommon
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<TwitterKeyword> TwitterKeywords { get; set; }
-        public virtual DbSet<TwitterMessage> TwitterMessages { get; set; }
-        public virtual DbSet<TwitterUser> TwitterUsers { get; set; }
         public virtual DbSet<CliqueLocation> CliqueLocations { get; set; }
         public virtual DbSet<CliqueRequest> CliqueRequests { get; set; }
-        public virtual DbSet<CliqueUser> CliqueUsers { get; set; }
         public virtual DbSet<CliqueWeather> CliqueWeathers { get; set; }
-        public virtual DbSet<CliqueUserTweet> CliqueUserTweets { get; set; }
-        public virtual DbSet<CliqueLocationTweet> CliqueLocationTweets { get; set; }
-        public virtual DbSet<CliqueEvent> CliqueEvents { get; set; }
         public virtual DbSet<CliqueTweet> CliqueTweets { get; set; }
+        public virtual DbSet<CliqueLocationTweet> CliqueLocationTweets { get; set; }
+        public virtual DbSet<CliqueUserTweet> CliqueUserTweets { get; set; }
+        public virtual DbSet<CliqueEvent> CliqueEvents { get; set; }
+        public virtual DbSet<CliqueUser> CliqueUsers { get; set; }
+        public virtual DbSet<CliqueLocationEvent> CliqueLocationEvents { get; set; }
     }
 }

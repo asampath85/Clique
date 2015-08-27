@@ -16,9 +16,9 @@ namespace UserProfilerHelper
             var service = new RequestService();
             foreach (var item in requestList)
             {
-                if (!service.IsLocationTweetExist(item.LocationId))
+                if (!service.IsLocationTweetExist(item))
                 {
-                    TweetHelper.ExtractLocationTweets(item.BuildingName, item.City, item.LocationId);
+                    TweetHelper.ExtractLocationTweets(item);
 
                 }
             }

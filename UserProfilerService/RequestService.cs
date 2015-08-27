@@ -68,6 +68,7 @@ namespace UserProfilerService
                         MobileNo = item.CliqueUser.MobileNo,
                         BuildingName = item.BuildingName,
                         City = item.CliqueLocation.City,
+                        Locality = item.CliqueLocation.Locality,
                         Score = 0,
                         TwitterUserName = item.CliqueUser.TwitterUserName,
                         StatusName = statusName
@@ -160,7 +161,7 @@ namespace UserProfilerService
                 {
                     var request = new CliqueEvent
                     {
-                        LocationId = item.LocationId,
+                        EventId = item.EventId,
                         Name = item.Name,
                         Description = item.Description,
                         StartDate = item.StartDate,
@@ -169,10 +170,35 @@ namespace UserProfilerService
                         CreatedAt = DateTime.Now,
                         ModifiedAt = DateTime.Now
                     };
-                    entity.CliqueEvents.Add(request);
+                    var existingItem = entity.CliqueEvents.FirstOrDefault(res=>res.EventId == request.EventId);
+                    if(existingItem == null)
+                    {
+                        entity.CliqueEvents.Add(request);
+                        entity.SaveChanges();
+                        item.Id = request.Id;
+                    }
+                    else
+                    {
+                        item.Id = existingItem.Id;
+                    }
+
+                    var mappingRequest = new CliqueLocationEvent
+                    {
+                        EventId = item.Id,
+                        RequestId = item.RequestId,
+                        CreatedAt = DateTime.Now,
+                        ModifiedAt = DateTime.Now
+                    };
+                    entity.CliqueLocationEvents.Add(mappingRequest);
+                    entity.SaveChanges();
+                    
+
+                    
+
+
                 }
 
-                entity.SaveChanges();
+                
 
 
             }
@@ -203,20 +229,20 @@ namespace UserProfilerService
             return model;
         }
 
-        public bool IsEventExist(int locationId)
+        public bool IsEventExist(RequestModel model)
         {
             using (ipl_userprofilerEntities entity = new ipl_userprofilerEntities())
             {
-                var response = entity.CliqueEvents.FirstOrDefault(res => res.LocationId == locationId);
+                var response = entity.CliqueLocationEvents.FirstOrDefault(res => res.RequestId == model.Id);
                 return response != null;
             }
-        }
+        }       
 
-        public bool IsUserTweetExist(int userId)
+        public bool IsUserTweetExist(RequestModel model)
         {
             using (ipl_userprofilerEntities entity = new ipl_userprofilerEntities())
             {
-                var response = entity.CliqueUserTweets.FirstOrDefault(res => res.UserId == userId);
+                var response = entity.CliqueUserTweets.FirstOrDefault(res => res.RequestId == model.Id);
                 return response != null;
             }
 
@@ -252,7 +278,7 @@ namespace UserProfilerService
                     var mappingRequest = new CliqueUserTweet
                     {
                         TweetId = item.Id,
-                        UserId = item.UserId,
+                        RequestId = item.RequestId,
                         CreatedAt = DateTime.Now,
                         ModifiedAt = DateTime.Now
                     };
@@ -292,7 +318,7 @@ namespace UserProfilerService
                     var mappingRequest = new CliqueLocationTweet
                     {
                         TweetId = item.Id,
-                        LocationId = item.LocationId,
+                        RequestId = item.RequestId,
                         CreatedAt = DateTime.Now,
                         ModifiedAt = DateTime.Now
                     };
@@ -303,11 +329,11 @@ namespace UserProfilerService
             }
         }
 
-        public bool IsLocationTweetExist(int locationId)
+        public bool IsLocationTweetExist(RequestModel model)
         {
             using (ipl_userprofilerEntities entity = new ipl_userprofilerEntities())
             {
-                var response = entity.CliqueLocationTweets.FirstOrDefault(res => res.LocationId == locationId);
+                var response = entity.CliqueLocationTweets.FirstOrDefault(res => res.RequestId == model.Id);
                 return response != null;
             }
 
@@ -319,24 +345,24 @@ namespace UserProfilerService
             using (ipl_userprofilerEntities entity = new ipl_userprofilerEntities())
             {
                 var requestEntity = entity.CliqueRequests.FirstOrDefault(res => res.Id == requestId);
-
-                foreach (var item in requestEntity.CliqueLocation.CliqueEvents.Where(res=>(res.StartDate.Date >= requestEntity.FromDate.Date) && ((res.EndDate != null ? res.EndDate.Value.Date : res.StartDate.Date) <= requestEntity.ToDate.Date)))
+                foreach (var events in requestEntity.CliqueLocationEvents)
                 {
-                    response.Add(new EventModel
-                    {
-                        Id = item.Id,
-                        LocationId = item.LocationId,
-                        Description = item.Description,
-                        Name = item.Name,
-                        Venue = item.Venue,
-                        StartDate = item.StartDate,
-                        EndDate = item.EndDate ?? DateTime.Now,
-                        Score = item.Score ?? 0
-                    });
+                    if((events.CliqueEvent.StartDate.Date >= requestEntity.FromDate.Date) && ((events.CliqueEvent.EndDate != null ? events.CliqueEvent.EndDate.Value.Date : events.CliqueEvent.StartDate.Date) <= requestEntity.ToDate.Date))
+                        response.Add(new EventModel
+                        {
+                            Id = events.CliqueEvent.Id,
+                            EventId = events.CliqueEvent.EventId,
+                            Description = events.CliqueEvent.Description,
+                            Name = events.CliqueEvent.Name,
+                            Venue = events.CliqueEvent.Venue,
+                            StartDate = events.CliqueEvent.StartDate,
+                            EndDate = events.CliqueEvent.EndDate ?? DateTime.Now,
+                            Score = events.CliqueEvent.Score ?? 0
+                        });
 
+                    }
+                    
                 }
-
-            }
 
             return response;
 
@@ -350,12 +376,12 @@ namespace UserProfilerService
             {
                 var requestEntity = entity.CliqueRequests.FirstOrDefault(res => res.Id == requestId);
 
-                foreach (var item in requestEntity.CliqueLocation.CliqueLocationTweets)
+                foreach (var item in requestEntity.CliqueLocationTweets)
                 {
                     response.Add(new TweetModel
                     {
-                        Id = item.Id,
-                        LocationId = item.LocationId,
+                        Id = item.CliqueTweet.Id,
+                        RequestId = requestEntity.Id,
                        Text = item.CliqueTweet.Text,
                        PostedBy = item.CliqueTweet.PostedBy,
                        PostedAt = item.CliqueTweet.PostedAt,
@@ -377,12 +403,12 @@ namespace UserProfilerService
             {
                 var requestEntity = entity.CliqueRequests.FirstOrDefault(res => res.Id == requestId);
 
-                foreach (var item in requestEntity.CliqueUser.CliqueUserTweets)
+                foreach (var item in requestEntity.CliqueUserTweets)
                 {
                     response.Add(new TweetModel
                     {
-                        Id = item.Id,
-                        UserId = item.UserId,
+                        Id = item.CliqueTweet.Id,
+                        RequestId = requestEntity.Id,
                         Text = item.CliqueTweet.Text,
                         PostedBy = item.CliqueTweet.PostedBy,
                         PostedAt = item.CliqueTweet.PostedAt,

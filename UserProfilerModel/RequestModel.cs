@@ -20,6 +20,7 @@ namespace UserProfilerModel
 
         
         public string City { get; set; }
+        public string Locality { get; set; }
         public string Pincode { get; set; }
 
         public string UserName { get; set; }

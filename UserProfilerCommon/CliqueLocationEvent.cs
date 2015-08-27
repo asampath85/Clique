@@ -12,15 +12,15 @@ namespace UserProfilerCommon
     using System;
     using System.Collections.Generic;
     
-    public partial class CliqueLocationTweet
+    public partial class CliqueLocationEvent
     {
         public int Id { get; set; }
         public int RequestId { get; set; }
-        public int TweetId { get; set; }
+        public int EventId { get; set; }
         public System.DateTime CreatedAt { get; set; }
         public System.DateTime ModifiedAt { get; set; }
     
+        public virtual CliqueEvent CliqueEvent { get; set; }
         public virtual CliqueRequest CliqueRequest { get; set; }
-        public virtual CliqueTweet CliqueTweet { get; set; }
     }
 }

@@ -5,28 +5,25 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="f705500df73643ecbcf54bcda5a34d4d" Name="Diagram1">
-        <EntityTypeShape EntityType="ipl_userprofilerModel.TwitterKeyword" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ipl_userprofilerModel.TwitterMessage" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="ipl_userprofilerModel.TwitterUser" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
-        <AssociationConnector Association="ipl_userprofilerModel.FK_TwitterKeyword_ToTwitterMessage" ManuallyRouted="false" />
-        <AssociationConnector Association="ipl_userprofilerModel.FK_TwitterKeyword_ToTwitterUser" ManuallyRouted="false" />
         <EntityTypeShape EntityType="ipl_userprofilerModel.CliqueLocation" Width="1.5" PointX="5.375" PointY="7" />
         <EntityTypeShape EntityType="ipl_userprofilerModel.CliqueRequest" Width="1.5" PointX="7.625" PointY="4.75" />
-        <EntityTypeShape EntityType="ipl_userprofilerModel.CliqueUser" Width="1.5" PointX="5.375" PointY="2.875" />
         <EntityTypeShape EntityType="ipl_userprofilerModel.CliqueWeather" Width="1.5" PointX="7.625" PointY="8.875" />
         <AssociationConnector Association="ipl_userprofilerModel.FK_CliqueRequest_ToCliqueLocation" />
         <AssociationConnector Association="ipl_userprofilerModel.FK_CliqueWeather_ToCliqueLocation" />
-        <AssociationConnector Association="ipl_userprofilerModel.FK_CliqueRequest_ToCliqueUser" />
-        <EntityTypeShape EntityType="ipl_userprofilerModel.CliqueUserTweet" Width="1.5" PointX="9.625" PointY="1.25" />
-        <AssociationConnector Association="ipl_userprofilerModel.FK_CliqueUserTweet_ToCliqueUser" />
-        <EntityTypeShape EntityType="ipl_userprofilerModel.CliqueLocationTweet" Width="1.5" PointX="10.625" PointY="5" />
-        <AssociationConnector Association="ipl_userprofilerModel.FK_CliqueLocationTweet_ToCliqueLocation" />
-        <EntityTypeShape EntityType="ipl_userprofilerModel.CliqueEvent" Width="1.5" PointX="8" PointY="13.75" />
         <EntityTypeShape EntityType="ipl_userprofilerModel.CliqueTweet" Width="1.5" PointX="0.75" PointY="10" />
-        <AssociationConnector Association="ipl_userprofilerModel.FK_CliqueEvent_ToCliqueLocation" />
+        <EntityTypeShape EntityType="ipl_userprofilerModel.CliqueLocationTweet" Width="1.5" PointX="12.875" PointY="7.75" />
+        <EntityTypeShape EntityType="ipl_userprofilerModel.CliqueUserTweet" Width="1.5" PointX="9.875" PointY="6.75" />
+        <AssociationConnector Association="ipl_userprofilerModel.FK_CliqueLocationTweet_ToCliqueRequest" />
         <AssociationConnector Association="ipl_userprofilerModel.FK_CliqueLocationTweet_ToCliqueTwitter" />
+        <AssociationConnector Association="ipl_userprofilerModel.FK_CliqueUserTweet_ToCliqueRequest" />
         <AssociationConnector Association="ipl_userprofilerModel.FK_CliqueUserTweet_ToCliqueTweets" />
-      </Diagram>
+        <EntityTypeShape EntityType="ipl_userprofilerModel.CliqueEvent" Width="1.5" PointX="3.375" PointY="1" />
+        <EntityTypeShape EntityType="ipl_userprofilerModel.CliqueUser" Width="1.5" PointX="0.75" PointY="1" />
+        <AssociationConnector Association="ipl_userprofilerModel.FK_CliqueRequest_ToCliqueUser" />
+        <EntityTypeShape EntityType="ipl_userprofilerModel.CliqueLocationEvent" Width="1.5" PointX="9.875" PointY="2.75" />
+        <AssociationConnector Association="ipl_userprofilerModel.FK_CliqueLocationEvent_ToCliqueEvent" />
+        <AssociationConnector Association="ipl_userprofilerModel.FK_CliqueLocationEvent_ToCliqueRequest" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

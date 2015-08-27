@@ -9,7 +9,8 @@ namespace UserProfilerModel
     public class EventModel
     {
         public int Id { get; set; }
-        public int LocationId { get; set; }
+        public string EventId { get; set; }
+        public int RequestId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public System.DateTime StartDate { get; set; }

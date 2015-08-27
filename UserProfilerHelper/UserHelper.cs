@@ -21,9 +21,9 @@ namespace UserProfilerHelper
             var service = new RequestService();
             foreach (var item in requestList)
             {
-                if (!service.IsUserTweetExist(item.UserId))
+                if (!service.IsUserTweetExist(item))
                 {
-                    TweetHelper.ExtractUserTweets(item.TwitterUserName, item.UserId);
+                    TweetHelper.ExtractUserTweets(item);
                    
                 }
             }
