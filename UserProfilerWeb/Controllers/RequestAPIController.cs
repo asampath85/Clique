@@ -72,5 +72,14 @@ namespace UserProfilerWeb.Controllers
 
 
         }
+
+        [HttpPost]
+        public void AddListing(ListModel model)
+        {
+
+            
+
+
+        }
     }
 }

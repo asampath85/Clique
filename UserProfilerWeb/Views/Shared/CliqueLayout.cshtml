@@ -32,6 +32,10 @@
                     <div>
                         @Html.ActionLink("Work Flow", "Index", "Home", new { }, new { @class = "but" })
                     </div>
+
+                    <div>
+                        @Html.ActionLink("List Your Space", "Index", "Listing", new { }, new { @class = "but" })
+                    </div>
                 </div>
                 <div id="logo">
                 </div>
@@ -68,6 +72,8 @@
     @Scripts.Render("~/js")
     @Scripts.Render("~/Scripts/Request/RequestModel.js")
     @Scripts.Render("~/Scripts/Request/RequestViewModel.js")
+    @Scripts.Render("~/Scripts/Listing/ListModel.js")
+    @Scripts.Render("~/Scripts/Listing/ListViewModel.js")
     @Scripts.Render("~/Scripts/Dashboard/DashboardViewModel.js")
     @Scripts.Render("~/Scripts/Dashboard/DetailsViewModel.js")
 

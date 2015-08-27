@@ -39,9 +39,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DotNet.Highcharts, Version=4.0.0.0, Culture=neutral, PublicKeyToken=88854f873df851bf, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\DotNet.Highcharts.dll</HintPath>
+    <Reference Include="DotNet.Highcharts">
+      <HintPath>..\..\..\DotNet.Highcharts.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.2-beta1\lib\net45\EntityFramework.dll</HintPath>
@@ -152,6 +151,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ListingController.cs" />
     <Compile Include="Controllers\RequestAPIController.cs" />
     <Compile Include="Controllers\TimeLineController.cs" />
     <Compile Include="Global.asax.cs">
@@ -237,6 +237,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-3.3.0.debug.js" />
     <Content Include="Scripts\knockout-3.3.0.js" />
+    <Content Include="Scripts\Listing\ListModel.js" />
+    <Content Include="Scripts\Listing\ListViewModel.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\Request\RequestModel.js" />
     <Content Include="Scripts\Request\RequestViewModel.js" />
@@ -266,6 +268,7 @@
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Shared\CliqueLayout.cshtml" />
     <Content Include="Views\TimeLine\Index.cshtml" />
+    <Content Include="Views\Listing\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -286,6 +289,9 @@
       <Project>{382d7c95-b0f4-48c4-bec6-f843eadddc23}</Project>
       <Name>UserProfilerService</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
