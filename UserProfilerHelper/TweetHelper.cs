@@ -116,6 +116,8 @@ namespace UserProfilerHelper
 
             }
 
+            var response = SemantriaHelper.AddScore(modelList);
+
             var service = new RequestService();
             service.AddTweetAndLocation(modelList);
 
