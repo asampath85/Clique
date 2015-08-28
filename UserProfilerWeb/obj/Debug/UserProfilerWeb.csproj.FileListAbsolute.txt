@@ -87,9 +87,6 @@ F:\IPL2015\traviplclique-master\UserProfilerWeb\bin\zh-Hant\System.Spatial.resou
 F:\IPL2015\traviplclique-master\UserProfilerWeb\obj\Debug\UserProfilerWeb.csprojResolveAssemblyReference.cache
 F:\IPL2015\traviplclique-master\UserProfilerWeb\obj\Debug\UserProfilerWeb.dll
 F:\IPL2015\traviplclique-master\UserProfilerWeb\obj\Debug\UserProfilerWeb.pdb
-F:\IPL2015\Clique Latest\Clique\UserProfilerWeb\obj\Debug\UserProfilerWeb.csprojResolveAssemblyReference.cache
-F:\IPL2015\Clique Latest\Clique\UserProfilerWeb\obj\Debug\UserProfilerWeb.dll
-F:\IPL2015\Clique Latest\Clique\UserProfilerWeb\obj\Debug\UserProfilerWeb.pdb
 F:\IPL2015\Clique Latest\Clique\UserProfilerWeb\bin\UserProfilerWeb.dll
 F:\IPL2015\Clique Latest\Clique\UserProfilerWeb\bin\UserProfilerWeb.pdb
 F:\IPL2015\Clique Latest\Clique\UserProfilerWeb\bin\Antlr3.Runtime.dll
@@ -177,3 +174,6 @@ F:\IPL2015\Clique Latest\Clique\UserProfilerWeb\bin\ko\System.Spatial.resources.
 F:\IPL2015\Clique Latest\Clique\UserProfilerWeb\bin\ru\System.Spatial.resources.dll
 F:\IPL2015\Clique Latest\Clique\UserProfilerWeb\bin\zh-Hans\System.Spatial.resources.dll
 F:\IPL2015\Clique Latest\Clique\UserProfilerWeb\bin\zh-Hant\System.Spatial.resources.dll
+F:\IPL2015\Clique Latest\Clique\UserProfilerWeb\obj\Debug\UserProfilerWeb.csprojResolveAssemblyReference.cache
+F:\IPL2015\Clique Latest\Clique\UserProfilerWeb\obj\Debug\UserProfilerWeb.dll
+F:\IPL2015\Clique Latest\Clique\UserProfilerWeb\obj\Debug\UserProfilerWeb.pdb

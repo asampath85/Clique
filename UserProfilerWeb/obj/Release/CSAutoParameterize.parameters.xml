@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="ipl_userprofilerEntities-Web.config Connection String" description="ipl_userprofilerEntities Connection String used in web.config by the application to access the database." defaultValue="dummy" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="F:\\IPL2015\\Clique\ Latest\\Clique\\UserProfilerWeb\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ipl_userprofilerEntities']/@connectionString" />
+  </parameter>
+  <parameter name="AzureWebJobsStorage-Web.config Connection String" description="AzureWebJobsStorage Connection String used in web.config by the application to access the database." defaultValue="DefaultEndpointsProtocol=https;AccountName=processueue;AccountKey=JAbjpB2UyDum+oFvLVLhwYZGONdD541jUBoUkxp7QyiAf+prYazOlX3BW2Dp2BznfccAoihpPtf5itamXr7row==" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="F:\\IPL2015\\Clique\ Latest\\Clique\\UserProfilerWeb\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='AzureWebJobsStorage']/@connectionString" />
+  </parameter>
+  <parameter name="AzureWebJobsDashboard-Web.config Connection String" description="AzureWebJobsDashboard Connection String used in web.config by the application to access the database." defaultValue="DefaultEndpointsProtocol=https;AccountName=processueue;AccountKey=JAbjpB2UyDum+oFvLVLhwYZGONdD541jUBoUkxp7QyiAf+prYazOlX3BW2Dp2BznfccAoihpPtf5itamXr7row==" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="F:\\IPL2015\\Clique\ Latest\\Clique\\UserProfilerWeb\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='AzureWebJobsDashboard']/@connectionString" />
+  </parameter>
+</parameters>

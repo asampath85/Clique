@@ -4,6 +4,5 @@ F:\IPL2015\traviplclique-master\UserProfilerModel\obj\Debug\UserProfilerModel.dl
 F:\IPL2015\traviplclique-master\UserProfilerModel\obj\Debug\UserProfilerModel.pdb
 F:\IPL2015\Clique Latest\Clique\UserProfilerModel\bin\Debug\UserProfilerModel.dll
 F:\IPL2015\Clique Latest\Clique\UserProfilerModel\bin\Debug\UserProfilerModel.pdb
-F:\IPL2015\Clique Latest\Clique\UserProfilerModel\obj\Debug\UserProfilerModel.csprojResolveAssemblyReference.cache
 F:\IPL2015\Clique Latest\Clique\UserProfilerModel\obj\Debug\UserProfilerModel.dll
 F:\IPL2015\Clique Latest\Clique\UserProfilerModel\obj\Debug\UserProfilerModel.pdb

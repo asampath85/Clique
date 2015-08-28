@@ -1,0 +1,110 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Clique Solution </title>
+    @Styles.Render("~/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/highchart")
+    <link href="~/Content/styles.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/plug-ins/a5734b29083/integration/bootstrap/3/dataTables.bootstrap.css" />
+    <link rel="stylehseet" type="text/css" href="//cdn.datatables.net/responsive/1.0.1/css/dataTables.responsive.css" />
+</head>
+<body>
+    <div id="main_bot">
+        <div id="main">
+            <!-- header begins -->
+            <div id="header">
+                <div id="buttons">
+                    <div>
+                        @Html.ActionLink("Home", "Index", "Home", new { }, new { @class = "but" })
+                    </div>
+                    <div>
+                        @Html.ActionLink("Request", "RequestForm", "Home", new { }, new { @class = "but" })
+                    </div>
+                    <div>
+                        @Html.ActionLink("Summary", "RequestForm", "Home", new { }, new { @class = "but" })
+                    </div>
+                    <div>
+                        @Html.ActionLink("TimeLine", "Index", "TimeLine", new { }, new { @class = "but" })
+                    </div>
+                    <div>
+                        @Html.ActionLink("Work Flow", "Index", "Home", new { }, new { @class = "but" })
+                    </div>
+
+                    <div>
+                        @Html.ActionLink("List Your Space", "Index", "Listing", new { }, new { @class = "but" })
+                    </div>
+                </div>
+                <div id="logo">
+                </div>
+            </div>
+            <!-- header ends -->
+            <!-- content begins -->
+            <div id="content">
+                <div id="content_top">
+                    <div id="content_bot">
+                        <div id="right">
+                            <div class="tit_bot">
+                                @RenderBody()
+                            </div>
+                            <br />
+                        </div>
+                        <br />
+                        <div style="clear: both">
+                        </div>
+                        <div class="bot">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- content ends -->
+            <!-- footer begins -->
+            <div id="footer">
+                Copyright 2015. Designed by <a href="#" title="Flash Templates">Team Travelers</a><br />
+                <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a>
+            </div>
+            <!-- footer ends -->
+        </div>
+    </div>
+
+    @Scripts.Render("~/js")
+    @Scripts.Render("~/Scripts/Request/RequestModel.js")
+    @Scripts.Render("~/Scripts/Request/RequestViewModel.js")
+    @Scripts.Render("~/Scripts/Listing/ListModel.js")
+    @Scripts.Render("~/Scripts/Listing/ListViewModel.js")
+    @Scripts.Render("~/Scripts/Dashboard/DashboardViewModel.js")
+    @Scripts.Render("~/Scripts/Dashboard/DetailsViewModel.js")
+
+    <!-- KnockoutJS Mapping http://knockoutjs.com/documentation/plugins-mapping.html -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.min.js"></script>
+
+    <!-- jQuery DataTables http://datatables.net -->
+    <script src="//cdn.datatables.net/1.10.2/js/jquery.dataTables.js"></script>
+
+    <!-- Bootstrap DataTables http://www.datatables.net/manual/styling/bootstrap -->
+    <script src="//cdn.datatables.net/plug-ins/a5734b29083/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+
+    <!-- Responsive DataTables http://www.datatables.net/extensions/responsive/ -->
+    <script src="//cdn.datatables.net/responsive/1.0.1/js/dataTables.responsive.js"></script>
+
+    @RenderSection("scripts", required: false)
+
+    @*<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>*@
+
+    <script type="text/javascript">
+        //var baseUrl = '@Url.Content("~/")';
+        var baseUrl = 'http://helloworldipl.azurewebsites.net/';
+        $(document).ready(function () {
+            //$('.nav li a').click(function (e) {
+            //    debugger;
+            //    $(".nav").find(".active").removeClass("active");
+            //    $(this).parent().addClass("active");
+
+            //});
+
+        });
+    </script>
+</body>
+</html>

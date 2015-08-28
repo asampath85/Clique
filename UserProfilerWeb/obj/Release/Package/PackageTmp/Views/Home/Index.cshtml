@@ -1,0 +1,69 @@
+﻿<h1>
+    Dashboard
+</h1>
+<div class="right_b">
+    <span>Summary of list of properties that are available in Aribnb. </span>
+    <br />
+    <br />
+</div>
+<div class="row">
+    <div class="col-md-12">
+
+        <table id="example" class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Owner Name</th>
+                    <th>Owner Mobile No</th>
+                    <th>Building Name</th>
+                    <th>Pincode</th>
+                    <th>Score</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- ko foreach: requestList() -->
+                <tr>
+                    <td data-bind="text: Id"></td>
+                    <td data-bind="text: UserName"></td>
+                    <td data-bind="text: MobileNo"></td>
+                    <td data-bind="text: BuildingName"></td>
+                    <td data-bind="text: Pincode"></td>
+                    <td data-bind="text: Score"></td>
+                    <td>
+                        <a data-bind="text: StatusName, click: $root.navigatetoDetails" target="_blank"></a>
+                    </td>
+                    @*<td data-bind="text: StatusName, click: $root.navigatetoDetails" style="cursor:hand;"></td>*@
+
+                </tr>
+                <!-- /ko -->
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+@section scripts{
+
+    <script type="text/html" id="_rowTemplate">
+        <td data-bind="text: Id"></td>
+        <td data-bind="text: UserName"></td>
+        <td data-bind="text: MobileNo"></td>
+        <td data-bind="text: BuildingName"></td>
+        <td data-bind="text: Pincode"></td>
+        <td data-bind="text: Score"></td>
+        <td data-bind="text: StatusName, click: $root.navigatetoDetails"></td>
+    </script>
+
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            var viewModel = new DashboardViewModel();
+            ko.applyBindings(viewModel);
+
+
+        });
+    </script>
+}
+

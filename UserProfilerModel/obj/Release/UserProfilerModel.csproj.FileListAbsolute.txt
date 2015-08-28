@@ -1,0 +1,4 @@
+F:\IPL2015\Clique Latest\Clique\UserProfilerModel\bin\Release\UserProfilerModel.dll
+F:\IPL2015\Clique Latest\Clique\UserProfilerModel\bin\Release\UserProfilerModel.pdb
+F:\IPL2015\Clique Latest\Clique\UserProfilerModel\obj\Release\UserProfilerModel.dll
+F:\IPL2015\Clique Latest\Clique\UserProfilerModel\obj\Release\UserProfilerModel.pdb

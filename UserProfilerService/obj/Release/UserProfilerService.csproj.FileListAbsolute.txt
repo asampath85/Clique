@@ -1,0 +1,14 @@
+F:\IPL2015\Clique Latest\Clique\UserProfilerService\bin\Release\UserProfilerService.dll.config
+F:\IPL2015\Clique Latest\Clique\UserProfilerService\bin\Release\UserProfilerService.dll
+F:\IPL2015\Clique Latest\Clique\UserProfilerService\bin\Release\UserProfilerService.pdb
+F:\IPL2015\Clique Latest\Clique\UserProfilerService\bin\Release\EntityFramework.dll
+F:\IPL2015\Clique Latest\Clique\UserProfilerService\bin\Release\EntityFramework.SqlServer.dll
+F:\IPL2015\Clique Latest\Clique\UserProfilerService\bin\Release\UserProfilerCommon.dll
+F:\IPL2015\Clique Latest\Clique\UserProfilerService\bin\Release\UserProfilerModel.dll
+F:\IPL2015\Clique Latest\Clique\UserProfilerService\bin\Release\UserProfilerCommon.pdb
+F:\IPL2015\Clique Latest\Clique\UserProfilerService\bin\Release\UserProfilerModel.pdb
+F:\IPL2015\Clique Latest\Clique\UserProfilerService\bin\Release\EntityFramework.xml
+F:\IPL2015\Clique Latest\Clique\UserProfilerService\bin\Release\EntityFramework.SqlServer.xml
+F:\IPL2015\Clique Latest\Clique\UserProfilerService\obj\Release\UserProfilerService.csprojResolveAssemblyReference.cache
+F:\IPL2015\Clique Latest\Clique\UserProfilerService\obj\Release\UserProfilerService.dll
+F:\IPL2015\Clique Latest\Clique\UserProfilerService\obj\Release\UserProfilerService.pdb

@@ -14,7 +14,7 @@ namespace UserProfilerWeb.Controllers
     public class TimeLineController : Controller
     {
         // GET: TimeLine
-        public ActionResult Index()
+        public ActionResult OldIndex()
         {
             var highchartSample = new List<TimeLineModel>
             {
@@ -60,6 +60,63 @@ namespace UserProfilerWeb.Controllers
             );
 
             chart.SetSeries(new Series { Name = "Actual Score", Data = data });
+
+            return View(chart);
+        }
+
+        public ActionResult Index()
+        {
+
+            var highchartSample = new List<TimeLineModel>
+            {
+                new TimeLineModel() {Parameters = "Event", GoodScore = 23.45D, AverageScore = 15.32D,BadScore = 9.4D,ActualScore=78.33D},
+                new TimeLineModel() {Parameters = "Weather",GoodScore=45.67D,AverageScore = 33.24D,BadScore = 12.23D,ActualScore = 56.22D},
+                new TimeLineModel() {Parameters = "User Review",GoodScore=67.23D,AverageScore = 31.23D,BadScore = 10.11D,ActualScore = 29.44D},
+                new TimeLineModel() {Parameters = "Tweets",GoodScore = 89.67D,AverageScore = 12.33D,BadScore = 3.43D,ActualScore = 88.11D},
+                new TimeLineModel() {Parameters = "Persona",GoodScore=38.34D,AverageScore = 25.34D,BadScore = 16.43D,ActualScore = 35.08D},
+                new TimeLineModel() {Parameters = "Crime",GoodScore=38.34D,AverageScore = 25.34D,BadScore = 16.43D,ActualScore = 24.87D}
+            };
+
+            var xDataParameters = highchartSample.Select(i => i.Parameters).ToArray();
+            var actualScore = highchartSample.Select(i => i.ActualScore);
+
+            Highcharts chart = new Highcharts("chart")
+                .InitChart(new Chart { DefaultSeriesType = ChartTypes.Column })
+                .SetTitle(new Title { Text = "Risk Score Profiling" })
+                .SetSubtitle(new Subtitle { Text = "Risk predicting using social media" })
+                .SetXAxis(new XAxis { Categories = new[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" } })
+                .SetYAxis(new YAxis { Title = new YAxisTitle { Text = "Scores" }, Max = 100 })
+                .SetLegend(new Legend
+                {
+                    Layout = Layouts.Vertical,
+                    Align = HorizontalAligns.Left,
+                    VerticalAlign = VerticalAligns.Top,
+                    X = 100,
+                    Y = 70,
+                    Floating = true,
+                    BackgroundColor = new BackColorOrGradient(ColorTranslator.FromHtml("#FFFFFF")),
+                    Shadow = true
+                })
+                .SetTooltip(new Tooltip { Formatter = @"function() { return ''+ this.x +': '+ this.y +' mm'; }" })
+                .SetPlotOptions(new PlotOptions
+                {
+                    Column = new PlotOptionsColumn
+                    {
+                        PointPadding = 0.2,
+                        //BorderWidth = 0,
+                        Shadow = true,
+                        BorderWidth = 1,
+                        BorderColor = Color.FloralWhite
+                    }
+                })
+                .SetSeries(new[]
+                {
+                    new Series { Name = "Event", Data = new Data(new object[] { 49.9, 21.5, 46.4, 49.2, 44.0, 76.0, 35.6, 48.5, 16.4, 44.1, 55.6, 54.4 }) },
+                    new Series { Name = "Weather", Data = new Data(new object[] { 8.9, 8.8, 9.3, 21.4, 27.0, 28.3, 29.0, 29.6, 22.4, 25.2, 29.3, 31.2 }) },
+                    new Series { Name = "User Review", Data = new Data(new object[] { 33.6, 48.8, 98.5, 93.4, 36.0, 84.5, 35.0, 34.3, 31.2, 83.5, 16.6, 92.3 }) },
+                    new Series { Name = "Persona", Data = new Data(new object[] { 42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1 }) },
+                    new Series { Name = "Crime", Data = new Data(new object[] { 22.4, 23.2, 44.5, 59.7, 72.6, 45.5, 37.4, 20.4, 47.6, 19.1, 26.8, 31.1 }) }
+                });
 
             return View(chart);
         }

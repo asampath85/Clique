@@ -1,56 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="ipl_userprofilerModelStoreContainer" CdmEntityContainer="ipl_userprofilerEntities">
-    <EntitySetMapping Name="TwitterKeywords">
-      <EntityTypeMapping TypeName="ipl_userprofilerModel.TwitterKeyword">
-        <MappingFragment StoreEntitySet="TwitterKeyword">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Keyword" ColumnName="Keyword" />
-          <ScalarProperty Name="GeoLocation" ColumnName="GeoLocation" />
-          <ScalarProperty Name="GeoLatitude" ColumnName="GeoLatitude" />
-          <ScalarProperty Name="GeoLogitude" ColumnName="GeoLogitude" />
-          <ScalarProperty Name="GeoRadious" ColumnName="GeoRadious" />
-          <ScalarProperty Name="TrackMessage" ColumnName="TrackMessage" />
-          <ScalarProperty Name="AddedAt" ColumnName="AddedAt" />
-          <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="TwitterMessages">
-      <EntityTypeMapping TypeName="ipl_userprofilerModel.TwitterMessage">
-        <MappingFragment StoreEntitySet="TwitterMessage">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="MessageId" ColumnName="MessageId" />
-          <ScalarProperty Name="MessageIdString" ColumnName="MessageIdString" />
-          <ScalarProperty Name="Text" ColumnName="Text" />
-          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-          <ScalarProperty Name="AddedAt" ColumnName="AddedAt" />
-          <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
-          <ScalarProperty Name="TwitterUserId" ColumnName="TwitterUserId" />
-          <ScalarProperty Name="TwitterKeywordId" ColumnName="TwitterKeywordId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="TwitterUsers">
-      <EntityTypeMapping TypeName="ipl_userprofilerModel.TwitterUser">
-        <MappingFragment StoreEntitySet="TwitterUser">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
-          <ScalarProperty Name="FollowersCount" ColumnName="FollowersCount" />
-          <ScalarProperty Name="FollowingCount" ColumnName="FollowingCount" />
-          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-          <ScalarProperty Name="AddedAt" ColumnName="AddedAt" />
-          <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="CliqueLocations">
       <EntityTypeMapping TypeName="ipl_userprofilerModel.CliqueLocation">
         <MappingFragment StoreEntitySet="CliqueLocation">
+          <ScalarProperty Name="Locality" ColumnName="Locality" />
           <ScalarProperty Name="Score" ColumnName="Score" />
           <ScalarProperty Name="Pincode" ColumnName="Pincode" />
           <ScalarProperty Name="City" ColumnName="City" />
@@ -75,20 +29,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="CliqueUsers">
-      <EntityTypeMapping TypeName="ipl_userprofilerModel.CliqueUser">
-        <MappingFragment StoreEntitySet="CliqueUser">
-          <ScalarProperty Name="Score" ColumnName="Score" />
-          <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
-          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
-          <ScalarProperty Name="TwitterUserName" ColumnName="TwitterUserName" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="CliqueWeathers">
       <EntityTypeMapping TypeName="ipl_userprofilerModel.CliqueWeather">
         <MappingFragment StoreEntitySet="CliqueWeather">
@@ -105,13 +45,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="CliqueUserTweets">
-      <EntityTypeMapping TypeName="ipl_userprofilerModel.CliqueUserTweet">
-        <MappingFragment StoreEntitySet="CliqueUserTweet">
+    <EntitySetMapping Name="CliqueTweets">
+      <EntityTypeMapping TypeName="ipl_userprofilerModel.CliqueTweet">
+        <MappingFragment StoreEntitySet="CliqueTweets">
+          <ScalarProperty Name="TweetIdStr" ColumnName="TweetIdStr" />
+          <ScalarProperty Name="ProfileImageURL" ColumnName="ProfileImageURL" />
           <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
-          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-          <ScalarProperty Name="TweetId" ColumnName="TweetId" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="AddedAt" ColumnName="AddedAt" />
+          <ScalarProperty Name="Score" ColumnName="Score" />
+          <ScalarProperty Name="PostedAt" ColumnName="PostedAt" />
+          <ScalarProperty Name="PostedBy" ColumnName="PostedBy" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -122,7 +66,18 @@
           <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
           <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
           <ScalarProperty Name="TweetId" ColumnName="TweetId" />
-          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+          <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CliqueUserTweets">
+      <EntityTypeMapping TypeName="ipl_userprofilerModel.CliqueUserTweet">
+        <MappingFragment StoreEntitySet="CliqueUserTweet">
+          <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="TweetId" ColumnName="TweetId" />
+          <ScalarProperty Name="RequestId" ColumnName="RequestId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -138,22 +93,32 @@
           <ScalarProperty Name="StartDate" ColumnName="StartDate" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+          <ScalarProperty Name="EventId" ColumnName="EventId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="CliqueTweets">
-      <EntityTypeMapping TypeName="ipl_userprofilerModel.CliqueTweet">
-        <MappingFragment StoreEntitySet="CliqueTweets">
-          <ScalarProperty Name="TweetIdStr" ColumnName="TweetIdStr" />
-          <ScalarProperty Name="ProfileImageURL" ColumnName="ProfileImageURL" />
-          <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
-          <ScalarProperty Name="AddedAt" ColumnName="AddedAt" />
+    <EntitySetMapping Name="CliqueUsers">
+      <EntityTypeMapping TypeName="ipl_userprofilerModel.CliqueUser">
+        <MappingFragment StoreEntitySet="CliqueUser">
           <ScalarProperty Name="Score" ColumnName="Score" />
-          <ScalarProperty Name="PostedAt" ColumnName="PostedAt" />
-          <ScalarProperty Name="PostedBy" ColumnName="PostedBy" />
-          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+          <ScalarProperty Name="TwitterUserName" ColumnName="TwitterUserName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CliqueLocationEvents">
+      <EntityTypeMapping TypeName="ipl_userprofilerModel.CliqueLocationEvent">
+        <MappingFragment StoreEntitySet="CliqueLocationEvent">
+          <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="EventId" ColumnName="EventId" />
+          <ScalarProperty Name="RequestId" ColumnName="RequestId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
