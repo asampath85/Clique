@@ -303,7 +303,8 @@ namespace UserProfilerService
                         ProfileImageURL = item.ProfileImageURL,
                         TweetIdStr = item.TweetIdStr,
                         AddedAt = DateTime.Now,
-                        ModifiedAt = DateTime.Now
+                        ModifiedAt = DateTime.Now,
+                        Score = item.Score
                     };
                     var existingItem = entity.CliqueTweets.SingleOrDefault(res => res.TweetIdStr == request.TweetIdStr);
                     if (existingItem == null)
@@ -385,7 +386,7 @@ namespace UserProfilerService
                        Text = item.CliqueTweet.Text,
                        PostedBy = item.CliqueTweet.PostedBy,
                        PostedAt = item.CliqueTweet.PostedAt,
-                       Score = item.CliqueTweet.Score,
+                       Score = item.CliqueTweet.Score??0,
                        ProfileImageURL = item.CliqueTweet.ProfileImageURL
                     });
 
