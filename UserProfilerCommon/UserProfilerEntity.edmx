@@ -5,6 +5,48 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="ipl_userprofilerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Amenitiy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="CliqueClaimRequest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Bedrooms" Type="int" Nullable="false" />
+          <Property Name="Beds" Type="int" Nullable="false" />
+          <Property Name="Accomodates" Type="int" Nullable="false" />
+          <Property Name="Type" Type="nvarchar(max)" />
+          <Property Name="Address1" Type="nvarchar(max)" />
+          <Property Name="Address2" Type="nvarchar(max)" />
+          <Property Name="City" Type="nvarchar(max)" />
+          <Property Name="State" Type="nvarchar(max)" />
+          <Property Name="Country" Type="nvarchar(max)" />
+          <Property Name="Zip" Type="nvarchar(max)" />
+          <Property Name="NightPrice" Type="int" />
+          <Property Name="WeekPrice" Type="int" />
+          <Property Name="SSN" Type="nvarchar(max)" />
+          <Property Name="Locality" Type="nvarchar(max)" />
+          <Property Name="AddedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CliqueClaimRequestFeedback">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="UserEmail" Type="nvarchar(max)" />
+          <Property Name="AddedAt" Type="datetime" Nullable="false" />
+          <Property Name="RequestId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="CliqueEvent">
           <Key>
             <PropertyRef Name="Id" />
@@ -118,6 +160,59 @@
           <Property Name="CreatedAt" Type="date" Nullable="false" />
           <Property Name="ModifiedAt" Type="date" Nullable="false" />
         </EntityType>
+        <EntityType Name="HomeAwayFeedback">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="UserEmail" Type="nvarchar(max)" />
+          <Property Name="PropertyId" Type="int" Nullable="false" />
+          <Property Name="AddedAt" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HomeAwayProperty">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Bedrooms" Type="int" Nullable="false" />
+          <Property Name="Beds" Type="int" Nullable="false" />
+          <Property Name="Accomodates" Type="int" Nullable="false" />
+          <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Address1" Type="nvarchar(max)" />
+          <Property Name="Address2" Type="nvarchar(max)" />
+          <Property Name="City" Type="nvarchar(max)" />
+          <Property Name="State" Type="nvarchar(max)" />
+          <Property Name="Country" Type="nvarchar(max)" />
+          <Property Name="Zip" Type="nvarchar(max)" />
+          <Property Name="NightPrice" Type="int" />
+          <Property Name="WeekPrice" Type="int" />
+          <Property Name="AddedAt" Type="datetime" Nullable="false" />
+          <Property Name="Locality" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PropertyAmenityMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PropertyId" Type="int" Nullable="false" />
+          <Property Name="AmenityId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CliqueClaimRequestFeedback_ToCliqueRequest">
+          <End Role="CliqueRequest" Type="Self.CliqueRequest" Multiplicity="1" />
+          <End Role="CliqueClaimRequestFeedback" Type="Self.CliqueClaimRequestFeedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CliqueRequest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CliqueClaimRequestFeedback">
+              <PropertyRef Name="RequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CliqueLocationEvent_ToCliqueEvent">
           <End Role="CliqueEvent" Type="Self.CliqueEvent" Multiplicity="1" />
           <End Role="CliqueLocationEvent" Type="Self.CliqueLocationEvent" Multiplicity="*" />
@@ -226,7 +321,46 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_HomeAwayFeedback_ToHomeAwayProperty">
+          <End Role="HomeAwayProperty" Type="Self.HomeAwayProperty" Multiplicity="1" />
+          <End Role="HomeAwayFeedback" Type="Self.HomeAwayFeedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HomeAwayProperty">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HomeAwayFeedback">
+              <PropertyRef Name="PropertyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyAmenityMapping_ToAmenity">
+          <End Role="Amenitiy" Type="Self.Amenitiy" Multiplicity="1" />
+          <End Role="PropertyAmenityMapping" Type="Self.PropertyAmenityMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Amenitiy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PropertyAmenityMapping">
+              <PropertyRef Name="AmenityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_ToHomeAwayProperty">
+          <End Role="HomeAwayProperty" Type="Self.HomeAwayProperty" Multiplicity="1" />
+          <End Role="PropertyAmenityMapping" Type="Self.PropertyAmenityMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HomeAwayProperty">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PropertyAmenityMapping">
+              <PropertyRef Name="PropertyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ipl_userprofilerModelStoreContainer">
+          <EntitySet Name="Amenitiy" EntityType="Self.Amenitiy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CliqueClaimRequest" EntityType="Self.CliqueClaimRequest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CliqueClaimRequestFeedback" EntityType="Self.CliqueClaimRequestFeedback" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CliqueEvent" EntityType="Self.CliqueEvent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CliqueLocation" EntityType="Self.CliqueLocation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CliqueLocationEvent" EntityType="Self.CliqueLocationEvent" Schema="dbo" store:Type="Tables" />
@@ -236,6 +370,13 @@
           <EntitySet Name="CliqueUser" EntityType="Self.CliqueUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CliqueUserTweet" EntityType="Self.CliqueUserTweet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CliqueWeather" EntityType="Self.CliqueWeather" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HomeAwayFeedback" EntityType="Self.HomeAwayFeedback" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HomeAwayProperty" EntityType="Self.HomeAwayProperty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyAmenityMapping" EntityType="Self.PropertyAmenityMapping" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CliqueClaimRequestFeedback_ToCliqueRequest" Association="Self.FK_CliqueClaimRequestFeedback_ToCliqueRequest">
+            <End Role="CliqueRequest" EntitySet="CliqueRequest" />
+            <End Role="CliqueClaimRequestFeedback" EntitySet="CliqueClaimRequestFeedback" />
+          </AssociationSet>
           <AssociationSet Name="FK_CliqueLocationEvent_ToCliqueEvent" Association="Self.FK_CliqueLocationEvent_ToCliqueEvent">
             <End Role="CliqueEvent" EntitySet="CliqueEvent" />
             <End Role="CliqueLocationEvent" EntitySet="CliqueLocationEvent" />
@@ -271,6 +412,18 @@
           <AssociationSet Name="FK_CliqueWeather_ToCliqueLocation" Association="Self.FK_CliqueWeather_ToCliqueLocation">
             <End Role="CliqueLocation" EntitySet="CliqueLocation" />
             <End Role="CliqueWeather" EntitySet="CliqueWeather" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HomeAwayFeedback_ToHomeAwayProperty" Association="Self.FK_HomeAwayFeedback_ToHomeAwayProperty">
+            <End Role="HomeAwayProperty" EntitySet="HomeAwayProperty" />
+            <End Role="HomeAwayFeedback" EntitySet="HomeAwayFeedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyAmenityMapping_ToAmenity" Association="Self.FK_PropertyAmenityMapping_ToAmenity">
+            <End Role="Amenitiy" EntitySet="Amenitiy" />
+            <End Role="PropertyAmenityMapping" EntitySet="PropertyAmenityMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_ToHomeAwayProperty" Association="Self.FK_Table_ToHomeAwayProperty">
+            <End Role="HomeAwayProperty" EntitySet="HomeAwayProperty" />
+            <End Role="PropertyAmenityMapping" EntitySet="PropertyAmenityMapping" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -323,6 +476,28 @@
             <End Role="CliqueRequest" EntitySet="CliqueRequests" />
             <End Role="CliqueLocationEvent" EntitySet="CliqueLocationEvents" />
           </AssociationSet>
+          <EntitySet Name="Amenitiys" EntityType="ipl_userprofilerModel.Amenitiy" />
+          <EntitySet Name="CliqueClaimRequests" EntityType="ipl_userprofilerModel.CliqueClaimRequest" />
+          <EntitySet Name="CliqueClaimRequestFeedbacks" EntityType="ipl_userprofilerModel.CliqueClaimRequestFeedback" />
+          <EntitySet Name="HomeAwayFeedbacks" EntityType="ipl_userprofilerModel.HomeAwayFeedback" />
+          <EntitySet Name="HomeAwayProperties" EntityType="ipl_userprofilerModel.HomeAwayProperty" />
+          <EntitySet Name="PropertyAmenityMappings" EntityType="ipl_userprofilerModel.PropertyAmenityMapping" />
+          <AssociationSet Name="FK_PropertyAmenityMapping_ToAmenity" Association="ipl_userprofilerModel.FK_PropertyAmenityMapping_ToAmenity">
+            <End Role="Amenitiy" EntitySet="Amenitiys" />
+            <End Role="PropertyAmenityMapping" EntitySet="PropertyAmenityMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CliqueClaimRequestFeedback_ToCliqueRequest" Association="ipl_userprofilerModel.FK_CliqueClaimRequestFeedback_ToCliqueRequest">
+            <End Role="CliqueRequest" EntitySet="CliqueRequests" />
+            <End Role="CliqueClaimRequestFeedback" EntitySet="CliqueClaimRequestFeedbacks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HomeAwayFeedback_ToHomeAwayProperty" Association="ipl_userprofilerModel.FK_HomeAwayFeedback_ToHomeAwayProperty">
+            <End Role="HomeAwayProperty" EntitySet="HomeAwayProperties" />
+            <End Role="HomeAwayFeedback" EntitySet="HomeAwayFeedbacks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_ToHomeAwayProperty" Association="ipl_userprofilerModel.FK_Table_ToHomeAwayProperty">
+            <End Role="HomeAwayProperty" EntitySet="HomeAwayProperties" />
+            <End Role="PropertyAmenityMapping" EntitySet="PropertyAmenityMappings" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="CliqueLocation">
           <Key>
@@ -356,6 +531,7 @@
           <NavigationProperty Name="CliqueUserTweets" Relationship="ipl_userprofilerModel.FK_CliqueUserTweet_ToCliqueRequest" FromRole="CliqueRequest" ToRole="CliqueUserTweet" />
           <NavigationProperty Name="CliqueUser" Relationship="ipl_userprofilerModel.FK_CliqueRequest_ToCliqueUser" FromRole="CliqueRequest" ToRole="CliqueUser" />
           <NavigationProperty Name="CliqueLocationEvents" Relationship="ipl_userprofilerModel.FK_CliqueLocationEvent_ToCliqueRequest" FromRole="CliqueRequest" ToRole="CliqueLocationEvent" />
+          <NavigationProperty Name="CliqueClaimRequestFeedbacks" Relationship="ipl_userprofilerModel.FK_CliqueClaimRequestFeedback_ToCliqueRequest" FromRole="CliqueRequest" ToRole="CliqueClaimRequestFeedback" />
         </EntityType>
         <EntityType Name="CliqueWeather">
           <Key>
@@ -563,6 +739,144 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Amenitiy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PropertyAmenityMappings" Relationship="ipl_userprofilerModel.FK_PropertyAmenityMapping_ToAmenity" FromRole="Amenitiy" ToRole="PropertyAmenityMapping" />
+        </EntityType>
+        <EntityType Name="CliqueClaimRequest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Bedrooms" Type="Int32" Nullable="false" />
+          <Property Name="Beds" Type="Int32" Nullable="false" />
+          <Property Name="Accomodates" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Zip" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NightPrice" Type="Int32" />
+          <Property Name="WeekPrice" Type="Int32" />
+          <Property Name="SSN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Locality" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AddedAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="CliqueClaimRequestFeedback">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AddedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RequestId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CliqueRequest" Relationship="ipl_userprofilerModel.FK_CliqueClaimRequestFeedback_ToCliqueRequest" FromRole="CliqueClaimRequestFeedback" ToRole="CliqueRequest" />
+        </EntityType>
+        <EntityType Name="HomeAwayFeedback">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PropertyId" Type="Int32" Nullable="false" />
+          <Property Name="AddedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="HomeAwayProperty" Relationship="ipl_userprofilerModel.FK_HomeAwayFeedback_ToHomeAwayProperty" FromRole="HomeAwayFeedback" ToRole="HomeAwayProperty" />
+        </EntityType>
+        <EntityType Name="HomeAwayProperty">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Bedrooms" Type="Int32" Nullable="false" />
+          <Property Name="Beds" Type="Int32" Nullable="false" />
+          <Property Name="Accomodates" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Zip" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NightPrice" Type="Int32" />
+          <Property Name="WeekPrice" Type="Int32" />
+          <Property Name="AddedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Locality" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HomeAwayFeedbacks" Relationship="ipl_userprofilerModel.FK_HomeAwayFeedback_ToHomeAwayProperty" FromRole="HomeAwayProperty" ToRole="HomeAwayFeedback" />
+          <NavigationProperty Name="PropertyAmenityMappings" Relationship="ipl_userprofilerModel.FK_Table_ToHomeAwayProperty" FromRole="HomeAwayProperty" ToRole="PropertyAmenityMapping" />
+        </EntityType>
+        <EntityType Name="PropertyAmenityMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PropertyId" Type="Int32" Nullable="false" />
+          <Property Name="AmenityId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Amenitiy" Relationship="ipl_userprofilerModel.FK_PropertyAmenityMapping_ToAmenity" FromRole="PropertyAmenityMapping" ToRole="Amenitiy" />
+          <NavigationProperty Name="HomeAwayProperty" Relationship="ipl_userprofilerModel.FK_Table_ToHomeAwayProperty" FromRole="PropertyAmenityMapping" ToRole="HomeAwayProperty" />
+        </EntityType>
+        <Association Name="FK_PropertyAmenityMapping_ToAmenity">
+          <End Type="ipl_userprofilerModel.Amenitiy" Role="Amenitiy" Multiplicity="1" />
+          <End Type="ipl_userprofilerModel.PropertyAmenityMapping" Role="PropertyAmenityMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Amenitiy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PropertyAmenityMapping">
+              <PropertyRef Name="AmenityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CliqueClaimRequestFeedback_ToCliqueRequest">
+          <End Type="ipl_userprofilerModel.CliqueRequest" Role="CliqueRequest" Multiplicity="1" />
+          <End Type="ipl_userprofilerModel.CliqueClaimRequestFeedback" Role="CliqueClaimRequestFeedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CliqueRequest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CliqueClaimRequestFeedback">
+              <PropertyRef Name="RequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HomeAwayFeedback_ToHomeAwayProperty">
+          <End Type="ipl_userprofilerModel.HomeAwayProperty" Role="HomeAwayProperty" Multiplicity="1" />
+          <End Type="ipl_userprofilerModel.HomeAwayFeedback" Role="HomeAwayFeedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HomeAwayProperty">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HomeAwayFeedback">
+              <PropertyRef Name="PropertyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_ToHomeAwayProperty">
+          <End Type="ipl_userprofilerModel.HomeAwayProperty" Role="HomeAwayProperty" Multiplicity="1" />
+          <End Type="ipl_userprofilerModel.PropertyAmenityMapping" Role="PropertyAmenityMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HomeAwayProperty">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PropertyAmenityMapping">
+              <PropertyRef Name="PropertyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -687,6 +1001,95 @@
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
                 <ScalarProperty Name="EventId" ColumnName="EventId" />
                 <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Amenitiys">
+            <EntityTypeMapping TypeName="ipl_userprofilerModel.Amenitiy">
+              <MappingFragment StoreEntitySet="Amenitiy">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CliqueClaimRequests">
+            <EntityTypeMapping TypeName="ipl_userprofilerModel.CliqueClaimRequest">
+              <MappingFragment StoreEntitySet="CliqueClaimRequest">
+                <ScalarProperty Name="AddedAt" ColumnName="AddedAt" />
+                <ScalarProperty Name="Locality" ColumnName="Locality" />
+                <ScalarProperty Name="SSN" ColumnName="SSN" />
+                <ScalarProperty Name="WeekPrice" ColumnName="WeekPrice" />
+                <ScalarProperty Name="NightPrice" ColumnName="NightPrice" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Accomodates" ColumnName="Accomodates" />
+                <ScalarProperty Name="Beds" ColumnName="Beds" />
+                <ScalarProperty Name="Bedrooms" ColumnName="Bedrooms" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CliqueClaimRequestFeedbacks">
+            <EntityTypeMapping TypeName="ipl_userprofilerModel.CliqueClaimRequestFeedback">
+              <MappingFragment StoreEntitySet="CliqueClaimRequestFeedback">
+                <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+                <ScalarProperty Name="AddedAt" ColumnName="AddedAt" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HomeAwayFeedbacks">
+            <EntityTypeMapping TypeName="ipl_userprofilerModel.HomeAwayFeedback">
+              <MappingFragment StoreEntitySet="HomeAwayFeedback">
+                <ScalarProperty Name="AddedAt" ColumnName="AddedAt" />
+                <ScalarProperty Name="PropertyId" ColumnName="PropertyId" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HomeAwayProperties">
+            <EntityTypeMapping TypeName="ipl_userprofilerModel.HomeAwayProperty">
+              <MappingFragment StoreEntitySet="HomeAwayProperty">
+                <ScalarProperty Name="Locality" ColumnName="Locality" />
+                <ScalarProperty Name="AddedAt" ColumnName="AddedAt" />
+                <ScalarProperty Name="WeekPrice" ColumnName="WeekPrice" />
+                <ScalarProperty Name="NightPrice" ColumnName="NightPrice" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Accomodates" ColumnName="Accomodates" />
+                <ScalarProperty Name="Beds" ColumnName="Beds" />
+                <ScalarProperty Name="Bedrooms" ColumnName="Bedrooms" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyAmenityMappings">
+            <EntityTypeMapping TypeName="ipl_userprofilerModel.PropertyAmenityMapping">
+              <MappingFragment StoreEntitySet="PropertyAmenityMapping">
+                <ScalarProperty Name="AmenityId" ColumnName="AmenityId" />
+                <ScalarProperty Name="PropertyId" ColumnName="PropertyId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
