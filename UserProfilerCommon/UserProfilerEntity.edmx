@@ -5,14 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="ipl_userprofilerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Amenitiy">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Description" Type="nvarchar(max)" />
-        </EntityType>
         <EntityType Name="CliqueClaimRequest">
           <Key>
             <PropertyRef Name="Id" />
@@ -35,6 +27,17 @@
           <Property Name="SSN" Type="nvarchar(max)" />
           <Property Name="Locality" Type="nvarchar(max)" />
           <Property Name="AddedAt" Type="datetime" />
+          <Property Name="IsPetsAllowed" Type="bit" />
+          <Property Name="IsWifiAvailable" Type="bit" />
+          <Property Name="IsACAvailable" Type="bit" />
+          <Property Name="IsLiftAvailable" Type="bit" />
+          <Property Name="IsPrivatePoolAvailable" Type="bit" />
+          <Property Name="IsBuzzerAvailable" Type="bit" />
+          <Property Name="Score" Type="float" />
+          <Property Name="Price" Type="float" />
+          <Property Name="Status" Type="int" />
+          <Property Name="FromDate" Type="datetime" Nullable="false" />
+          <Property Name="ToDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="CliqueClaimRequestFeedback">
           <Key>
@@ -213,6 +216,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CliqueLocationEvent_ToCliqueClaimRequest">
+          <End Role="CliqueClaimRequest" Type="Self.CliqueClaimRequest" Multiplicity="1" />
+          <End Role="CliqueLocationEvent" Type="Self.CliqueLocationEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CliqueClaimRequest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CliqueLocationEvent">
+              <PropertyRef Name="RequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CliqueLocationEvent_ToCliqueEvent">
           <End Role="CliqueEvent" Type="Self.CliqueEvent" Multiplicity="1" />
           <End Role="CliqueLocationEvent" Type="Self.CliqueLocationEvent" Multiplicity="*" />
@@ -225,23 +240,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CliqueLocationEvent_ToCliqueRequest">
-          <End Role="CliqueRequest" Type="Self.CliqueRequest" Multiplicity="1" />
-          <End Role="CliqueLocationEvent" Type="Self.CliqueLocationEvent" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CliqueRequest">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CliqueLocationEvent">
-              <PropertyRef Name="RequestId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CliqueLocationTweet_ToCliqueRequest">
-          <End Role="CliqueRequest" Type="Self.CliqueRequest" Multiplicity="1" />
+        <Association Name="FK_CliqueLocationTweet_ToCliqueClaimRequest">
+          <End Role="CliqueClaimRequest" Type="Self.CliqueClaimRequest" Multiplicity="1" />
           <End Role="CliqueLocationTweet" Type="Self.CliqueLocationTweet" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="CliqueRequest">
+            <Principal Role="CliqueClaimRequest">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="CliqueLocationTweet">
@@ -333,18 +336,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PropertyAmenityMapping_ToAmenity">
-          <End Role="Amenitiy" Type="Self.Amenitiy" Multiplicity="1" />
-          <End Role="PropertyAmenityMapping" Type="Self.PropertyAmenityMapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Amenitiy">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PropertyAmenityMapping">
-              <PropertyRef Name="AmenityId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Table_ToHomeAwayProperty">
           <End Role="HomeAwayProperty" Type="Self.HomeAwayProperty" Multiplicity="1" />
           <End Role="PropertyAmenityMapping" Type="Self.PropertyAmenityMapping" Multiplicity="*" />
@@ -358,7 +349,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ipl_userprofilerModelStoreContainer">
-          <EntitySet Name="Amenitiy" EntityType="Self.Amenitiy" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CliqueClaimRequest" EntityType="Self.CliqueClaimRequest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CliqueClaimRequestFeedback" EntityType="Self.CliqueClaimRequestFeedback" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CliqueEvent" EntityType="Self.CliqueEvent" Schema="dbo" store:Type="Tables" />
@@ -377,16 +367,16 @@
             <End Role="CliqueRequest" EntitySet="CliqueRequest" />
             <End Role="CliqueClaimRequestFeedback" EntitySet="CliqueClaimRequestFeedback" />
           </AssociationSet>
+          <AssociationSet Name="FK_CliqueLocationEvent_ToCliqueClaimRequest" Association="Self.FK_CliqueLocationEvent_ToCliqueClaimRequest">
+            <End Role="CliqueClaimRequest" EntitySet="CliqueClaimRequest" />
+            <End Role="CliqueLocationEvent" EntitySet="CliqueLocationEvent" />
+          </AssociationSet>
           <AssociationSet Name="FK_CliqueLocationEvent_ToCliqueEvent" Association="Self.FK_CliqueLocationEvent_ToCliqueEvent">
             <End Role="CliqueEvent" EntitySet="CliqueEvent" />
             <End Role="CliqueLocationEvent" EntitySet="CliqueLocationEvent" />
           </AssociationSet>
-          <AssociationSet Name="FK_CliqueLocationEvent_ToCliqueRequest" Association="Self.FK_CliqueLocationEvent_ToCliqueRequest">
-            <End Role="CliqueRequest" EntitySet="CliqueRequest" />
-            <End Role="CliqueLocationEvent" EntitySet="CliqueLocationEvent" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CliqueLocationTweet_ToCliqueRequest" Association="Self.FK_CliqueLocationTweet_ToCliqueRequest">
-            <End Role="CliqueRequest" EntitySet="CliqueRequest" />
+          <AssociationSet Name="FK_CliqueLocationTweet_ToCliqueClaimRequest" Association="Self.FK_CliqueLocationTweet_ToCliqueClaimRequest">
+            <End Role="CliqueClaimRequest" EntitySet="CliqueClaimRequest" />
             <End Role="CliqueLocationTweet" EntitySet="CliqueLocationTweet" />
           </AssociationSet>
           <AssociationSet Name="FK_CliqueLocationTweet_ToCliqueTwitter" Association="Self.FK_CliqueLocationTweet_ToCliqueTwitter">
@@ -417,10 +407,6 @@
             <End Role="HomeAwayProperty" EntitySet="HomeAwayProperty" />
             <End Role="HomeAwayFeedback" EntitySet="HomeAwayFeedback" />
           </AssociationSet>
-          <AssociationSet Name="FK_PropertyAmenityMapping_ToAmenity" Association="Self.FK_PropertyAmenityMapping_ToAmenity">
-            <End Role="Amenitiy" EntitySet="Amenitiy" />
-            <End Role="PropertyAmenityMapping" EntitySet="PropertyAmenityMapping" />
-          </AssociationSet>
           <AssociationSet Name="FK_Table_ToHomeAwayProperty" Association="Self.FK_Table_ToHomeAwayProperty">
             <End Role="HomeAwayProperty" EntitySet="HomeAwayProperty" />
             <End Role="PropertyAmenityMapping" EntitySet="PropertyAmenityMapping" />
@@ -443,16 +429,7 @@
             <End Role="CliqueWeather" EntitySet="CliqueWeathers" />
           </AssociationSet>
           <EntitySet Name="CliqueTweets" EntityType="ipl_userprofilerModel.CliqueTweet" />
-          <EntitySet Name="CliqueLocationTweets" EntityType="ipl_userprofilerModel.CliqueLocationTweet" />
           <EntitySet Name="CliqueUserTweets" EntityType="ipl_userprofilerModel.CliqueUserTweet" />
-          <AssociationSet Name="FK_CliqueLocationTweet_ToCliqueRequest" Association="ipl_userprofilerModel.FK_CliqueLocationTweet_ToCliqueRequest">
-            <End Role="CliqueRequest" EntitySet="CliqueRequests" />
-            <End Role="CliqueLocationTweet" EntitySet="CliqueLocationTweets" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CliqueLocationTweet_ToCliqueTwitter" Association="ipl_userprofilerModel.FK_CliqueLocationTweet_ToCliqueTwitter">
-            <End Role="CliqueTweet" EntitySet="CliqueTweets" />
-            <End Role="CliqueLocationTweet" EntitySet="CliqueLocationTweets" />
-          </AssociationSet>
           <AssociationSet Name="FK_CliqueUserTweet_ToCliqueRequest" Association="ipl_userprofilerModel.FK_CliqueUserTweet_ToCliqueRequest">
             <End Role="CliqueRequest" EntitySet="CliqueRequests" />
             <End Role="CliqueUserTweet" EntitySet="CliqueUserTweets" />
@@ -467,25 +444,11 @@
             <End Role="CliqueUser" EntitySet="CliqueUsers" />
             <End Role="CliqueRequest" EntitySet="CliqueRequests" />
           </AssociationSet>
-          <EntitySet Name="CliqueLocationEvents" EntityType="ipl_userprofilerModel.CliqueLocationEvent" />
-          <AssociationSet Name="FK_CliqueLocationEvent_ToCliqueEvent" Association="ipl_userprofilerModel.FK_CliqueLocationEvent_ToCliqueEvent">
-            <End Role="CliqueEvent" EntitySet="CliqueEvents" />
-            <End Role="CliqueLocationEvent" EntitySet="CliqueLocationEvents" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CliqueLocationEvent_ToCliqueRequest" Association="ipl_userprofilerModel.FK_CliqueLocationEvent_ToCliqueRequest">
-            <End Role="CliqueRequest" EntitySet="CliqueRequests" />
-            <End Role="CliqueLocationEvent" EntitySet="CliqueLocationEvents" />
-          </AssociationSet>
-          <EntitySet Name="Amenitiys" EntityType="ipl_userprofilerModel.Amenitiy" />
           <EntitySet Name="CliqueClaimRequests" EntityType="ipl_userprofilerModel.CliqueClaimRequest" />
           <EntitySet Name="CliqueClaimRequestFeedbacks" EntityType="ipl_userprofilerModel.CliqueClaimRequestFeedback" />
           <EntitySet Name="HomeAwayFeedbacks" EntityType="ipl_userprofilerModel.HomeAwayFeedback" />
           <EntitySet Name="HomeAwayProperties" EntityType="ipl_userprofilerModel.HomeAwayProperty" />
           <EntitySet Name="PropertyAmenityMappings" EntityType="ipl_userprofilerModel.PropertyAmenityMapping" />
-          <AssociationSet Name="FK_PropertyAmenityMapping_ToAmenity" Association="ipl_userprofilerModel.FK_PropertyAmenityMapping_ToAmenity">
-            <End Role="Amenitiy" EntitySet="Amenitiys" />
-            <End Role="PropertyAmenityMapping" EntitySet="PropertyAmenityMappings" />
-          </AssociationSet>
           <AssociationSet Name="FK_CliqueClaimRequestFeedback_ToCliqueRequest" Association="ipl_userprofilerModel.FK_CliqueClaimRequestFeedback_ToCliqueRequest">
             <End Role="CliqueRequest" EntitySet="CliqueRequests" />
             <End Role="CliqueClaimRequestFeedback" EntitySet="CliqueClaimRequestFeedbacks" />
@@ -497,6 +460,24 @@
           <AssociationSet Name="FK_Table_ToHomeAwayProperty" Association="ipl_userprofilerModel.FK_Table_ToHomeAwayProperty">
             <End Role="HomeAwayProperty" EntitySet="HomeAwayProperties" />
             <End Role="PropertyAmenityMapping" EntitySet="PropertyAmenityMappings" />
+          </AssociationSet>
+          <EntitySet Name="CliqueLocationEvents" EntityType="ipl_userprofilerModel.CliqueLocationEvent" />
+          <EntitySet Name="CliqueLocationTweets" EntityType="ipl_userprofilerModel.CliqueLocationTweet" />
+          <AssociationSet Name="FK_CliqueLocationEvent_ToCliqueClaimRequest" Association="ipl_userprofilerModel.FK_CliqueLocationEvent_ToCliqueClaimRequest">
+            <End Role="CliqueClaimRequest" EntitySet="CliqueClaimRequests" />
+            <End Role="CliqueLocationEvent" EntitySet="CliqueLocationEvents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CliqueLocationTweet_ToCliqueClaimRequest" Association="ipl_userprofilerModel.FK_CliqueLocationTweet_ToCliqueClaimRequest">
+            <End Role="CliqueClaimRequest" EntitySet="CliqueClaimRequests" />
+            <End Role="CliqueLocationTweet" EntitySet="CliqueLocationTweets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CliqueLocationEvent_ToCliqueEvent" Association="ipl_userprofilerModel.FK_CliqueLocationEvent_ToCliqueEvent">
+            <End Role="CliqueEvent" EntitySet="CliqueEvents" />
+            <End Role="CliqueLocationEvent" EntitySet="CliqueLocationEvents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CliqueLocationTweet_ToCliqueTwitter" Association="ipl_userprofilerModel.FK_CliqueLocationTweet_ToCliqueTwitter">
+            <End Role="CliqueTweet" EntitySet="CliqueTweets" />
+            <End Role="CliqueLocationTweet" EntitySet="CliqueLocationTweets" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="CliqueLocation">
@@ -527,10 +508,8 @@
           <NavigationProperty Name="CliqueLocation" Relationship="ipl_userprofilerModel.FK_CliqueRequest_ToCliqueLocation" FromRole="CliqueRequest" ToRole="CliqueLocation" />
           <Property Name="Score" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="Status" Type="Int32" />
-          <NavigationProperty Name="CliqueLocationTweets" Relationship="ipl_userprofilerModel.FK_CliqueLocationTweet_ToCliqueRequest" FromRole="CliqueRequest" ToRole="CliqueLocationTweet" />
           <NavigationProperty Name="CliqueUserTweets" Relationship="ipl_userprofilerModel.FK_CliqueUserTweet_ToCliqueRequest" FromRole="CliqueRequest" ToRole="CliqueUserTweet" />
           <NavigationProperty Name="CliqueUser" Relationship="ipl_userprofilerModel.FK_CliqueRequest_ToCliqueUser" FromRole="CliqueRequest" ToRole="CliqueUser" />
-          <NavigationProperty Name="CliqueLocationEvents" Relationship="ipl_userprofilerModel.FK_CliqueLocationEvent_ToCliqueRequest" FromRole="CliqueRequest" ToRole="CliqueLocationEvent" />
           <NavigationProperty Name="CliqueClaimRequestFeedbacks" Relationship="ipl_userprofilerModel.FK_CliqueClaimRequestFeedback_ToCliqueRequest" FromRole="CliqueRequest" ToRole="CliqueClaimRequestFeedback" />
         </EntityType>
         <EntityType Name="CliqueWeather">
@@ -586,20 +565,8 @@
           <Property Name="ModifiedAt" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ProfileImageURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TweetIdStr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CliqueLocationTweets" Relationship="ipl_userprofilerModel.FK_CliqueLocationTweet_ToCliqueTwitter" FromRole="CliqueTweet" ToRole="CliqueLocationTweet" />
           <NavigationProperty Name="CliqueUserTweets" Relationship="ipl_userprofilerModel.FK_CliqueUserTweet_ToCliqueTweets" FromRole="CliqueTweet" ToRole="CliqueUserTweet" />
-        </EntityType>
-        <EntityType Name="CliqueLocationTweet">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RequestId" Type="Int32" Nullable="false" />
-          <Property Name="TweetId" Type="Int32" Nullable="false" />
-          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ModifiedAt" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="CliqueRequest" Relationship="ipl_userprofilerModel.FK_CliqueLocationTweet_ToCliqueRequest" FromRole="CliqueLocationTweet" ToRole="CliqueRequest" />
-          <NavigationProperty Name="CliqueTweet" Relationship="ipl_userprofilerModel.FK_CliqueLocationTweet_ToCliqueTwitter" FromRole="CliqueLocationTweet" ToRole="CliqueTweet" />
+          <NavigationProperty Name="CliqueLocationTweets" Relationship="ipl_userprofilerModel.FK_CliqueLocationTweet_ToCliqueTwitter" FromRole="CliqueTweet" ToRole="CliqueLocationTweet" />
         </EntityType>
         <EntityType Name="CliqueUserTweet">
           <Key>
@@ -613,30 +580,6 @@
           <NavigationProperty Name="CliqueRequest" Relationship="ipl_userprofilerModel.FK_CliqueUserTweet_ToCliqueRequest" FromRole="CliqueUserTweet" ToRole="CliqueRequest" />
           <NavigationProperty Name="CliqueTweet" Relationship="ipl_userprofilerModel.FK_CliqueUserTweet_ToCliqueTweets" FromRole="CliqueUserTweet" ToRole="CliqueTweet" />
         </EntityType>
-        <Association Name="FK_CliqueLocationTweet_ToCliqueRequest">
-          <End Type="ipl_userprofilerModel.CliqueRequest" Role="CliqueRequest" Multiplicity="1" />
-          <End Type="ipl_userprofilerModel.CliqueLocationTweet" Role="CliqueLocationTweet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CliqueRequest">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CliqueLocationTweet">
-              <PropertyRef Name="RequestId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CliqueLocationTweet_ToCliqueTwitter">
-          <End Type="ipl_userprofilerModel.CliqueTweet" Role="CliqueTweet" Multiplicity="1" />
-          <End Type="ipl_userprofilerModel.CliqueLocationTweet" Role="CliqueLocationTweet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CliqueTweet">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CliqueLocationTweet">
-              <PropertyRef Name="TweetId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CliqueUserTweet_ToCliqueRequest">
           <End Type="ipl_userprofilerModel.CliqueRequest" Role="CliqueRequest" Multiplicity="1" />
           <End Type="ipl_userprofilerModel.CliqueUserTweet" Role="CliqueUserTweet" Multiplicity="*" />
@@ -703,51 +646,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="CliqueLocationEvent">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RequestId" Type="Int32" Nullable="false" />
-          <Property Name="EventId" Type="Int32" Nullable="false" />
-          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ModifiedAt" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="CliqueEvent" Relationship="ipl_userprofilerModel.FK_CliqueLocationEvent_ToCliqueEvent" FromRole="CliqueLocationEvent" ToRole="CliqueEvent" />
-          <NavigationProperty Name="CliqueRequest" Relationship="ipl_userprofilerModel.FK_CliqueLocationEvent_ToCliqueRequest" FromRole="CliqueLocationEvent" ToRole="CliqueRequest" />
-        </EntityType>
-        <Association Name="FK_CliqueLocationEvent_ToCliqueEvent">
-          <End Type="ipl_userprofilerModel.CliqueEvent" Role="CliqueEvent" Multiplicity="1" />
-          <End Type="ipl_userprofilerModel.CliqueLocationEvent" Role="CliqueLocationEvent" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CliqueEvent">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CliqueLocationEvent">
-              <PropertyRef Name="EventId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CliqueLocationEvent_ToCliqueRequest">
-          <End Type="ipl_userprofilerModel.CliqueRequest" Role="CliqueRequest" Multiplicity="1" />
-          <End Type="ipl_userprofilerModel.CliqueLocationEvent" Role="CliqueLocationEvent" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CliqueRequest">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CliqueLocationEvent">
-              <PropertyRef Name="RequestId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Amenitiy">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="PropertyAmenityMappings" Relationship="ipl_userprofilerModel.FK_PropertyAmenityMapping_ToAmenity" FromRole="Amenitiy" ToRole="PropertyAmenityMapping" />
-        </EntityType>
         <EntityType Name="CliqueClaimRequest">
           <Key>
             <PropertyRef Name="Id" />
@@ -770,6 +668,19 @@
           <Property Name="SSN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Locality" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="AddedAt" Type="DateTime" Precision="3" />
+          <Property Name="IsPetsAllowed" Type="Boolean" />
+          <Property Name="IsWifiAvailable" Type="Boolean" />
+          <Property Name="IsACAvailable" Type="Boolean" />
+          <Property Name="IsLiftAvailable" Type="Boolean" />
+          <Property Name="IsPrivatePoolAvailable" Type="Boolean" />
+          <Property Name="IsBuzzerAvailable" Type="Boolean" />
+          <Property Name="Score" Type="Double" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="Status" Type="Int32" />
+          <NavigationProperty Name="CliqueLocationEvents" Relationship="ipl_userprofilerModel.FK_CliqueLocationEvent_ToCliqueClaimRequest" FromRole="CliqueClaimRequest" ToRole="CliqueLocationEvent" />
+          <NavigationProperty Name="CliqueLocationTweets" Relationship="ipl_userprofilerModel.FK_CliqueLocationTweet_ToCliqueClaimRequest" FromRole="CliqueClaimRequest" ToRole="CliqueLocationTweet" />
+          <Property Name="FromDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ToDate" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="CliqueClaimRequestFeedback">
           <Key>
@@ -826,21 +737,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PropertyId" Type="Int32" Nullable="false" />
           <Property Name="AmenityId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Amenitiy" Relationship="ipl_userprofilerModel.FK_PropertyAmenityMapping_ToAmenity" FromRole="PropertyAmenityMapping" ToRole="Amenitiy" />
           <NavigationProperty Name="HomeAwayProperty" Relationship="ipl_userprofilerModel.FK_Table_ToHomeAwayProperty" FromRole="PropertyAmenityMapping" ToRole="HomeAwayProperty" />
         </EntityType>
-        <Association Name="FK_PropertyAmenityMapping_ToAmenity">
-          <End Type="ipl_userprofilerModel.Amenitiy" Role="Amenitiy" Multiplicity="1" />
-          <End Type="ipl_userprofilerModel.PropertyAmenityMapping" Role="PropertyAmenityMapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Amenitiy">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PropertyAmenityMapping">
-              <PropertyRef Name="AmenityId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CliqueClaimRequestFeedback_ToCliqueRequest">
           <End Type="ipl_userprofilerModel.CliqueRequest" Role="CliqueRequest" Multiplicity="1" />
           <End Type="ipl_userprofilerModel.CliqueClaimRequestFeedback" Role="CliqueClaimRequestFeedback" Multiplicity="*" />
@@ -874,6 +772,78 @@
             </Principal>
             <Dependent Role="PropertyAmenityMapping">
               <PropertyRef Name="PropertyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CliqueLocationEvent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestId" Type="Int32" Nullable="false" />
+          <Property Name="EventId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="CliqueClaimRequest" Relationship="ipl_userprofilerModel.FK_CliqueLocationEvent_ToCliqueClaimRequest" FromRole="CliqueLocationEvent" ToRole="CliqueClaimRequest" />
+          <NavigationProperty Name="CliqueEvent" Relationship="ipl_userprofilerModel.FK_CliqueLocationEvent_ToCliqueEvent" FromRole="CliqueLocationEvent" ToRole="CliqueEvent" />
+        </EntityType>
+        <EntityType Name="CliqueLocationTweet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestId" Type="Int32" Nullable="false" />
+          <Property Name="TweetId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="CliqueClaimRequest" Relationship="ipl_userprofilerModel.FK_CliqueLocationTweet_ToCliqueClaimRequest" FromRole="CliqueLocationTweet" ToRole="CliqueClaimRequest" />
+          <NavigationProperty Name="CliqueTweet" Relationship="ipl_userprofilerModel.FK_CliqueLocationTweet_ToCliqueTwitter" FromRole="CliqueLocationTweet" ToRole="CliqueTweet" />
+        </EntityType>
+        <Association Name="FK_CliqueLocationEvent_ToCliqueClaimRequest">
+          <End Type="ipl_userprofilerModel.CliqueClaimRequest" Role="CliqueClaimRequest" Multiplicity="1" />
+          <End Type="ipl_userprofilerModel.CliqueLocationEvent" Role="CliqueLocationEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CliqueClaimRequest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CliqueLocationEvent">
+              <PropertyRef Name="RequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CliqueLocationTweet_ToCliqueClaimRequest">
+          <End Type="ipl_userprofilerModel.CliqueClaimRequest" Role="CliqueClaimRequest" Multiplicity="1" />
+          <End Type="ipl_userprofilerModel.CliqueLocationTweet" Role="CliqueLocationTweet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CliqueClaimRequest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CliqueLocationTweet">
+              <PropertyRef Name="RequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CliqueLocationEvent_ToCliqueEvent">
+          <End Type="ipl_userprofilerModel.CliqueEvent" Role="CliqueEvent" Multiplicity="1" />
+          <End Type="ipl_userprofilerModel.CliqueLocationEvent" Role="CliqueLocationEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CliqueEvent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CliqueLocationEvent">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CliqueLocationTweet_ToCliqueTwitter">
+          <End Type="ipl_userprofilerModel.CliqueTweet" Role="CliqueTweet" Multiplicity="1" />
+          <End Type="ipl_userprofilerModel.CliqueLocationTweet" Role="CliqueLocationTweet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CliqueTweet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CliqueLocationTweet">
+              <PropertyRef Name="TweetId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -942,17 +912,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CliqueLocationTweets">
-            <EntityTypeMapping TypeName="ipl_userprofilerModel.CliqueLocationTweet">
-              <MappingFragment StoreEntitySet="CliqueLocationTweet">
-                <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="TweetId" ColumnName="TweetId" />
-                <ScalarProperty Name="RequestId" ColumnName="RequestId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="CliqueUserTweets">
             <EntityTypeMapping TypeName="ipl_userprofilerModel.CliqueUserTweet">
               <MappingFragment StoreEntitySet="CliqueUserTweet">
@@ -994,29 +953,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CliqueLocationEvents">
-            <EntityTypeMapping TypeName="ipl_userprofilerModel.CliqueLocationEvent">
-              <MappingFragment StoreEntitySet="CliqueLocationEvent">
-                <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="EventId" ColumnName="EventId" />
-                <ScalarProperty Name="RequestId" ColumnName="RequestId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Amenitiys">
-            <EntityTypeMapping TypeName="ipl_userprofilerModel.Amenitiy">
-              <MappingFragment StoreEntitySet="Amenitiy">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="CliqueClaimRequests">
             <EntityTypeMapping TypeName="ipl_userprofilerModel.CliqueClaimRequest">
               <MappingFragment StoreEntitySet="CliqueClaimRequest">
+                <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+                <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Score" ColumnName="Score" />
+                <ScalarProperty Name="IsBuzzerAvailable" ColumnName="IsBuzzerAvailable" />
+                <ScalarProperty Name="IsPrivatePoolAvailable" ColumnName="IsPrivatePoolAvailable" />
+                <ScalarProperty Name="IsLiftAvailable" ColumnName="IsLiftAvailable" />
+                <ScalarProperty Name="IsACAvailable" ColumnName="IsACAvailable" />
+                <ScalarProperty Name="IsWifiAvailable" ColumnName="IsWifiAvailable" />
+                <ScalarProperty Name="IsPetsAllowed" ColumnName="IsPetsAllowed" />
                 <ScalarProperty Name="AddedAt" ColumnName="AddedAt" />
                 <ScalarProperty Name="Locality" ColumnName="Locality" />
                 <ScalarProperty Name="SSN" ColumnName="SSN" />
@@ -1090,6 +1040,28 @@
               <MappingFragment StoreEntitySet="PropertyAmenityMapping">
                 <ScalarProperty Name="AmenityId" ColumnName="AmenityId" />
                 <ScalarProperty Name="PropertyId" ColumnName="PropertyId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CliqueLocationEvents">
+            <EntityTypeMapping TypeName="ipl_userprofilerModel.CliqueLocationEvent">
+              <MappingFragment StoreEntitySet="CliqueLocationEvent">
+                <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CliqueLocationTweets">
+            <EntityTypeMapping TypeName="ipl_userprofilerModel.CliqueLocationTweet">
+              <MappingFragment StoreEntitySet="CliqueLocationTweet">
+                <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="TweetId" ColumnName="TweetId" />
+                <ScalarProperty Name="RequestId" ColumnName="RequestId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

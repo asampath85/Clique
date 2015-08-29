@@ -16,8 +16,8 @@ namespace UserProfilerCommon
     {
         public CliqueTweet()
         {
-            this.CliqueLocationTweets = new HashSet<CliqueLocationTweet>();
             this.CliqueUserTweets = new HashSet<CliqueUserTweet>();
+            this.CliqueLocationTweets = new HashSet<CliqueLocationTweet>();
         }
     
         public int Id { get; set; }
@@ -30,7 +30,7 @@ namespace UserProfilerCommon
         public string ProfileImageURL { get; set; }
         public string TweetIdStr { get; set; }
     
-        public virtual ICollection<CliqueLocationTweet> CliqueLocationTweets { get; set; }
         public virtual ICollection<CliqueUserTweet> CliqueUserTweets { get; set; }
+        public virtual ICollection<CliqueLocationTweet> CliqueLocationTweets { get; set; }
     }
 }

@@ -13,7 +13,7 @@ namespace UserProfilerHelper
     public class EventHelper
     {
         const string key = "qRg2vNsFsqChXjnK";
-        public static void ProcessPendingEvents(List<RequestModel> requestList)
+        public static void ProcessPendingEvents(IList<CliqueClaimRequestModel> requestList)
         {
             var service = new RequestService();
             foreach (var item in requestList)
@@ -29,7 +29,7 @@ namespace UserProfilerHelper
 
         }
 
-        public static List<EventModel> MapEventModel(List<Event> eventList, RequestModel requestModel)
+        public static List<EventModel> MapEventModel(List<Event> eventList, CliqueClaimRequestModel requestModel)
         {
             List<EventModel> response = new List<EventModel>();
             foreach (var item in eventList)

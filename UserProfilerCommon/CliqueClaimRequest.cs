@@ -14,6 +14,12 @@ namespace UserProfilerCommon
     
     public partial class CliqueClaimRequest
     {
+        public CliqueClaimRequest()
+        {
+            this.CliqueLocationEvents = new HashSet<CliqueLocationEvent>();
+            this.CliqueLocationTweets = new HashSet<CliqueLocationTweet>();
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -32,5 +38,19 @@ namespace UserProfilerCommon
         public string SSN { get; set; }
         public string Locality { get; set; }
         public Nullable<System.DateTime> AddedAt { get; set; }
+        public Nullable<bool> IsPetsAllowed { get; set; }
+        public Nullable<bool> IsWifiAvailable { get; set; }
+        public Nullable<bool> IsACAvailable { get; set; }
+        public Nullable<bool> IsLiftAvailable { get; set; }
+        public Nullable<bool> IsPrivatePoolAvailable { get; set; }
+        public Nullable<bool> IsBuzzerAvailable { get; set; }
+        public Nullable<double> Score { get; set; }
+        public Nullable<double> Price { get; set; }
+        public Nullable<int> Status { get; set; }
+        public System.DateTime FromDate { get; set; }
+        public System.DateTime ToDate { get; set; }
+    
+        public virtual ICollection<CliqueLocationEvent> CliqueLocationEvents { get; set; }
+        public virtual ICollection<CliqueLocationTweet> CliqueLocationTweets { get; set; }
     }
 }

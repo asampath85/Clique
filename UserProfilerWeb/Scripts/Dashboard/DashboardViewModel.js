@@ -20,7 +20,7 @@ var DashboardViewModel = function () {
         $.ajax({
             type: "Get",
             contentType: "application/json",
-            url: baseUrl + "/api/RequestAPI/GetRequest"
+            url: baseUrl + "/api/RequestAPI/GetClaimRequest"
         }).done(function (res) {
             debugger;
             

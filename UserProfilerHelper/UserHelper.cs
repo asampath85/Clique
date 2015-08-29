@@ -14,9 +14,10 @@ namespace UserProfilerHelper
     public class UserHelper    
     {
      
+        /*
 
 
-        public static void ProcessPendingUsers(List<RequestModel> requestList)
+        public static void ProcessPendingUsers(List<CliqueClaimRequestModel> requestList)
         {
             var service = new RequestService();
             foreach (var item in requestList)
@@ -29,7 +30,7 @@ namespace UserProfilerHelper
             }
         }
 
-    
+    */
 
 
     }

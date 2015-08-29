@@ -17,7 +17,7 @@ namespace HomeAwayWeb
                          );
 
             bundles.Add(new StyleBundle("~/css")
-                           .Include("~/Content/bootstrap.css")
+                           .Include("~/Content/bootstrap.min.css")
                            .Include("~/Content/bootstrap-theme.css")
                            );
 

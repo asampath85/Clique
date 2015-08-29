@@ -11,7 +11,7 @@ namespace UserProfilerHelper
     public class LocationHelper
     {
 
-        public static void ProcessPendingLocation(List<RequestModel> requestList)
+        public static void ProcessPendingLocation(IList<CliqueClaimRequestModel> requestList)
         {
             var service = new RequestService();
             foreach (var item in requestList)

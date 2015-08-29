@@ -13,11 +13,11 @@ namespace UserProfilerWeb.Controllers
             return View();
         }
 
-        public ActionResult RequestForm()
+        public ActionResult RequestForm(int id)
         {
             ViewBag.Message = "Your application Request page.";
-
-            return View("Request");
+            ViewBag.RequestId = id;
+            return View("ClaimRequest");
         }
 
         public ActionResult Details(int id)

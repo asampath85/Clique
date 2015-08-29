@@ -16,9 +16,7 @@ namespace UserProfilerCommon
     {
         public CliqueRequest()
         {
-            this.CliqueLocationTweets = new HashSet<CliqueLocationTweet>();
             this.CliqueUserTweets = new HashSet<CliqueUserTweet>();
-            this.CliqueLocationEvents = new HashSet<CliqueLocationEvent>();
             this.CliqueClaimRequestFeedbacks = new HashSet<CliqueClaimRequestFeedback>();
         }
     
@@ -35,10 +33,8 @@ namespace UserProfilerCommon
         public Nullable<int> Status { get; set; }
     
         public virtual CliqueLocation CliqueLocation { get; set; }
-        public virtual ICollection<CliqueLocationTweet> CliqueLocationTweets { get; set; }
         public virtual ICollection<CliqueUserTweet> CliqueUserTweets { get; set; }
         public virtual CliqueUser CliqueUser { get; set; }
-        public virtual ICollection<CliqueLocationEvent> CliqueLocationEvents { get; set; }
         public virtual ICollection<CliqueClaimRequestFeedback> CliqueClaimRequestFeedbacks { get; set; }
     }
 }

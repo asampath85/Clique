@@ -20,7 +20,7 @@ namespace UserProfilerCommon
         public System.DateTime CreatedAt { get; set; }
         public System.DateTime ModifiedAt { get; set; }
     
-        public virtual CliqueRequest CliqueRequest { get; set; }
+        public virtual CliqueClaimRequest CliqueClaimRequest { get; set; }
         public virtual CliqueTweet CliqueTweet { get; set; }
     }
 }

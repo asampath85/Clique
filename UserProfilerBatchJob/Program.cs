@@ -13,7 +13,9 @@ namespace UserProfilerBatchJob
         static void Main(string[] args)
         {
             ProcessHelper helper = new ProcessHelper();
-            helper.ProcessPendingRequests();
+
+            //Pass the id which u  want to test
+            helper.ProcessPendingRequests(2);
         }
     }
 }

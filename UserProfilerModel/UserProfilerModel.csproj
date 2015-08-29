@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CliqueClaimRequestModel.cs" />
     <Compile Include="EventModel.cs" />
     <Compile Include="HomeAwayPropertyModel.cs" />
     <Compile Include="ListModel.cs" />

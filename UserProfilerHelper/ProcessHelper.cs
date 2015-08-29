@@ -10,11 +10,11 @@ namespace UserProfilerHelper
 {
     public class ProcessHelper
     {
-        public bool ProcessPendingRequests()
+        public bool ProcessPendingRequests(int requestId)
         {
            
                 var service = new RequestService();
-                var requestist = service.GetRequest(RequestStatus.Queue);
+                var requestist = service.GetClaimRequest(requestId);
            
 
             try {
@@ -28,7 +28,7 @@ namespace UserProfilerHelper
 
             try {
 
-                UserHelper.ProcessPendingUsers(requestist);
+              //  UserHelper.ProcessPendingUsers(requestist);
             }
             catch (Exception)
             {

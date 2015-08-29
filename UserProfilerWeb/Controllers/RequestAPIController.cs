@@ -36,6 +36,14 @@ namespace UserProfilerWeb.Controllers
         }
 
         [HttpGet]
+        public IList<CliqueClaimRequestModel> GetClaimRequest()
+        {
+
+            RequestService service = new RequestService();
+            return service.GetClaimRequest();
+        }
+
+        [HttpGet]
         public IList<EventModel> GetEvent(int id)
         {
             RequestService service = new RequestService();
@@ -54,7 +62,23 @@ namespace UserProfilerWeb.Controllers
         {
             RequestService service = new RequestService();
             return service.GetUserTweet(id);
-        }        
+        }
+
+        [HttpPost]
+        public void AddClaimRequest(CliqueClaimRequestModel model)
+        {
+
+            RequestService service = new RequestService();
+            var UserProfilerModel = service.AddClaimRequest(model);
+
+            var storageAccount = CloudStorageAccount.Parse(ConfigurationManager.ConnectionStrings["AzureWebJobsStorage"].ToString());
+            CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
+            CloudQueue thumbnailRequestQueue = queueClient.GetQueueReference("addrequest");
+            thumbnailRequestQueue.CreateIfNotExists();
+            var queueMessage = new CloudQueueMessage(JsonConvert.SerializeObject(new NewRequest { RequestId = UserProfilerModel.Id }));
+            thumbnailRequestQueue.AddMessage(queueMessage);
+
+        }
 
         [HttpPost]
         public void AddRequest(RequestModel model)
