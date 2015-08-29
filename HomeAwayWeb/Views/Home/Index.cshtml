@@ -13,27 +13,22 @@
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Owner Name</th>
-                    <th>Owner Mobile No</th>
-                    <th>Building Name</th>
-                    <th>Pincode</th>
-                    <th>Score</th>
-                    <th>Status</th>
+                    <th>Property Name</th>
+                    <th>Property Type</th>
+                    <th>City</th>
+                    <th>One Day Price</th>
+                    <th>One Week Price</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- ko foreach: requestList() -->
+                <!-- ko foreach: propertyList() -->
                 <tr>
                     <td data-bind="text: Id"></td>
-                    <td data-bind="text: UserName"></td>
-                    <td data-bind="text: MobileNo"></td>
-                    <td data-bind="text: BuildingName"></td>
-                    <td data-bind="text: Pincode"></td>
-                    <td data-bind="text: Score"></td>
-                    <td>
-                        <a data-bind="text: StatusName, click: $root.navigatetoDetails" target="_blank"></a>
-                    </td>
-                    @*<td data-bind="text: StatusName, click: $root.navigatetoDetails" style="cursor:hand;"></td>*@
+                    <td data-bind="text: Name"></td>
+                    <td data-bind="text: Type"></td>
+                    <td data-bind="text: City"></td>
+                    <td data-bind="text: NightPrice"></td>
+                    <td data-bind="text: WeekPrice"></td>                   
 
                 </tr>
                 <!-- /ko -->
@@ -44,18 +39,6 @@
 </div>
 
 @section scripts{
-
-    <script type="text/html" id="_rowTemplate">
-        <td data-bind="text: Id"></td>
-        <td data-bind="text: UserName"></td>
-        <td data-bind="text: MobileNo"></td>
-        <td data-bind="text: BuildingName"></td>
-        <td data-bind="text: Pincode"></td>
-        <td data-bind="text: Score"></td>
-        <td data-bind="text: StatusName, click: $root.navigatetoDetails"></td>
-    </script>
-
-
     <script type="text/javascript">
 
         $(document).ready(function () {

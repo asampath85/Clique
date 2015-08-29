@@ -51,6 +51,14 @@
 
                 <div class="row">
                     <div class="col-lg-3 col-sm-3">
+                        <label for="InputName">Locality</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">@@</span>
+                            <input type="text" name="InputName" id="InputName" class="form-control" placeholder="Location" data-bind="value: model().locality">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-3">
                         <label for="InputName">Zip / Postal Code</label>
                         <div class="input-group">
                             <span class="input-group-addon">@@</span>
@@ -90,7 +98,7 @@
                         <label for="InputName">Title</label>
                         <div class="input-group">
                             <span class="input-group-addon">@@</span>
-                            <input type="text" name="InputName" id="InputName" class="form-control" placeholder="Headline for your listing" data-bind="value: model().title">
+                            <input type="text" name="InputName" id="InputName" class="form-control" placeholder="Headline for your listing" data-bind="value: model().name">
                         </div>
                     </div>
 
@@ -109,14 +117,14 @@
                         <label for="InputName">Bedrooms</label>
                         <div class="input-group">
                             <span class="input-group-addon">@@</span>
-                            <input type="text" name="InputName" id="InputName" class="form-control" placeholder="No of Bedroom" data-bind="value: model().noofbedrooms">
+                            <input type="text" name="InputName" id="InputName" class="form-control" placeholder="No of Bedroom" data-bind="value: model().bedrooms">
                         </div>
                     </div>
                     <div class="col-lg-3 col-sm-3">
                         <label for="InputName">Beds</label>
                         <div class="input-group">
                             <span class="input-group-addon">@@</span>
-                            <input type="text" class="form-control" placeholder="No of beds" data-bind="value: model().noofbeds">
+                            <input type="text" class="form-control" placeholder="No of beds" data-bind="value: model().beds">
                         </div>
                     </div>
 
@@ -124,14 +132,14 @@
                         <label for="InputName">Accomodates</label>
                         <div class="input-group">
                             <span class="input-group-addon">@@</span>
-                            <input type="text" class="form-control" placeholder="No of person" data-bind="value: model().noofpeople">
+                            <input type="text" class="form-control" placeholder="No of person" data-bind="value: model().accomodates">
                         </div>
                     </div>
                     <div class="col-lg-3 col-sm-3">
                         <label for="InputName">Property Type</label>
                         <div class="input-group">
                             <span class="input-group-addon">@@</span>
-                            <input type="text" name="InputName" id="InputName" class="form-control" placeholder="Apartment/ House" data-bind="value: model().propertyType">
+                            <input type="text" name="InputName" id="InputName" class="form-control" placeholder="Apartment/ House" data-bind="value: model().type">
                         </div>
                     </div>
                 </div>
@@ -155,20 +163,19 @@
                         <label for="InputName">Nightly</label>
                         <div class="input-group">
                             <span class="input-group-addon">$</span>
-                            <input type="text" name="InputName" id="InputName" class="form-control" placeholder="" data-bind="value: model().nightlyCost">
+                            <input type="text" name="InputName" id="InputName" class="form-control" placeholder="" data-bind="value: model().nightPrice">
                         </div>
                     </div>
-
-                </div>
-                <div class="row">
                     <div class="col-lg-3 col-sm-3">
                         <label for="InputName">Weekly</label>
                         <div class="input-group">
                             <span class="input-group-addon">$</span>
-                            <input type="text" name="InputName" id="InputName" class="form-control" placeholder="" data-bind="value: model().weeklyCost">
+                            <input type="text" name="InputName" id="InputName" class="form-control" placeholder="" data-bind="value: model().weekPrice">
                         </div>
                     </div>
+
                 </div>
+               
 
             </div>
         </div>
@@ -248,7 +255,7 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
-            var viewModel = new ListViewModel();
+            var viewModel = new PropertyViewModel();
             ko.applyBindings(viewModel);
 
         });

@@ -4,7 +4,6 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title>Clique Solution </title>
     @Styles.Render("~/css")
-
     @Scripts.Render("~/js")
    
     
@@ -18,20 +17,11 @@
             <div id="header">
                 <div id="buttons">
                     <div>
-                        @Html.ActionLink("Home", "Index", "Home", new { }, new { @class = "but" })
+                        @Html.ActionLink("Home", "Index", "Home")
                     </div>
                     <div>
-                        @Html.ActionLink("Request", "RequestForm", "Home", new { }, new { @class = "but" })
-                    </div>
-                    <div>
-                        @Html.ActionLink("TimeLine", "Index", "TimeLine", new { }, new { @class = "but" })
-                    </div>
-                    <div>
-                        @Html.ActionLink("List Your Space", "Index", "Listing", new {}, new {@class = "but"})
-                    </div>
-                    <div>
-                        @Html.ActionLink("Summary", "RequestForm", "Home", new { }, new { @class = "but" })
-                    </div>
+                        @Html.ActionLink("Add Property", "Details", "Home")
+                    </div>                  
                 </div>
                 <div id="logo"></div>
             </div>
@@ -66,8 +56,8 @@
 
     @Scripts.Render("~/js")
     @Scripts.Render("~/Scripts/Dashboard/DashboardViewModel.js")
-    @Scripts.Render("~/Scripts/Details/ListModel.js")
-    @Scripts.Render("~/Scripts/Details/ListViewModel.js")
+    @Scripts.Render("~/Scripts/Details/PropertyModel.js")
+    @Scripts.Render("~/Scripts/Details/PropertyViewModel.js")
 
 
     <!-- KnockoutJS Mapping http://knockoutjs.com/documentation/plugins-mapping.html -->

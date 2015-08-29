@@ -5,12 +5,7 @@
 var DashboardViewModel = function () {
     var self = this;
 
-    self.requestList = ko.observableArray([]);
-
-    self.navigatetoDetails = function (item) {
-        
-        window.location.href = baseUrl +  '/Home/Details/' + item.Id;
-    }
+    self.propertyList = ko.observableArray([]);
 
     self.get = function () {
         debugger;
@@ -20,13 +15,13 @@ var DashboardViewModel = function () {
         $.ajax({
             type: "Get",
             contentType: "application/json",
-            url: baseUrl + "/api/RequestAPI/GetRequest"
+            url: baseUrl + "api/HomeAwayAPI/GetProperty"
         }).done(function (res) {
             debugger;
             
             // knockout mapping JSON data to view model
             
-            self.requestList(res);
+            self.propertyList(res);
 
             $("#example").DataTable({ responsive: true });
             
