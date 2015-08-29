@@ -25,10 +25,10 @@
             self.model().state(res.State);
             self.model().country(res.Country);
             self.model().zip(res.Zip);
-            self.model().nightPrice(res.nightPrice);
-            self.model().weekPrice(res.weekPrice);
-            self.model().locality(res.locality);
-            self.model().addedAt(res.addedAt);
+            self.model().nightPrice(res.NightPrice);
+            self.model().weekPrice(res.WeekPrice);
+            self.model().locality(res.Locality);
+            self.model().addedAt(res.AddedAt);
 
 
 
