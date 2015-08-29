@@ -1,5 +1,4 @@
-﻿<h3 style="margin-top: 0px;">
-    Dashboard
+﻿<h3 style="margin-top: 0px;">Dashboard
 </h3>
 <label>Summary of list of properties that are available in Aribnb. </label>
 <br />
@@ -16,6 +15,7 @@
                     <th>City</th>
                     <th>One Day Price</th>
                     <th>One Week Price</th>
+                    <th>Feedback</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,12 +29,59 @@
                     <td data-bind="text: City"></td>
                     <td data-bind="text: NightPrice"></td>
                     <td data-bind="text: WeekPrice"></td>
+                    <td><a target="_blank" data-toggle="modal" data-target="#myModal">feedback</a></td>
 
                 </tr>
                 <!-- /ko -->
             </tbody>
         </table>
 
+    </div>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #e5e5e5">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">User Feedback..!</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6">
+                        <label for="InputName">Name</label>
+                        <div class="input-group">                            
+                            <input type="text" name="InputName" id="InputName" class="form-control" placeholder="Name" data-bind="value: model().name">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6">
+                        <label for="InputName">Email</label>
+                        <div class="input-group">
+                            <input type="text" name="InputName" id="InputName" class="form-control" placeholder="xyz@abc.com" data-bind="value: model().emailid">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-sm-11">
+                        <label for="InputMessage">Feedback</label>
+                        <div class="input-group">
+                            <textarea name="InputMessage" id="InputMessage" class="form-control" rows="3" cols="150" placeholder="What did you like?" data-bind="value: model().feedback"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" data-bind="click: addfeedback">Save changes</button>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -44,8 +91,6 @@
         $(document).ready(function () {
             var viewModel = new DashboardViewModel();
             ko.applyBindings(viewModel);
-
-
         });
     </script>
 }

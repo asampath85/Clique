@@ -36,13 +36,43 @@ var DashboardViewModel = function () {
             debugger;
             alert("Error");
         });
+
+
        
     };
+
 
   
     debugger;
 
     self.get();
+
+    debugger;
+    self.model = ko.observable(new UserFeedbackModel());
+   
+    self.addfeedback = function () {
+        debugger;
+
+
+        var item = ko.toJSON(self.model());
+        debugger;
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            data: item,
+            url: baseUrl + "api/HomeAwayAPI/AddFeedback"
+        }).done(function (res) {
+            debugger;
+
+            //$('#myModel').model('hide');
+
+
+        }).error(function (ex) {
+            debugger;
+            alert("Error");
+        });
+    };
 
 };
 

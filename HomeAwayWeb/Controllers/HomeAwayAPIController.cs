@@ -19,6 +19,12 @@ namespace HomeAwayWeb.Controllers
 
         }
 
+        [HttpPost]
+        public void AddFeedback(UserFeedbackModel model)
+        {
+           
+        }
+
         [HttpGet]
         public IList<HomeAwayPropertyModel> GetPropertyList()
         {

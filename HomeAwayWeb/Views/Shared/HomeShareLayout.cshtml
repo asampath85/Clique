@@ -46,6 +46,7 @@
     @Scripts.Render("~/Scripts/Dashboard/DashboardViewModel.js")
     @Scripts.Render("~/Scripts/Details/PropertyModel.js")
     @Scripts.Render("~/Scripts/Details/PropertyViewModel.js")
+    @Scripts.Render("~/Scripts/Details/UserFeedbackModel.js")
 
 
     <!-- KnockoutJS Mapping http://knockoutjs.com/documentation/plugins-mapping.html -->
@@ -74,8 +75,8 @@
         //var attributes = {};
         //attributes.id = "slider";
         //swfobject.embedSWF("flash_slider.swf", "flash_grid_slider", "440", "220", "9.0.0", false, flashvars, params, attributes);
-        //var baseUrl = '@Url.Content("~/")';
-        var baseUrl = 'http://homeawayipl.azurewebsites.net/';
+        var baseUrl = '@Url.Content("~/")';
+        //var baseUrl = 'http://homeawayipl.azurewebsites.net/';
         $(document).ready(function () {
             //$('ul li a').click(function (e) {
             //    debugger;
