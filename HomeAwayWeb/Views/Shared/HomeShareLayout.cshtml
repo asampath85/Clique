@@ -1,0 +1,90 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Home Share</title>
+    
+    @Styles.Render("~/css")
+    @Scripts.Render("~/js")
+    <link href="~/Content/css/tooplate_style.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/plug-ins/a5734b29083/integration/bootstrap/3/dataTables.bootstrap.css" />
+    <link rel="stylehseet" type="text/css" href="//cdn.datatables.net/responsive/1.0.1/css/dataTables.responsive.css" />
+</head>
+<body>
+
+    <div id="tooplate_wrapper">
+
+        <div id="tooplate_header">
+            <div id="site_title">
+                <h1><a href="#">Home Share</a></h1>
+            </div>
+            <div id="tooplate_menu">
+                <ul>
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("List your space", "Details", "Home",new { id = 0 }, new { })</li>
+                </ul>
+            </div>
+        </div>
+        <div id="tooplate_main_top"></div>
+        <div id="tooplate_main">
+            @RenderBody()
+            <div class="cleaner"></div>
+        </div>
+        <div id="tooplate_main_bottom"></div>
+
+    </div>
+
+    <div id="tooplate_footer_wrapper">
+        <div id="tooplate_footer">
+            Copyright © 2015 <a href="#">Cognizant</a>
+            | Powered By <a href="http://www.cognizant.com">Team Travelers</a>
+        </div>
+    </div>
+
+    @Scripts.Render("~/js")
+    @Scripts.Render("~/Scripts/Dashboard/DashboardViewModel.js")
+    @Scripts.Render("~/Scripts/Details/PropertyModel.js")
+    @Scripts.Render("~/Scripts/Details/PropertyViewModel.js")
+
+
+    <!-- KnockoutJS Mapping http://knockoutjs.com/documentation/plugins-mapping.html -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.min.js"></script>
+
+    <!-- jQuery DataTables http://datatables.net -->
+    <script src="//cdn.datatables.net/1.10.2/js/jquery.dataTables.js"></script>
+
+    <!-- Bootstrap DataTables http://www.datatables.net/manual/styling/bootstrap -->
+    <script src="//cdn.datatables.net/plug-ins/a5734b29083/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+
+    <!-- Responsive DataTables http://www.datatables.net/extensions/responsive/ -->
+    <script src="//cdn.datatables.net/responsive/1.0.1/js/dataTables.responsive.js"></script>
+
+    @RenderSection("scripts", required: false)
+
+    @*<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>*@
+
+    @*<script type="text/javascript" src="~/Content/js/swfobject.js"></script>*@
+    
+    <script type="text/javascript">
+        //var flashvars = {};
+        //flashvars.xml_file = "photo_list.xml";
+        //var params = {};
+        //params.wmode = "transparent";
+        //var attributes = {};
+        //attributes.id = "slider";
+        //swfobject.embedSWF("flash_slider.swf", "flash_grid_slider", "440", "220", "9.0.0", false, flashvars, params, attributes);
+        var baseUrl = '@Url.Content("~/")';
+        // var baseUrl = 'http://helloworldipl.azurewebsites.net/';
+        $(document).ready(function () {
+            //$('ul li a').click(function (e) {
+            //    debugger;
+            //    $("a").find(".current").removeClass("current");
+            //    $(this).parent().addClass("current");
+
+            //});
+
+        });
+    </script>
+</body>
+</html>
