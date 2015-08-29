@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserProfilerModel", "UserPr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserProfilerBatchJob", "UserProfilerBatchJob\UserProfilerBatchJob.csproj", "{21CA4934-46F5-446E-A547-A5F25BCBBC0C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAwayWeb", "HomeAwayWeb\HomeAwayWeb.csproj", "{5427CDCF-0289-465D-A8B9-EA73656E4713}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{21CA4934-46F5-446E-A547-A5F25BCBBC0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21CA4934-46F5-446E-A547-A5F25BCBBC0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21CA4934-46F5-446E-A547-A5F25BCBBC0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5427CDCF-0289-465D-A8B9-EA73656E4713}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5427CDCF-0289-465D-A8B9-EA73656E4713}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5427CDCF-0289-465D-A8B9-EA73656E4713}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5427CDCF-0289-465D-A8B9-EA73656E4713}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

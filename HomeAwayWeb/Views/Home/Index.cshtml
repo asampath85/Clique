@@ -1,0 +1,52 @@
+﻿<h1>
+    Dashboard
+</h1>
+<div class="right_b">
+    <span>Summary of list of properties that are available in Aribnb. </span>
+    <br />
+    <br />
+</div>
+<div class="row">
+    <div class="col-md-12">
+
+        <table id="example" class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Property Name</th>
+                    <th>Property Type</th>
+                    <th>City</th>
+                    <th>One Day Price</th>
+                    <th>One Week Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- ko foreach: propertyList() -->
+                <tr>
+                    <td data-bind="text: Id"></td>
+                    <td data-bind="text: Name"></td>
+                    <td data-bind="text: Type"></td>
+                    <td data-bind="text: City"></td>
+                    <td data-bind="text: NightPrice"></td>
+                    <td data-bind="text: WeekPrice"></td>                   
+
+                </tr>
+                <!-- /ko -->
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            var viewModel = new DashboardViewModel();
+            ko.applyBindings(viewModel);
+
+
+        });
+    </script>
+}
+

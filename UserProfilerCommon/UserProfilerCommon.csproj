@@ -48,6 +48,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Amenitiy.cs">
+      <DependentUpon>UserProfilerEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CliqueClaimRequest.cs">
+      <DependentUpon>UserProfilerEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CliqueClaimRequestFeedback.cs">
+      <DependentUpon>UserProfilerEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="CliqueEvent.cs">
       <DependentUpon>UserProfilerEntity.tt</DependentUpon>
     </Compile>
@@ -75,7 +84,16 @@
     <Compile Include="CliqueWeather.cs">
       <DependentUpon>UserProfilerEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="HomeAwayFeedback.cs">
+      <DependentUpon>UserProfilerEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HomeAwayProperty.cs">
+      <DependentUpon>UserProfilerEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyAmenityMapping.cs">
+      <DependentUpon>UserProfilerEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="UserProfilerEntity.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

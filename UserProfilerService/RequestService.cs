@@ -303,7 +303,8 @@ namespace UserProfilerService
                         ProfileImageURL = item.ProfileImageURL,
                         TweetIdStr = item.TweetIdStr,
                         AddedAt = DateTime.Now,
-                        ModifiedAt = DateTime.Now
+                        ModifiedAt = DateTime.Now,
+                        Score = item.Score
                     };
                     var existingItem = entity.CliqueTweets.SingleOrDefault(res => res.TweetIdStr == request.TweetIdStr);
                     if (existingItem == null)
@@ -385,7 +386,7 @@ namespace UserProfilerService
                        Text = item.CliqueTweet.Text,
                        PostedBy = item.CliqueTweet.PostedBy,
                        PostedAt = item.CliqueTweet.PostedAt,
-                       Score = item.CliqueTweet.Score,
+                       Score = item.CliqueTweet.Score??0,
                        ProfileImageURL = item.CliqueTweet.ProfileImageURL
                     });
 
@@ -421,6 +422,74 @@ namespace UserProfilerService
             }
 
             return response;   
+        }
+
+        public bool AddProperty(HomeAwayPropertyModel model)
+        {
+            var request = new HomeAwayProperty
+            {
+               Accomodates = model.Accomodates,
+               Address1 = model.Address1,
+               Address2 = model.Address2,
+               Bedrooms = model.Bedrooms,
+               Beds = model.Beds,
+               City = model.City,
+               Country = model.Country,
+               Description = model.Description,
+               Locality = model.City,
+               Name = model.Name,
+               NightPrice = model.NightPrice,
+               State = model.State,
+               Type = model.Type,
+               WeekPrice = model.WeekPrice,
+               Zip = model.Zip,
+               AddedAt = DateTime.Now
+            };
+
+            using (ipl_userprofilerEntities entity = new ipl_userprofilerEntities())
+            {
+                entity.HomeAwayProperties.Add(request);
+                entity.SaveChanges();
+
+            }
+            
+            return true;
+        }
+
+        public IList<HomeAwayPropertyModel> GetProperty()
+        {
+            List<HomeAwayPropertyModel> response = new List<HomeAwayPropertyModel>();
+            using (ipl_userprofilerEntities entity = new ipl_userprofilerEntities())
+            {
+                foreach (var item in entity.HomeAwayProperties)
+                {
+                    response.Add(new HomeAwayPropertyModel
+                    {
+                        Id = item.Id,
+                        Accomodates = item.Accomodates,
+                        AddedAt = item.AddedAt,
+                        Address1 = item.Address1,
+                        Address2 = item.Address2,
+                        Bedrooms = item.Bedrooms,
+                        Beds = item.Beds,
+                        City = item.City,
+                        Country = item.Country,
+                        Description = item.Description,
+                        Locality = item.Locality,
+                        Name = item.Name,
+                        NightPrice = item.NightPrice??0,
+                        State = item.State,
+                        Type = item.Type,
+                        Zip = item.Zip,
+                        WeekPrice = item.WeekPrice??0
+                        
+                    });
+
+                }
+
+            }
+
+            return response;  
         }
     }
 }
