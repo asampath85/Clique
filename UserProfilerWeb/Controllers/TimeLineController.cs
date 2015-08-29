@@ -149,7 +149,7 @@ namespace UserProfilerWeb.Controllers
                })
                .SetXAxis(new XAxis { Categories = GetMonthList() })
                .SetTitle(new Title { Text = "Event Timeline" })               
-               .SetPlotOptions(new PlotOptions { Column = new PlotOptionsColumn { Depth = 25 } })
+               .SetPlotOptions(new PlotOptions { Column = new PlotOptionsColumn { Depth = 25,Color = Color.LightSlateGray,BorderColor = Color.AntiqueWhite,BorderWidth = 1} })
                .SetLegend(new Legend { Enabled = false })
 
                .SetSeries(new Series { Data = new Data(GetEventScore(60)) });
