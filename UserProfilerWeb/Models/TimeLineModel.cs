@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DotNet.Highcharts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,14 +10,14 @@ namespace UserProfilerWeb.Models
     {
         public string Month { get; set; }
 
-        public string Parameters { get; set; }
+        public double UserScore { get; set; }
 
-        public double GoodScore { get; set; }
+        public double CrimeScore { get; set; }
 
-        public double AverageScore { get; set; }
+        public double WeatherScore { get; set; }
 
-        public double BadScore { get; set; }
+        public double TweetScore { get; set; }
 
-        public double ActualScore { get; set; }
+        public Highcharts chart { get; set; }
     }
 }
