@@ -456,12 +456,12 @@ namespace UserProfilerService
             return true;
         }
 
-        public IList<HomeAwayPropertyModel> GetProperty()
+        public IList<HomeAwayPropertyModel> GetProperty(int id = 0)
         {
             List<HomeAwayPropertyModel> response = new List<HomeAwayPropertyModel>();
             using (ipl_userprofilerEntities entity = new ipl_userprofilerEntities())
             {
-                foreach (var item in entity.HomeAwayProperties)
+                foreach (var item in entity.HomeAwayProperties.Where(res=>(res.Id == id || id == 0)))
                 {
                     response.Add(new HomeAwayPropertyModel
                     {

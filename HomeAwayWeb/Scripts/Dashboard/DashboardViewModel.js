@@ -7,6 +7,11 @@ var DashboardViewModel = function () {
 
     self.propertyList = ko.observableArray([]);
 
+    self.navigatetoDetails = function (item) {
+
+        window.location.href = baseUrl + '/Home/Details/' + item.Id;
+    }
+
     self.get = function () {
         debugger;
 
@@ -15,7 +20,7 @@ var DashboardViewModel = function () {
         $.ajax({
             type: "Get",
             contentType: "application/json",
-            url: baseUrl + "api/HomeAwayAPI/GetProperty"
+            url: baseUrl + "api/HomeAwayAPI/GetPropertyList"
         }).done(function (res) {
             debugger;
             

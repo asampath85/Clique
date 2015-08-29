@@ -1,4 +1,5 @@
-﻿<h1>
+﻿
+<h1>
     List Your Space!
 </h1>
 <div class="right_b">
@@ -253,9 +254,12 @@
 </div>
 @section scripts{
     <script type="text/javascript">
+        debugger;
+        var propertyId = @ViewBag.PropertyId;
 
         $(document).ready(function () {
-            var viewModel = new PropertyViewModel();
+            debugger;
+            var viewModel = new PropertyViewModel(propertyId);
             ko.applyBindings(viewModel);
 
         });

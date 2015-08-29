@@ -23,7 +23,9 @@
             <tbody>
                 <!-- ko foreach: propertyList() -->
                 <tr>
-                    <td data-bind="text: Id"></td>
+                    <td>
+                        <a data-bind="text: Id, click: $root.navigatetoDetails" target="_blank"></a>
+                    </td>
                     <td data-bind="text: Name"></td>
                     <td data-bind="text: Type"></td>
                     <td data-bind="text: City"></td>
