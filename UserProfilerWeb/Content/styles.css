@@ -135,7 +135,7 @@ background: url(images/big.jpg) left top no-repeat;
 
 #right{
 	width: 1016px;
-	margin: 0px 0px 0px 0px;
+	margin: -15px 0px 0px 0px;
 	float: right;
 	color:#000000;
 }
