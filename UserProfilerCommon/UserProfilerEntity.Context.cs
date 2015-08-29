@@ -29,16 +29,15 @@ namespace UserProfilerCommon
         public virtual DbSet<CliqueRequest> CliqueRequests { get; set; }
         public virtual DbSet<CliqueWeather> CliqueWeathers { get; set; }
         public virtual DbSet<CliqueTweet> CliqueTweets { get; set; }
-        public virtual DbSet<CliqueLocationTweet> CliqueLocationTweets { get; set; }
         public virtual DbSet<CliqueUserTweet> CliqueUserTweets { get; set; }
         public virtual DbSet<CliqueEvent> CliqueEvents { get; set; }
         public virtual DbSet<CliqueUser> CliqueUsers { get; set; }
-        public virtual DbSet<CliqueLocationEvent> CliqueLocationEvents { get; set; }
-        public virtual DbSet<Amenitiy> Amenitiys { get; set; }
         public virtual DbSet<CliqueClaimRequest> CliqueClaimRequests { get; set; }
         public virtual DbSet<CliqueClaimRequestFeedback> CliqueClaimRequestFeedbacks { get; set; }
         public virtual DbSet<HomeAwayFeedback> HomeAwayFeedbacks { get; set; }
         public virtual DbSet<HomeAwayProperty> HomeAwayProperties { get; set; }
         public virtual DbSet<PropertyAmenityMapping> PropertyAmenityMappings { get; set; }
+        public virtual DbSet<CliqueLocationEvent> CliqueLocationEvents { get; set; }
+        public virtual DbSet<CliqueLocationTweet> CliqueLocationTweets { get; set; }
     }
 }

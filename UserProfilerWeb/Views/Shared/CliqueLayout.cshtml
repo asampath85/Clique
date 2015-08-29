@@ -21,7 +21,7 @@
                         @Html.ActionLink("Home", "Index", "Home", new { }, new { @class = "but" })
                     </div>
                     <div>
-                        @Html.ActionLink("Request", "RequestForm", "Home", new { }, new { @class = "but" })
+                        @Html.ActionLink("Request", "RequestForm", "Home", new { id = 0 }, new { @class = "but" })
                     </div>
                     <div>
                         @Html.ActionLink("TimeLine", "Index", "TimeLine", new { }, new { @class = "but" })
@@ -67,6 +67,8 @@
     @Scripts.Render("~/js")
     @Scripts.Render("~/Scripts/Request/RequestModel.js")
     @Scripts.Render("~/Scripts/Request/RequestViewModel.js")
+    @Scripts.Render("~/Scripts/Request/ClaimRequestModel.js")
+    @Scripts.Render("~/Scripts/Request/ClaimRequestViewModel.js")
     @Scripts.Render("~/Scripts/Listing/ListModel.js")
     @Scripts.Render("~/Scripts/Listing/ListViewModel.js")
     @Scripts.Render("~/Scripts/Dashboard/DashboardViewModel.js")
@@ -89,7 +91,7 @@
     @*<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>*@
 
     <script type="text/javascript">
-        //var baseUrl = '@Url.Content("~/")';
+       // var baseUrl = '@Url.Content("~/")';
         var baseUrl = 'http://helloworldipl.azurewebsites.net/';
         $(document).ready(function () {
             //$('.nav li a').click(function (e) {

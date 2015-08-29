@@ -22,7 +22,7 @@ namespace ProcessQueueJob
             service.UpdateRequestStatus((int)RequestStatus.Queue, twitterInfo.RequestId);
 
             ProcessHelper helper = new ProcessHelper();
-            var response = helper.ProcessPendingRequests();
+            var response = helper.ProcessPendingRequests(twitterInfo.RequestId);
 
             if (response)
                 service.UpdateRequestStatus((int)RequestStatus.Processed, twitterInfo.RequestId);

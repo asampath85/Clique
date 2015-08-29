@@ -13,10 +13,11 @@
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Owner Name</th>
-                    <th>Owner Mobile No</th>
-                    <th>Building Name</th>
-                    <th>Pincode</th>
+                    <th>Property Name</th>
+                    <th>City</th>                    
+                    <th>From Date</th>
+                    <th>To Date</th>
+                    <th>Base Price</th>
                     <th>Score</th>
                     <th>Status</th>
                 </tr>
@@ -25,10 +26,11 @@
                 <!-- ko foreach: requestList() -->
                 <tr>
                     <td data-bind="text: Id"></td>
-                    <td data-bind="text: UserName"></td>
-                    <td data-bind="text: MobileNo"></td>
-                    <td data-bind="text: BuildingName"></td>
-                    <td data-bind="text: Pincode"></td>
+                    <td data-bind="text: Name"></td>
+                    <td data-bind="text: City"></td>
+                    <td data-bind="text: FromDate"></td>
+                    <td data-bind="text: ToDate"></td>
+                    <td data-bind="text: Price"></td>
                     <td data-bind="text: Score"></td>
                     <td>
                         <a data-bind="text: StatusName, click: $root.navigatetoDetails" target="_blank"></a>

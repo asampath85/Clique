@@ -48,9 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Amenitiy.cs">
-      <DependentUpon>UserProfilerEntity.tt</DependentUpon>
-    </Compile>
     <Compile Include="CliqueClaimRequest.cs">
       <DependentUpon>UserProfilerEntity.tt</DependentUpon>
     </Compile>

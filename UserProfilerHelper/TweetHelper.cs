@@ -34,7 +34,9 @@ namespace UserProfilerHelper
             return item["access_token"];
         }
 
-        public static void ExtractUserTweets(RequestModel model)
+        /*
+
+        public static void ExtractUserTweets(CliqueClaimRequestModel model)
         {
 
             string url = "";
@@ -76,8 +78,10 @@ namespace UserProfilerHelper
 
 
         }
+         * 
+         * */
 
-        public static void ExtractLocationTweets(RequestModel model)
+        public static void ExtractLocationTweets(CliqueClaimRequestModel model)
         {
 
             string url = "";
@@ -85,7 +89,7 @@ namespace UserProfilerHelper
             if (string.IsNullOrEmpty(max_id))
             {
                 //url = string.Format("https://api.twitter.com/1.1/search/tweets.json?q='{0}'%20AND%20{1}", buildingName, city);
-                url = string.Format("https://api.twitter.com/1.1/search/tweets.json?q='{0}'", model.City);
+                url = string.Format("https://api.twitter.com/1.1/search/tweets.json?q='{0}'", model.Locality);
             }
             else
                 url = string.Format("https://api.twitter.com/1.1/statuses/user_timeline.json?count={0}&screen_name={1}&trim_user=1&max_id={2}&since_id={3}",

@@ -11,28 +11,26 @@
         <AssociationConnector Association="ipl_userprofilerModel.FK_CliqueRequest_ToCliqueLocation" />
         <AssociationConnector Association="ipl_userprofilerModel.FK_CliqueWeather_ToCliqueLocation" />
         <EntityTypeShape EntityType="ipl_userprofilerModel.CliqueTweet" Width="1.5" PointX="0.75" PointY="10" />
-        <EntityTypeShape EntityType="ipl_userprofilerModel.CliqueLocationTweet" Width="1.5" PointX="12.875" PointY="7.75" />
         <EntityTypeShape EntityType="ipl_userprofilerModel.CliqueUserTweet" Width="1.5" PointX="9.875" PointY="6.75" />
-        <AssociationConnector Association="ipl_userprofilerModel.FK_CliqueLocationTweet_ToCliqueRequest" />
-        <AssociationConnector Association="ipl_userprofilerModel.FK_CliqueLocationTweet_ToCliqueTwitter" />
         <AssociationConnector Association="ipl_userprofilerModel.FK_CliqueUserTweet_ToCliqueRequest" />
         <AssociationConnector Association="ipl_userprofilerModel.FK_CliqueUserTweet_ToCliqueTweets" />
         <EntityTypeShape EntityType="ipl_userprofilerModel.CliqueEvent" Width="1.5" PointX="3.375" PointY="1" />
         <EntityTypeShape EntityType="ipl_userprofilerModel.CliqueUser" Width="1.5" PointX="0.75" PointY="1" />
         <AssociationConnector Association="ipl_userprofilerModel.FK_CliqueRequest_ToCliqueUser" />
-        <EntityTypeShape EntityType="ipl_userprofilerModel.CliqueLocationEvent" Width="1.5" PointX="9.875" PointY="2.75" />
-        <AssociationConnector Association="ipl_userprofilerModel.FK_CliqueLocationEvent_ToCliqueEvent" />
-        <AssociationConnector Association="ipl_userprofilerModel.FK_CliqueLocationEvent_ToCliqueRequest" />
-        <EntityTypeShape EntityType="ipl_userprofilerModel.Amenitiy" Width="1.5" PointX="10.75" PointY="17.75" />
         <EntityTypeShape EntityType="ipl_userprofilerModel.CliqueClaimRequest" Width="1.5" PointX="0.75" PointY="4.75" />
         <EntityTypeShape EntityType="ipl_userprofilerModel.CliqueClaimRequestFeedback" Width="1.5" PointX="10.25" PointY="20.75" />
         <EntityTypeShape EntityType="ipl_userprofilerModel.HomeAwayFeedback" Width="1.5" PointX="13" PointY="16.125" />
         <EntityTypeShape EntityType="ipl_userprofilerModel.HomeAwayProperty" Width="1.5" PointX="10.75" PointY="12.25" />
         <EntityTypeShape EntityType="ipl_userprofilerModel.PropertyAmenityMapping" Width="1.5" PointX="13" PointY="12.625" />
-        <AssociationConnector Association="ipl_userprofilerModel.FK_PropertyAmenityMapping_ToAmenity" />
         <AssociationConnector Association="ipl_userprofilerModel.FK_CliqueClaimRequestFeedback_ToCliqueRequest" />
         <AssociationConnector Association="ipl_userprofilerModel.FK_HomeAwayFeedback_ToHomeAwayProperty" />
         <AssociationConnector Association="ipl_userprofilerModel.FK_Table_ToHomeAwayProperty" />
+        <EntityTypeShape EntityType="ipl_userprofilerModel.CliqueLocationEvent" Width="1.5" PointX="5.625" PointY="1" />
+        <EntityTypeShape EntityType="ipl_userprofilerModel.CliqueLocationTweet" Width="1.5" PointX="3" PointY="7.75" />
+        <AssociationConnector Association="ipl_userprofilerModel.FK_CliqueLocationEvent_ToCliqueClaimRequest" />
+        <AssociationConnector Association="ipl_userprofilerModel.FK_CliqueLocationTweet_ToCliqueClaimRequest" />
+        <AssociationConnector Association="ipl_userprofilerModel.FK_CliqueLocationEvent_ToCliqueEvent" />
+        <AssociationConnector Association="ipl_userprofilerModel.FK_CliqueLocationTweet_ToCliqueTwitter" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -192,6 +192,7 @@
     <Content Include="Content\images\Thumbs.db" />
     <None Include="Properties\PublishProfiles\HelloWorldAswin.pubxml" />
     <None Include="Properties\PublishProfiles\helloworldipl %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\helloworldipl %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\helloworldipl.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Dashboard\DashboardViewModel.js" />
@@ -241,6 +242,8 @@
     <Content Include="Scripts\Listing\ListModel.js" />
     <Content Include="Scripts\Listing\ListViewModel.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\Request\ClaimRequestModel.js" />
+    <Content Include="Scripts\Request\ClaimRequestViewModel.js" />
     <Content Include="Scripts\Request\RequestModel.js" />
     <Content Include="Scripts\Request\RequestViewModel.js" />
     <Content Include="Scripts\respond.js" />
@@ -270,6 +273,7 @@
     <Content Include="Views\Shared\CliqueLayout.cshtml" />
     <Content Include="Views\TimeLine\Index.cshtml" />
     <Content Include="Views\Listing\Index.cshtml" />
+    <Content Include="Views\Home\ClaimRequest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

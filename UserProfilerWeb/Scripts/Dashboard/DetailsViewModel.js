@@ -78,7 +78,7 @@
 
     self.getEvent();
     self.getLocationTweet();
-    self.getUserTweet();
+    //self.getUserTweet();
 
 };
 

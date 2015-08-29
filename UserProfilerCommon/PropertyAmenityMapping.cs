@@ -18,7 +18,6 @@ namespace UserProfilerCommon
         public int PropertyId { get; set; }
         public int AmenityId { get; set; }
     
-        public virtual Amenitiy Amenitiy { get; set; }
         public virtual HomeAwayProperty HomeAwayProperty { get; set; }
     }
 }
