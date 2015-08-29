@@ -16,8 +16,10 @@ namespace HomeAwayWeb.Controllers
             return View();
         }
 
-        public ActionResult Details()
+        public ActionResult Details(int id)
         {
+
+            ViewBag.PropertyId = id;
             return View();
         }
 

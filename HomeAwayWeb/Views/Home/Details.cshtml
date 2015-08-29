@@ -1,8 +1,8 @@
-﻿<h1>
+﻿<h3 style="margin-top: 0px">
     List Your Space!
-</h1>
+</h3>
 <div class="right_b">
-    <span>HomeAway lets you make money renting out your place.Your apartment will pay for itself!.</span>
+    <label>HomeAway lets you make money renting out your place.Your apartment will pay for itself!.</label>
     <br />
     <br />
 </div>
@@ -175,7 +175,7 @@
                     </div>
 
                 </div>
-               
+
 
             </div>
         </div>
@@ -253,12 +253,14 @@
 </div>
 @section scripts{
     <script type="text/javascript">
+        debugger;
+        var propertyId = @ViewBag.PropertyId;
 
         $(document).ready(function () {
-            var viewModel = new PropertyViewModel();
+            debugger;
+            var viewModel = new PropertyViewModel(propertyId);
             ko.applyBindings(viewModel);
 
         });
     </script>
 }
-

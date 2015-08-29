@@ -20,12 +20,21 @@ namespace HomeAwayWeb.Controllers
         }
 
         [HttpGet]
-        public IList<HomeAwayPropertyModel> GetProperty()
+        public IList<HomeAwayPropertyModel> GetPropertyList()
         {
             RequestService service = new RequestService();
             return service.GetProperty();
 
             
-        }  
+        }
+
+        [HttpGet]
+        public HomeAwayPropertyModel GetProperty(int id)
+        {
+            RequestService service = new RequestService();
+            return service.GetProperty(id).FirstOrDefault();
+
+
+        } 
     }
 }
