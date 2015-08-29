@@ -56,8 +56,9 @@ namespace UserProfilerHelper
 
             try
             {
+                string categories = AppendCategories();
 
-                string url = string.Format("http://api.eventful.com/json/events/search?app_key={0}&l={1}&within=10&units=miles&page_size=100", key, location);
+                string url = string.Format("http://api.eventful.com/json/events/search?app_key={0}&{2}&l={1}&within=10&units=miles&page_size=100", key, location, categories);
 
                 var requestUserTimeline = new HttpRequestMessage(System.Net.Http.HttpMethod.Get, url);
 
@@ -65,7 +66,20 @@ namespace UserProfilerHelper
                 HttpResponseMessage responseUserTimeLine = httpClient.SendAsync(requestUserTimeline).Result;
                 var response = responseUserTimeLine.Content.ReadAsStringAsync().Result;
                 dynamic wrapper = JsonConvert.DeserializeObject<object>(response);
-                var eventList = (wrapper.events.@event as IEnumerable<dynamic>);
+                var eventList = (wrapper.events.@event as IEnumerable<dynamic>).ToList();
+
+
+                for (int i = 2; i <= Convert.ToInt32(wrapper.page_count); i++)
+                {
+                    url = string.Format("http://api.eventful.com/json/events/search?app_key={0}&{2}&l={1}&within=10&units=miles&page_number={3}&page_size=100", key, location, categories, i);
+                    var requestUserTimeline1 = new HttpRequestMessage(System.Net.Http.HttpMethod.Get, url);
+                    var httpClient1 = new HttpClient();
+                    HttpResponseMessage responseUserTimeLine1 = httpClient1.SendAsync(requestUserTimeline1).Result;
+                    response = responseUserTimeLine1.Content.ReadAsStringAsync().Result;
+                    dynamic pageWrapper = JsonConvert.DeserializeObject<object>(response);
+                    eventList.AddRange(pageWrapper.events.@event);                    
+
+                }
 
                 returnObject = new List<Event>();
                 foreach (var item in eventList)
@@ -90,6 +104,27 @@ namespace UserProfilerHelper
             }
 
             return returnObject;
+        }
+
+        static string AppendCategories()
+        {
+            List<string> Categories = new List<string> { "sports" };
+            StringBuilder catFilter = new StringBuilder(1000);
+            //catFilter.Append("(");
+            var lastCat = Categories.Last();
+            foreach (var item in Categories)
+            {
+                if (item != lastCat)
+                {
+                    catFilter.Append("q=" + item + "||");
+                }
+                else
+                {
+                    catFilter.Append("q=" + item);
+                }
+
+            }
+            return catFilter.ToString();
         }
     }
 
