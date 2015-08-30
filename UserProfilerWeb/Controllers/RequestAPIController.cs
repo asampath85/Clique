@@ -64,6 +64,15 @@ namespace UserProfilerWeb.Controllers
             return service.GetUserTweet(id);
         }
 
+         [HttpGet]
+        public IList<UserFeedbackModel> GetUserFeedback(int id)
+        {
+            RequestService service = new RequestService();
+            return service.GetUserFeedback(id);
+        }
+
+        
+
         [HttpPost]
         public void AddClaimRequest(CliqueClaimRequestModel model)
         {

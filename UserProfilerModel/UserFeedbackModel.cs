@@ -8,13 +8,13 @@ namespace UserProfilerModel
 {
     public class UserFeedbackModel
     {
-        public int id { get; set; }
-        public string Name { get; set; }
-        public string EmailId { get; set; }
-        public string Feedback { get; set; }
-        public float Score { get; set; }
-        public string ZipCode { get; set; }
-        public string BuildingName { get; set; }
+        public int Id { get; set; }
+        public string Text { get; set; }
+        public string UserName { get; set; }
+        public string UserEmail { get; set; }
+        public int PropertyId { get; set; }
+        public System.DateTime AddedAt { get; set; }
+        public double Score { get; set; }
 
     }
 }

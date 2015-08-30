@@ -92,7 +92,7 @@ namespace UserProfilerService
             return true;
         }
 
-       public RequestModel AddRequest(RequestModel model)
+        public RequestModel AddRequest(RequestModel model)
         {
             if (model.LocationId == 0)
             {
@@ -340,7 +340,7 @@ namespace UserProfilerService
             {
                 var response = entity.CliqueLocationTweets.Where(res => res.RequestId == model.Id);
                 entity.CliqueLocationTweets.RemoveRange(response);
-                entity.SaveChanges();                
+                entity.SaveChanges();
             }
             return false;
 
@@ -546,7 +546,7 @@ namespace UserProfilerService
                     {
                         Id = item.Id,
                         Accomodates = item.Accomodates,
-                        AddedAt = item.AddedAt??DateTime.Now,
+                        AddedAt = item.AddedAt ?? DateTime.Now,
                         Address1 = item.Address1,
                         Address2 = item.Address2,
                         Bedrooms = item.Bedrooms,
@@ -562,20 +562,20 @@ namespace UserProfilerService
                         Zip = item.Zip,
                         WeekPrice = item.WeekPrice ?? 0,
                         SSN = item.SSN,
-                        IsACAvailable = item.IsACAvailable??false,
-                        IsBuzzerAvailable = item.IsBuzzerAvailable??false,
-                        IsLiftAvailable = item.IsLiftAvailable??false,
-                        IsPetsAllowed = item.IsPetsAllowed??false,
-                        IsPrivatePoolAvailable = item.IsPrivatePoolAvailable??false,
-                        IsWifiAvailable = item.IsWifiAvailable??false,
-                        Score = item.Score??0,
-                        Price = item.Price??0,
-                        Status = item.Status??0,
+                        IsACAvailable = item.IsACAvailable ?? false,
+                        IsBuzzerAvailable = item.IsBuzzerAvailable ?? false,
+                        IsLiftAvailable = item.IsLiftAvailable ?? false,
+                        IsPetsAllowed = item.IsPetsAllowed ?? false,
+                        IsPrivatePoolAvailable = item.IsPrivatePoolAvailable ?? false,
+                        IsWifiAvailable = item.IsWifiAvailable ?? false,
+                        Score = item.Score ?? 0,
+                        Price = item.Price ?? 0,
+                        Status = item.Status ?? 0,
                         FromDate = item.FromDate,
                         ToDate = item.ToDate,
                         StatusName = statusName,
-                        Latitude = item.Latitude??0,
-                        Longitude = item.Longitude??0
+                        Latitude = item.Latitude ?? 0,
+                        Longitude = item.Longitude ?? 0
 
                     });
 
@@ -626,31 +626,70 @@ namespace UserProfilerService
         {
             SemantriaHelper.AddUserFeedbackScore(model);
 
-            model.BuildingName = "Ahobilam";
-            model.ZipCode = "600063";
             using (ipl_userprofilerEntities entity = new ipl_userprofilerEntities())
             {
-                var cliqueRequest = entity.CliqueClaimRequests.Where(x => (x.Name == model.BuildingName && x.Zip == model.ZipCode));
-                model.id = cliqueRequest.First().Id;
-            }
-            var request = new CliqueClaimRequestFeedback
-            {
-                RequestId = model.id,
-                UserEmail = model.EmailId,
-                UserName = model.Name,
-                Text = model.Feedback,
-                Score=model.Score,
-                AddedAt=DateTime.Now
+                var homeAwayProperty = entity.HomeAwayProperties.First(res => res.Id == model.PropertyId);
 
-            };
 
-            using (ipl_userprofilerEntities entity = new ipl_userprofilerEntities())
-            {
-                entity.CliqueClaimRequestFeedbacks.Add(request);
+                var request = new HomeAwayFeedback
+                {
+                    PropertyId = model.PropertyId,
+                    UserEmail = model.UserEmail,
+                    UserName = model.UserName,
+                    Text = model.Text,
+                    AddedAt = DateTime.Now
+
+                };
+
+                entity.HomeAwayFeedbacks.Add(request);
+              
+
+                //Map feedbackto to claim property
+
+                var requestId = entity.CliqueClaimRequests.First(res => res.Name == homeAwayProperty.Name && res.Zip == homeAwayProperty.Zip).Id;
+                var claimFeedback = new CliqueClaimRequestFeedback
+                {
+                    RequestId = requestId,
+                    UserEmail = model.UserEmail,
+                    UserName = model.UserName,
+                    Text = model.Text,
+                    Score = model.Score,
+                    AddedAt = DateTime.Now
+
+                };
+
+                entity.CliqueClaimRequestFeedbacks.Add(claimFeedback);
                 entity.SaveChanges();
             }
 
 
+        }
+
+        public IList<UserFeedbackModel> GetUserFeedback(int id)
+        {
+            List<UserFeedbackModel> response = new List<UserFeedbackModel>();
+            using (ipl_userprofilerEntities entity = new ipl_userprofilerEntities())
+            {
+                var requestEntity = entity.CliqueClaimRequestFeedbacks.Where(res => res.RequestId == id);
+
+                foreach (var item in requestEntity)
+                {
+                    response.Add(new UserFeedbackModel
+                    {
+                        Id = item.Id,
+                        PropertyId = item.RequestId,
+                        Text = item.Text,
+                        UserName = item.UserName,
+                        UserEmail = item.UserEmail,
+                        Score = item.Score??0,
+                        AddedAt = item.AddedAt
+                    });
+
+                }
+
+            }
+
+            return response;
         }
     }
 }

@@ -2,8 +2,8 @@
     var self = this;
 
     self.eventList = ko.observableArray([]);
-    self.locationTweetList = ko.observableArray([]);
-    self.userTweetList = ko.observableArray([]);
+    self.locationTweetList = ko.observableArray([]);    
+    self.userFeedbackList = ko.observableArray([]);
 
   
     self.getEvent = function () {
@@ -50,7 +50,7 @@
 
     };
 
-    self.getUserTweet = function () {
+    self.getUserFeedback = function () {
         debugger;
 
 
@@ -58,12 +58,12 @@
         $.ajax({
             type: "Get",
             contentType: "application/json",
-            url: baseUrl + "/api/RequestAPI/GetUserTweet/" + requestId
+            url: baseUrl + "/api/RequestAPI/GetUserFeedback/" + requestId
         }).done(function (res) {
             debugger;
             
-            self.userTweetList(res);
-            $("#userTable").DataTable({ responsive: true });
+            self.userFeedbackList(res);
+            $("#feedbackTable").DataTable({ responsive: true });
 
 
         }).error(function (ex) {
@@ -78,7 +78,7 @@
 
     self.getEvent();
     self.getLocationTweet();
-    //self.getUserTweet();
+    self.getUserFeedback();
 
 };
 

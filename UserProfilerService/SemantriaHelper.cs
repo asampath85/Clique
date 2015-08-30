@@ -42,12 +42,12 @@ namespace UserProfilerService
 
                 Document doc = new Document()
                 {
-                    Id = model.id.ToString(),
-                    Text = model.Feedback
+                    Id = model.PropertyId.ToString(),
+                    Text = model.Text
                 };
 
                     outgoingBatch.Add(doc);
-                    docsTracker.Add(model.id.ToString(), Semantria.Com.TaskStatus.QUEUED);
+                    docsTracker.Add(model.PropertyId.ToString(), Semantria.Com.TaskStatus.QUEUED);
 
                                 
 

@@ -28,9 +28,11 @@ var DashboardViewModel = function () {
     self.model = ko.observable(new UserFeedbackModel());
 
     self.showModal = function (item) {
+        debugger;
+        self.model().propertyId(item.Id);
         self.displaySubmitModal(true);
         //TODO: need to send property details like pincode and property name
-        //self.model.id = ko.observable(item.id);
+        
     };
 
     self.HideModal = function () {
@@ -93,6 +95,8 @@ var DashboardViewModel = function () {
 
 
         var item = ko.toJSON(self.model());
+        
+
         debugger;
 
         $.ajax({
