@@ -128,8 +128,9 @@ namespace UserProfilerWeb.Controllers
         //    return View(chart);
         //}
 
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
+            ViewBag.RequestId = id;
           
             apiController = new RequestAPIController();
 
@@ -152,9 +153,9 @@ namespace UserProfilerWeb.Controllers
                .SetPlotOptions(new PlotOptions { Column = new PlotOptionsColumn { Depth = 25,Color = Color.LightSlateGray,BorderColor = Color.AntiqueWhite,BorderWidth = 1} })
                .SetLegend(new Legend { Enabled = false })
 
-               .SetSeries(new Series { Data = new Data(GetEventScore(60)) });
+               .SetSeries(new Series { Data = new Data(GetEventScore(id)) });
 
-            TimeLineModel model = new TimeLineModel { chart = chart12, TweetScore = GetTweetScore(57) };
+            TimeLineModel model = new TimeLineModel { chart = chart12, TweetScore = GetTweetScore(id) };
 
             return View(model);
         }
@@ -168,7 +169,7 @@ namespace UserProfilerWeb.Controllers
 
         private double GetTweetScore(int id)
         {
-            var tweets = apiController.GetUserTweet(id);
+            var tweets = apiController.GetLocationTweet(id);
 
             var totalTweets = tweets.Count;
             var totalPositiveTweets = tweets.Count(x => x.Score > 0.3);

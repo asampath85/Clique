@@ -9,7 +9,7 @@ var DashboardViewModel = function () {
 
     self.navigatetoDetails = function (item) {
         
-        window.location.href = baseUrl +  '/Home/Details/' + item.Id;
+        window.location.href = baseUrl + '/TimeLine/Index/' + item.Id;
     }
 
     self.get = function () {

@@ -59,6 +59,7 @@ namespace UserProfilerHelper
                 string categories = AppendCategories();
 
                 string url = string.Format("http://api.eventful.com/json/events/search?app_key={0}&{2}&l={1}&within=10&units=miles&page_size=100", key, location, categories);
+               // string url = string.Format("http://api.eventful.com/json/events/search?app_key={0}&l={1}&within=10&units=miles&page_size=100", key, location);
 
                 var requestUserTimeline = new HttpRequestMessage(System.Net.Http.HttpMethod.Get, url);
 
@@ -66,7 +67,17 @@ namespace UserProfilerHelper
                 HttpResponseMessage responseUserTimeLine = httpClient.SendAsync(requestUserTimeline).Result;
                 var response = responseUserTimeLine.Content.ReadAsStringAsync().Result;
                 dynamic wrapper = JsonConvert.DeserializeObject<object>(response);
-                var eventList = (wrapper.events.@event as IEnumerable<dynamic>).ToList();
+                if (wrapper.events == null || wrapper.page_count == 0)
+                    return new List<Event>();
+
+                List<dynamic> eventList = new List<dynamic>();
+               
+                if(wrapper.page_count == 1)
+                {
+                    eventList.Add(wrapper.events.@event as dynamic);
+                }
+                else
+                    eventList = (wrapper.events.@event as List<dynamic>).ToList();
 
 
                 for (int i = 2; i <= Convert.ToInt32(wrapper.page_count); i++)
@@ -77,7 +88,15 @@ namespace UserProfilerHelper
                     HttpResponseMessage responseUserTimeLine1 = httpClient1.SendAsync(requestUserTimeline1).Result;
                     response = responseUserTimeLine1.Content.ReadAsStringAsync().Result;
                     dynamic pageWrapper = JsonConvert.DeserializeObject<object>(response);
-                    eventList.AddRange(pageWrapper.events.@event);                    
+                    if (pageWrapper.events == null || wrapper.page_count == 0)
+                        continue;
+
+                    if (pageWrapper.page_count == 1)
+                    {
+                        eventList.Add(pageWrapper.events.@event as dynamic);
+                    }
+                    else
+                        eventList.AddRange((pageWrapper.events.@event as List<dynamic>).ToList());                  
 
                 }
 
