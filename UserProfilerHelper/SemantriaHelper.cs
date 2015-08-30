@@ -57,7 +57,7 @@ namespace UserProfilerHelper
 
                     if (outgoingBatch.Count == subscription.BasicSettings.BatchLimit)
                     {
-                       // break;
+                        break;
                     }
 
                   }

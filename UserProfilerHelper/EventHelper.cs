@@ -77,7 +77,7 @@ namespace UserProfilerHelper
                     eventList.Add(wrapper.events.@event as dynamic);
                 }
                 else
-                    eventList = (wrapper.events.@event as List<dynamic>).ToList();
+                    eventList = (wrapper.events.@event as IEnumerable<dynamic>).ToList();
 
 
                 for (int i = 2; i <= Convert.ToInt32(wrapper.page_count); i++)
@@ -96,7 +96,7 @@ namespace UserProfilerHelper
                         eventList.Add(pageWrapper.events.@event as dynamic);
                     }
                     else
-                        eventList.AddRange((pageWrapper.events.@event as List<dynamic>).ToList());                  
+                        eventList.AddRange((pageWrapper.events.@event as IEnumerable<dynamic>).ToList());                  
 
                 }
 
