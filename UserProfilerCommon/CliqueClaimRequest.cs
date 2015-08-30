@@ -49,6 +49,8 @@ namespace UserProfilerCommon
         public Nullable<int> Status { get; set; }
         public System.DateTime FromDate { get; set; }
         public System.DateTime ToDate { get; set; }
+        public Nullable<double> Latitude { get; set; }
+        public Nullable<double> Longitude { get; set; }
     
         public virtual ICollection<CliqueLocationEvent> CliqueLocationEvents { get; set; }
         public virtual ICollection<CliqueLocationTweet> CliqueLocationTweets { get; set; }

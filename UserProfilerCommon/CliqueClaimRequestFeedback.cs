@@ -20,6 +20,7 @@ namespace UserProfilerCommon
         public string UserEmail { get; set; }
         public System.DateTime AddedAt { get; set; }
         public int RequestId { get; set; }
+        public Nullable<double> Score { get; set; }
     
         public virtual CliqueRequest CliqueRequest { get; set; }
     }

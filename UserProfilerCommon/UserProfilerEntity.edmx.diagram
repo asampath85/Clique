@@ -17,7 +17,7 @@
         <EntityTypeShape EntityType="ipl_userprofilerModel.CliqueEvent" Width="1.5" PointX="3.375" PointY="1" />
         <EntityTypeShape EntityType="ipl_userprofilerModel.CliqueUser" Width="1.5" PointX="0.75" PointY="1" />
         <AssociationConnector Association="ipl_userprofilerModel.FK_CliqueRequest_ToCliqueUser" />
-        <EntityTypeShape EntityType="ipl_userprofilerModel.CliqueClaimRequest" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="ipl_userprofilerModel.CliqueClaimRequest" Width="1.5" PointX="0.875" PointY="4.75" />
         <EntityTypeShape EntityType="ipl_userprofilerModel.CliqueClaimRequestFeedback" Width="1.5" PointX="10.25" PointY="20.75" />
         <EntityTypeShape EntityType="ipl_userprofilerModel.HomeAwayFeedback" Width="1.5" PointX="13" PointY="16.125" />
         <EntityTypeShape EntityType="ipl_userprofilerModel.HomeAwayProperty" Width="1.5" PointX="10.75" PointY="12.25" />

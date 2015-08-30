@@ -38,6 +38,8 @@
           <Property Name="Status" Type="int" />
           <Property Name="FromDate" Type="datetime" Nullable="false" />
           <Property Name="ToDate" Type="datetime" Nullable="false" />
+          <Property Name="Latitude" Type="float" />
+          <Property Name="Longitude" Type="float" />
         </EntityType>
         <EntityType Name="CliqueClaimRequestFeedback">
           <Key>
@@ -49,6 +51,7 @@
           <Property Name="UserEmail" Type="nvarchar(max)" />
           <Property Name="AddedAt" Type="datetime" Nullable="false" />
           <Property Name="RequestId" Type="int" Nullable="false" />
+          <Property Name="Score" Type="float" />
         </EntityType>
         <EntityType Name="CliqueEvent">
           <Key>
@@ -681,6 +684,8 @@
           <NavigationProperty Name="CliqueLocationTweets" Relationship="ipl_userprofilerModel.FK_CliqueLocationTweet_ToCliqueClaimRequest" FromRole="CliqueClaimRequest" ToRole="CliqueLocationTweet" />
           <Property Name="FromDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ToDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Latitude" Type="Double" />
+          <Property Name="Longitude" Type="Double" />
         </EntityType>
         <EntityType Name="CliqueClaimRequestFeedback">
           <Key>
@@ -693,6 +698,7 @@
           <Property Name="AddedAt" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="RequestId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="CliqueRequest" Relationship="ipl_userprofilerModel.FK_CliqueClaimRequestFeedback_ToCliqueRequest" FromRole="CliqueClaimRequestFeedback" ToRole="CliqueRequest" />
+          <Property Name="Score" Type="Double" />
         </EntityType>
         <EntityType Name="HomeAwayFeedback">
           <Key>
@@ -956,6 +962,8 @@
           <EntitySetMapping Name="CliqueClaimRequests">
             <EntityTypeMapping TypeName="ipl_userprofilerModel.CliqueClaimRequest">
               <MappingFragment StoreEntitySet="CliqueClaimRequest">
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
                 <ScalarProperty Name="ToDate" ColumnName="ToDate" />
                 <ScalarProperty Name="FromDate" ColumnName="FromDate" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
@@ -991,6 +999,7 @@
           <EntitySetMapping Name="CliqueClaimRequestFeedbacks">
             <EntityTypeMapping TypeName="ipl_userprofilerModel.CliqueClaimRequestFeedback">
               <MappingFragment StoreEntitySet="CliqueClaimRequestFeedback">
+                <ScalarProperty Name="Score" ColumnName="Score" />
                 <ScalarProperty Name="RequestId" ColumnName="RequestId" />
                 <ScalarProperty Name="AddedAt" ColumnName="AddedAt" />
                 <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
