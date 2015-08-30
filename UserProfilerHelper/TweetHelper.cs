@@ -81,15 +81,14 @@ namespace UserProfilerHelper
          * 
          * */
 
-        public static void ExtractLocationTweets(CliqueClaimRequestModel model)
+        private static List<TweetModel> ExtractTweetsByGeoCode(CliqueClaimRequestModel model)
         {
-
             string url = "";
             var max_id = "";
             if (string.IsNullOrEmpty(max_id))
             {
                 //url = string.Format("https://api.twitter.com/1.1/search/tweets.json?q='{0}'%20AND%20{1}", buildingName, city);
-                url = string.Format("https://api.twitter.com/1.1/search/tweets.json?q='{0}'", model.Locality);
+                url = string.Format("https://api.twitter.com/1.1/search/tweets.json?geocode={0},{1},10mi&count=100", model.Latitude, model.Longitude);
             }
             else
                 url = string.Format("https://api.twitter.com/1.1/statuses/user_timeline.json?count={0}&screen_name={1}&trim_user=1&max_id={2}&since_id={3}",
@@ -120,7 +119,62 @@ namespace UserProfilerHelper
 
             }
 
+            return modelList;
+
+
+        }
+
+        private static List<TweetModel> ExtractTweetsByLocationName(CliqueClaimRequestModel model)
+        {
+            string url = "";
+            var max_id = "";
+            if (string.IsNullOrEmpty(max_id))
+            {
+                //url = string.Format("https://api.twitter.com/1.1/search/tweets.json?q='{0}'%20AND%20{1}", buildingName, city);
+                url = string.Format("https://api.twitter.com/1.1/search/tweets.json?q='{0}'&count=100", model.Locality);
+            }
+            else
+                url = string.Format("https://api.twitter.com/1.1/statuses/user_timeline.json?count={0}&screen_name={1}&trim_user=1&max_id={2}&since_id={3}",
+                        "100", model.Locality, model.Locality, model.Locality);
+
+            var requestUserTimeline = new HttpRequestMessage(System.Net.Http.HttpMethod.Get, url);
+            var accessToken = GetAccessToken();
+            requestUserTimeline.Headers.Add("Authorization", "Bearer " + accessToken);
+            var httpClient = new HttpClient();
+            HttpResponseMessage responseUserTimeLine = httpClient.SendAsync(requestUserTimeline).Result;
+
+            dynamic jsonResponse = JsonConvert.DeserializeObject<object>(responseUserTimeLine.Content.ReadAsStringAsync().Result);
+
+            var enumerableTweets = (jsonResponse.statuses as IEnumerable<dynamic>);
+
+            List<TweetModel> modelList = new List<TweetModel>();
+            foreach (var item in enumerableTweets)
+            {
+                modelList.Add(new TweetModel
+                {
+                    Text = item.text.Value,
+                    PostedBy = item.user.name.Value,
+                    PostedAt = item.created_at.Value,
+                    ProfileImageURL = item.user.profile_image_url_https.Value,
+                    TweetIdStr = item.id_str.Value,
+                    RequestId = model.Id,
+                });
+
+            }
+
+            return modelList;
+
+
+        }
+
+        public static void ExtractLocationTweets(CliqueClaimRequestModel model)
+        {
+            var modelList = ExtractTweetsByLocationName(model);
             var response = SemantriaHelper.AddScore(modelList);
+
+            response.AddRange(SemantriaHelper.AddScore(ExtractTweetsByGeoCode(model)));
+            
+            
 
             var service = new RequestService();
             service.AddTweetAndLocation(modelList);

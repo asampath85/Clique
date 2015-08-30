@@ -30,7 +30,7 @@ namespace UserProfilerHelper
                 // Error callback handler. This event will occur in case of server-side error
                 session.Error += new Session.ErrorHandler(delegate(object sender, ResponseErrorEventArgs ea)
                 {
-                    //Console.WriteLine(string.Format("{0}: {1}", (int)ea.Status, ea.Message));
+                    Console.WriteLine(string.Format("{0}: {1}", (int)ea.Status, ea.Message));
                 });
 
                 //Obtaining subscription object to get user limits applicable on server side
@@ -41,7 +41,11 @@ namespace UserProfilerHelper
 
                 foreach (var item in tweetList)
                 {
-                    
+                    if (docsTracker.ContainsKey(item.TweetIdStr))
+                        continue;
+
+                    docsTracker.Add(item.TweetIdStr, Semantria.Com.TaskStatus.QUEUED);
+
                     Document doc = new Document()
                     {
                         Id = item.TweetIdStr,
@@ -49,11 +53,11 @@ namespace UserProfilerHelper
                     };
 
                     outgoingBatch.Add(doc);
-                    docsTracker.Add(item.TweetIdStr, Semantria.Com.TaskStatus.QUEUED);
+                    
 
                     if (outgoingBatch.Count == subscription.BasicSettings.BatchLimit)
                     {
-                        break;
+                       // break;
                     }
 
                   }
@@ -91,7 +95,7 @@ namespace UserProfilerHelper
 
                 foreach (DocAnalyticData data in results)
                 {
-                   var currentTweet = tweetList.Single(res=>res.TweetIdStr == data.Id);
+                   var currentTweet = tweetList.First(res=>res.TweetIdStr == data.Id);
                     float score = 0;
                     // Printing of document entities
                     if (data.Phrases != null && data.Phrases.Count > 0)

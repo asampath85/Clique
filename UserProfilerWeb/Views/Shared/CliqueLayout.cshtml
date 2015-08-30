@@ -23,7 +23,7 @@
                     <div>
                         @Html.ActionLink("Request", "RequestForm", "Home", new { id = 0 }, new { @class = "but" })
                     </div>
-                    <div>
+                    @*<div>
                         @Html.ActionLink("TimeLine", "Index", "TimeLine", new { }, new { @class = "but" })
                     </div>
                     <div>
@@ -31,7 +31,7 @@
                     </div>
                     <div>
                         @Html.ActionLink("Summary", "RequestForm", "Home", new { }, new { @class = "but" })
-                    </div>
+                    </div>*@
                 </div>
                 <div id="logo"></div>
             </div>
@@ -88,7 +88,7 @@
 
     @RenderSection("scripts", required: false)
 
-    @*<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>*@
+   <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
     <script type="text/javascript">
         var baseUrl = '@Url.Content("~/")';
