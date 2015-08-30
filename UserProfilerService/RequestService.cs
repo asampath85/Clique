@@ -621,6 +621,37 @@ namespace UserProfilerService
 
             return response;
         }
+
+        public void AddUserFeedback(UserFeedbackModel model)
+        {
+            SemantriaHelper.AddUserFeedbackScore(model);
+
+            model.BuildingName = "Ahobilam";
+            model.ZipCode = "600063";
+            using (ipl_userprofilerEntities entity = new ipl_userprofilerEntities())
+            {
+                var cliqueRequest = entity.CliqueClaimRequests.Where(x => (x.Name == model.BuildingName && x.Zip == model.ZipCode));
+                model.id = cliqueRequest.First().Id;
+            }
+            var request = new CliqueClaimRequestFeedback
+            {
+                RequestId = model.id,
+                UserEmail = model.EmailId,
+                UserName = model.Name,
+                Text = model.Feedback,
+                Score=model.Score,
+                AddedAt=DateTime.Now
+
+            };
+
+            using (ipl_userprofilerEntities entity = new ipl_userprofilerEntities())
+            {
+                entity.CliqueClaimRequestFeedbacks.Add(request);
+                entity.SaveChanges();
+            }
+
+
+        }
     }
 }
 

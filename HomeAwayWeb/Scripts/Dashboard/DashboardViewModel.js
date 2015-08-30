@@ -1,4 +1,20 @@
-﻿
+﻿ko.bindingHandlers.showModal = {
+    init: function (element, valueAccessor) {
+        $(element).modal({ backdrop: 'static', keyboard: true, show: false });
+    },
+    update: function (element, valueAccessor) {
+
+        var value = valueAccessor();
+        if (ko.utils.unwrapObservable(value)) {
+            $(element).modal('show');
+            $("input", element).focus();
+        }
+        else {
+
+            $(element).modal('hide');
+        }
+    }
+};
 
 
 
@@ -6,6 +22,28 @@ var DashboardViewModel = function () {
     var self = this;
 
     self.propertyList = ko.observableArray([]);
+
+    self.displaySubmitModal = ko.observable(false);
+
+    self.model = ko.observable(new UserFeedbackModel());
+
+    self.showModal = function (item) {
+        self.displaySubmitModal(true);
+        //TODO: need to send property details like pincode and property name
+        //self.model.id = ko.observable(item.id);
+    };
+
+    self.HideModal = function () {
+        self.displaySubmitModal(false);
+        //TODO: should clear the contents before closing the model for the next launch
+
+        //self.model.id("");
+        //self.model.name("");
+        //self.model.emailid("");
+        //self.model.feedback("");
+        
+    };
+
 
     self.navigatetoDetails = function (item) {
 
@@ -48,7 +86,7 @@ var DashboardViewModel = function () {
     self.get();
 
     debugger;
-    self.model = ko.observable(new UserFeedbackModel());
+  
    
     self.addfeedback = function () {
         debugger;
@@ -66,6 +104,8 @@ var DashboardViewModel = function () {
             debugger;
 
             //$('#myModel').model('hide');
+
+            self.HideModal();
 
 
         }).error(function (ex) {

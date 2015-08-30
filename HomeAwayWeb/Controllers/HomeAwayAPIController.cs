@@ -22,7 +22,8 @@ namespace HomeAwayWeb.Controllers
         [HttpPost]
         public void AddFeedback(UserFeedbackModel model)
         {
-           
+            RequestService service = new RequestService();
+            service.AddUserFeedback(model);
         }
 
         [HttpGet]
