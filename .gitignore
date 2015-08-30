@@ -1,0 +1,9 @@
+*.xml
+HomeAwayWeb/bin/System.Web.WebPages.Razor.dll
+*.dll
+*.css
+packages/jQuery.UI.Combined.1.8.24/Content/Content/themes/base/minified/images/ui-bg_flat_75_ffffff_40x100.png
+*.png
+*.nupkg
+ProcessQueueJob/bin/Debug/ProcessQueueJob.pdb
+*.pdb
