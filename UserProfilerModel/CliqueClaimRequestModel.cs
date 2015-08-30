@@ -38,6 +38,8 @@ namespace UserProfilerModel
         public bool IsBuzzerAvailable { get; set; }
         public DateTime FromDate { get; set; }
         public DateTime ToDate { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
 
     }
 }

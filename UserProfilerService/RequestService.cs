@@ -514,6 +514,8 @@ namespace UserProfilerService
                 request.Price = model.Price;
                 request.Score = model.Score;
                 request.Status = model.Status;
+                request.Latitude = model.Latitude;
+                request.Longitude = model.Longitude;
 
                 entity.SaveChanges();
                 model.Id = request.Id;
@@ -571,7 +573,9 @@ namespace UserProfilerService
                         Status = item.Status??0,
                         FromDate = item.FromDate,
                         ToDate = item.ToDate,
-                        StatusName = statusName
+                        StatusName = statusName,
+                        Latitude = item.Latitude??0,
+                        Longitude = item.Longitude??0
 
                     });
 

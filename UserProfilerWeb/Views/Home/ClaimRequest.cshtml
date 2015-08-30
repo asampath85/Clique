@@ -1,14 +1,15 @@
-﻿<h1>List Your Space!
-</h1>
-<div class="right_b">
-    <span>HomeAway lets you make money renting out your place.Your apartment will pay for itself!.</span>
-    <br />
-    <br />
-</div>
+﻿<h3 style="margin-top: 0px">
+    List Your Insurance!
+</h3>
+
+<label>Shared cliam insurance.</label>
+<br />
+<br />
+
 
 <!-- Row start -->
 <div class="row">
-    <div class="col-md-11 col-sm-11 col-xs-11">
+    <div class="col-md-12 col-sm-11 col-xs-11">
         <div class="panel panel-info">
             <div class="panel-heading  clearfix">
                 <i class="icon-calendar"></i>
@@ -50,6 +51,14 @@
 
                 <div class="row">
                     <div class="col-lg-3 col-sm-3">
+                        <label for="InputName">Locality</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">@@</span>
+                            <input type="text" name="InputName" id="InputName" class="form-control" placeholder="Location" data-bind="value: model().locality">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-3">
                         <label for="InputName">Zip / Postal Code</label>
                         <div class="input-group">
                             <span class="input-group-addon">@@</span>
@@ -64,19 +73,24 @@
                             <input type="text" name="InputName" id="InputName" class="form-control" placeholder="Country" data-bind="value: model().country">
                         </div>
                     </div>
+
+                    <div class="col-lg-3 col-sm-3">
+                        <label for="InputName">SSN</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">@@</span>
+                            <input type="text" name="InputName" id="InputName" class="form-control" placeholder="SSN" data-bind="value: model().ssn">
+                        </div>
+                    </div>
                 </div>
 
             </div>
         </div>
     </div>
 </div>
-
-
-
 <!-- Row end -->
 <!-- Row start -->
 <div class="row">
-    <div class="col-md-11 col-sm-11 col-xs-11">
+    <div class="col-md-12 col-sm-11 col-xs-11">
         <div class="panel panel-info">
             <div class="panel-heading clearfix">
                 <i class="icon-calendar"></i>
@@ -89,13 +103,13 @@
                         <label for="InputName">Title</label>
                         <div class="input-group">
                             <span class="input-group-addon">@@</span>
-                            <input type="text" name="InputName" id="InputName" class="form-control" placeholder="Headline for your listing" data-bind="value: model().title">
+                            <input type="text" name="InputName" id="InputName" class="form-control" placeholder="Headline for your listing" data-bind="value: model().name">
                         </div>
                     </div>
 
                 </div>
                 <div class="row">
-                    <div class="col-lg-11 col-sm-11">
+                    <div class="col-lg-12 col-sm-11">
                         <label for="InputMessage">Description</label>
                         <div class="input-group">
                             <textarea name="InputMessage" id="InputMessage" class="form-control" rows="3" cols="150" placeholder="Describe your place" data-bind="value: model().description"></textarea>
@@ -108,14 +122,14 @@
                         <label for="InputName">Bedrooms</label>
                         <div class="input-group">
                             <span class="input-group-addon">@@</span>
-                            <input type="text" name="InputName" id="InputName" class="form-control" placeholder="No of Bedroom" data-bind="value: model().noofbedrooms">
+                            <input type="text" name="InputName" id="InputName" class="form-control" placeholder="No of Bedroom" data-bind="value: model().bedrooms">
                         </div>
                     </div>
                     <div class="col-lg-3 col-sm-3">
                         <label for="InputName">Beds</label>
                         <div class="input-group">
                             <span class="input-group-addon">@@</span>
-                            <input type="text" class="form-control" placeholder="No of beds" data-bind="value: model().noofbeds">
+                            <input type="text" class="form-control" placeholder="No of beds" data-bind="value: model().beds">
                         </div>
                     </div>
 
@@ -123,14 +137,14 @@
                         <label for="InputName">Accomodates</label>
                         <div class="input-group">
                             <span class="input-group-addon">@@</span>
-                            <input type="text" class="form-control" placeholder="No of person" data-bind="value: model().noofpeople">
+                            <input type="text" class="form-control" placeholder="No of person" data-bind="value: model().accomodates">
                         </div>
                     </div>
                     <div class="col-lg-3 col-sm-3">
                         <label for="InputName">Property Type</label>
                         <div class="input-group">
                             <span class="input-group-addon">@@</span>
-                            <input type="text" name="InputName" id="InputName" class="form-control" placeholder="Apartment/ House" data-bind="value: model().propertyType">
+                            <input type="text" name="InputName" id="InputName" class="form-control" placeholder="Apartment/ House" data-bind="value: model().type">
                         </div>
                     </div>
                 </div>
@@ -141,42 +155,54 @@
 </div>
 <!-- Row end -->
 <div class="row">
-        <div class="col-md-11 col-sm-11 col-xs-11">
-            <div class="panel panel-info">
-                <div class="panel-heading clearfix">
-                    <i class="icon-calendar"></i>
-                    <h3 class="panel-title">Basic Pricing</h3>
-                </div>
+    <div class="col-md-12 col-sm-11 col-xs-11">
+        <div class="panel panel-info">
+            <div class="panel-heading clearfix">
+                <i class="icon-calendar"></i>
+                <h3 class="panel-title">Basic Pricing</h3>
+            </div>
 
-                <div class="panel-body">
-               <div class="row">
-                        <div class="col-lg-3 col-sm-3">
-                            <label for="InputName">Nightly</label>
-                            <div class="input-group">
-                                <span class="input-group-addon">$</span>
-                                <input type="text" name="InputName" id="InputName" class="form-control" placeholder="" data-bind="value: model().nightlyCost">
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-3 col-sm-3">
-                            <label for="InputName">Weekly</label>
-                            <div class="input-group">
-                                <span class="input-group-addon">$</span>
-                                <input type="text" name="InputName" id="InputName" class="form-control" placeholder="" data-bind="value: model().weeklyCost">
-                            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-3">
+                        <label for="InputName">From Date</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">$</span>
+                            <input type="date" name="InputName" id="InputName" class="form-control" placeholder="" data-bind="value: model().fromDate">
                         </div>
                     </div>
+                    <div class="col-lg-3 col-sm-3">
+                        <label for="InputName">To Date</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">$</span>
+                            <input type="date" name="InputName" id="InputName" class="form-control" placeholder="" data-bind="value: model().toDate">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-3">
+                        <label for="InputName">Nightly</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">$</span>
+                            <input type="text" name="InputName" id="InputName" class="form-control" placeholder="" data-bind="value: model().nightPrice">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-3">
+                        <label for="InputName">Weekly</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">$</span>
+                            <input type="text" name="InputName" id="InputName" class="form-control" placeholder="" data-bind="value: model().weekPrice">
+                        </div>
+                    </div>
 
                 </div>
+
+
             </div>
         </div>
     </div>
-
+</div>
 <!-- Row start -->
 <div class="row">
-    <div class="col-md-11 col-sm-11 col-xs-11">
+    <div class="col-md-12 col-sm-11 col-xs-11">
         <div class="panel panel-info">
             <div class="panel-heading clearfix">
                 <i class="icon-calendar"></i>
@@ -190,9 +216,11 @@
                     <div class="col-md-3 col-sm-3">
                         <div class="input-group">
                             <label>
-                                <input type="checkbox" value="" data-bind="checked: model().isPetsAllowed">Pets Allowed</label>
+                                <input type="checkbox" value="" data-bind="checked: model().isPetsAllowed">Pets Allowed
+                            </label>
                             <label>
-                                <input type="checkbox" value="" data-bind="checked: model().isWifiAvailable">Wireless Internet</label>
+                                <input type="checkbox" value="" data-bind="checked: model().isWifiAvailable">Wireless Internet
+                            </label>
                         </div>
 
                     </div>
@@ -202,9 +230,11 @@
 
                         <div class="input-group">
                             <label>
-                                <input type="checkbox" value="" data-bind="checked: model().isACAvailable">Air conditioning</label>
+                                <input type="checkbox" value="" data-bind="checked: model().isACAvailable">Air conditioning
+                            </label>
                             <label>
-                                <input type="checkbox" value="" data-bind="checked: model().isLiftAvailable">Elevator in building</label>
+                                <input type="checkbox" value="" data-bind="checked: model().isLiftAvailable">Elevator in building
+                            </label>
                         </div>
 
                     </div>
@@ -214,9 +244,11 @@
 
                         <div class="input-group">
                             <label>
-                                <input type="checkbox" value="" data-bind="checked: model().isPrivatePool">Private pool</label>
+                                <input type="checkbox" value="" data-bind="checked: model().isPrivatePool">Private pool
+                            </label>
                             <label>
-                                <input type="checkbox" value="" data-bind="checked: model().isBuzzer">Buzzer/ Wireless Intercom</label>
+                                <input type="checkbox" value="" data-bind="checked: model().isBuzzer">Buzzer/ Wireless Intercom
+                            </label>
                         </div>
 
                     </div>
@@ -227,27 +259,27 @@
             </div>
         </div>
     </div>
-<!-- Row end -->
-<!-- Row start -->
-
-    
-
-<!-- Row end -->
+    <!-- Row end -->
+    <!-- Row start -->
+    <!-- Row end -->
 </div>
 <div class="row">
-    <div class="col-md-10 text-center">
+    <div class="col-md-12 text-center">
         <button id="singlebutton" name="singlebutton" class="btn btn-primary" data-bind="click: add">Submit</button>
         <button id="singlebutton" name="singlebutton" class="btn btn-warning">Cancel</button>
     </div>
 </div>
+
 @section scripts{
     <script type="text/javascript">
+        debugger;
+        var requestId = @ViewBag.RequestId;
 
         $(document).ready(function () {
-            var viewModel = new ListViewModel();
+            debugger;
+            var viewModel = new ClaimRequestViewModel(requestId);
             ko.applyBindings(viewModel);
 
         });
     </script>
 }
-
