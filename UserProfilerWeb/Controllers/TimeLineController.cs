@@ -8,6 +8,7 @@ using DotNet.Highcharts.Helpers;
 using DotNet.Highcharts.Options;
 using UserProfilerWeb.Models;
 using Point = DotNet.Highcharts.Options.Point;
+using System;
 
 namespace UserProfilerWeb.Controllers
 {
@@ -155,7 +156,7 @@ namespace UserProfilerWeb.Controllers
 
                .SetSeries(new Series { Data = new Data(GetEventScore(id)) });
 
-            TimeLineModel model = new TimeLineModel { chart = chart12, TweetScore = GetTweetScore(id) };
+            TimeLineModel model = new TimeLineModel { chart = chart12, TweetScore = GetTweetScore(id), UserScore=GetUserFeedbackScore(id) };
 
             return View(model);
         }
@@ -167,6 +168,18 @@ namespace UserProfilerWeb.Controllers
             return Color.ForestGreen;
         }
 
+        private double GetUserFeedbackScore(int id)
+        {
+            var userFeedbacks = apiController.GetUserFeedback(id);
+
+            var totalFeedbacks = userFeedbacks.Count;
+            var totalPositiveFeedbacks = userFeedbacks.Count(x => x.Score > 0.3);
+
+            double score = totalFeedbacks > 0 ? Math.Round(((double)totalPositiveFeedbacks / (double)totalFeedbacks) * 100,2) : 0;
+            return score;
+
+        }
+
         private double GetTweetScore(int id)
         {
             var tweets = apiController.GetLocationTweet(id);
@@ -174,7 +187,7 @@ namespace UserProfilerWeb.Controllers
             var totalTweets = tweets.Count;
             var totalPositiveTweets = tweets.Count(x => x.Score > 0.3);
 
-            double tweetScore = totalTweets>0 ? ((double)totalPositiveTweets /(double) totalTweets) * 100:0;
+            double tweetScore = totalTweets>0 ? Math.Round(((double)totalPositiveTweets /(double) totalTweets) * 100,2):0;
             return tweetScore;
 
         }
