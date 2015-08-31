@@ -3,7 +3,7 @@
     debugger;
     self.model = ko.observable(new ClaimRequestModel());
     self.model().id(propertyId);
-
+    
     if (propertyId != 0)
     {
 
@@ -64,7 +64,7 @@
             debugger;
 
             //window.location.href = baseUrl;
-            $("#showNotification").show();
+            $("#showNotification").removeClass("hide").addClass("show");
 
         }).error(function (ex) {
             debugger;
