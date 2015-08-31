@@ -63,8 +63,8 @@
         }).done(function (res) {
             debugger;
 
-            window.location.href = baseUrl;
-
+            //window.location.href = baseUrl;
+            $("#showNotification").show();
 
         }).error(function (ex) {
             debugger;
