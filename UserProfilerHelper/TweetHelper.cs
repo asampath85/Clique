@@ -169,16 +169,21 @@ namespace UserProfilerHelper
 
         public static void ExtractLocationTweets(CliqueClaimRequestModel model)
         {
-           // var modelList = ExtractTweetsByLocationName(model);
-          //  var response = SemantriaHelper.AddScore(modelList);
-            List<TweetModel> response = new List<TweetModel>();
-            var modelList = ExtractTweetsByGeoCode(model);
-            modelList = SemantriaHelper.AddScore(modelList);
-            
-            
+
+            var modelList = ExtractTweetsByLocationName(model);
+            var response = SemantriaHelper.AddScore(modelList);
+
+            response.AddRange(SemantriaHelper.AddScore(ExtractTweetsByGeoCode(model)));
+
+
 
             var service = new RequestService();
             service.AddTweetAndLocation(modelList);
+         
+
+            modelList = SemantriaHelper.AddScore(modelList);
+            service.UpdateTweetScore(modelList);
+
 
 
         }

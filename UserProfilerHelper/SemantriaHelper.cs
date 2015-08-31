@@ -16,8 +16,8 @@ namespace UserProfilerHelper
     public class SemantriaHelper
     {
 
-        const string consumerKey = "7e333636-31ec-0a52-e8f8-ed6625ebce4a";
-        const string consumerSecret = "ea3ab9ac-1058-48e5-f4e5-ec734ec9116b";
+        const string consumerKey = "530e397f-b3d6-4034-af0a-234256ce6716";
+        const string consumerSecret = "ee21ee0c-7a0c-450a-81f0-361196272c54";
 
         public static List<TweetModel> AddScore(List<TweetModel> tweetList)
         {
@@ -72,8 +72,10 @@ namespace UserProfilerHelper
                 }
 
                 List<DocAnalyticData> results = new List<DocAnalyticData>();
-                while (docsTracker.Any(item => item.Value == Semantria.Com.TaskStatus.QUEUED))
+                int count = 0;
+                while (docsTracker.Any(item => item.Value == Semantria.Com.TaskStatus.QUEUED) && count <= 200)
                 {
+                    count++;
                     System.Threading.Thread.Sleep(500);
 
                     // Requests processed results from Semantria service

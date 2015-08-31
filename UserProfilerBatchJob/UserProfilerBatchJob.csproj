@@ -65,6 +65,10 @@
       <Project>{2e515347-26bc-4e91-ae44-ca4fbefb8328}</Project>
       <Name>UserProfilerModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\UserProfilerService\UserProfilerService.csproj">
+      <Project>{382d7c95-b0f4-48c4-bec6-f843eadddc23}</Project>
+      <Name>UserProfilerService</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

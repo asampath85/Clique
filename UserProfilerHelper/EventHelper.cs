@@ -71,8 +71,8 @@ namespace UserProfilerHelper
                     return new List<Event>();
 
                 List<dynamic> eventList = new List<dynamic>();
-               
-                if(wrapper.page_count == 1)
+
+                if (wrapper.total_items == 1)
                 {
                     eventList.Add(wrapper.events.@event as dynamic);
                 }
@@ -88,7 +88,7 @@ namespace UserProfilerHelper
                     HttpResponseMessage responseUserTimeLine1 = httpClient1.SendAsync(requestUserTimeline1).Result;
                     response = responseUserTimeLine1.Content.ReadAsStringAsync().Result;
                     dynamic pageWrapper = JsonConvert.DeserializeObject<object>(response);
-                    if (pageWrapper.events == null || wrapper.page_count == 0)
+                    if (pageWrapper.events == null || wrapper.total_items == 0)
                         continue;
 
                     if (pageWrapper.page_count == 1)

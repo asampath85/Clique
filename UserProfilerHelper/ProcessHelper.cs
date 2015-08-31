@@ -26,25 +26,19 @@ namespace UserProfilerHelper
                 return false;
             }
 
-            try {
-
-              //  UserHelper.ProcessPendingUsers(requestist);
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-            try
-            {                
-                LocationHelper.ProcessPendingLocation(requestist);
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+           
             try
             {
                 WeatherHelper.ProcessLocation(requestist);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            try
+            {
+                LocationHelper.ProcessPendingLocation(requestist);
             }
             catch (Exception)
             {

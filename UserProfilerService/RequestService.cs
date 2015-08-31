@@ -767,6 +767,24 @@ namespace UserProfilerService
 
             return response;
         }
+
+        public void UpdateTweetScore(List<TweetModel> modelList)
+        {
+            using (ipl_userprofilerEntities entity = new ipl_userprofilerEntities())
+            {
+
+                foreach (var item in modelList)
+                {
+                    var existingItem = entity.CliqueTweets.SingleOrDefault(res => res.TweetIdStr == item.TweetIdStr);
+                    if(existingItem!= null)
+                    {
+                        existingItem.Score = item.Score;
+                        entity.SaveChanges();
+                    }
+                }
+            }
+            
+        }
     }
 }
 
