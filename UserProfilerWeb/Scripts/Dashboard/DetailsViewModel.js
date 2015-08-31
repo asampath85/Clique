@@ -42,7 +42,11 @@
             debugger;
             
             self.locationTweetList(res);
-            $("#locationTable").DataTable({ responsive: true });
+            $("#locationTable").DataTable({
+                "order": [[ 5, "desc" ]],
+                "aoColumnDefs": [                    
+                    { "bVisible": false, "aTargets": [ 5 ] }
+                ] } );      
 
         }).error(function (ex) {
             debugger;

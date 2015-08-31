@@ -16,6 +16,7 @@ namespace UserProfilerModel
         public string ProfileImageURL { get; set; }
         public string TweetIdStr { get; set; }
         public int RequestId { get; set; }
+        public bool IsHighlight { get; set; }
        
     }
 }

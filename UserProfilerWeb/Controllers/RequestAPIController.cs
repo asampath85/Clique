@@ -6,6 +6,9 @@ using System.Configuration;
 using System.Web.Http;
 using UserProfilerModel;
 using UserProfilerService;
+using System.Linq;
+using System;
+using System.Globalization;
 
 namespace UserProfilerWeb.Controllers
 {
@@ -53,8 +56,28 @@ namespace UserProfilerWeb.Controllers
         [HttpGet]
         public IList<TweetModel> GetLocationTweet(int id)
         {
+            string[] highlightList = new string[]{"Hello", "good", "trending"};
             RequestService service = new RequestService();
-            return service.GetLocationTweet(id);
+            var result = service.GetLocationTweet(id);
+
+            foreach (var item in result)
+            {
+                foreach (var highlight in highlightList)
+                {
+                    if (item.Text.Contains(highlight))
+                    {
+                        item.IsHighlight = true;
+                        break;
+                    }
+                }
+            }
+
+            
+
+            
+	
+            return result;
+
         }
 
         [HttpGet]
