@@ -290,6 +290,7 @@
     <Content Include="Documents\CliqueProcedure.docx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Documents\Insurance Document.docx" />
     <None Include="Properties\PublishProfiles\HelloWorldAswin.pubxml" />
     <None Include="Properties\PublishProfiles\helloworldipl %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\helloworldipl %283%29.pubxml" />
