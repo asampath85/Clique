@@ -72,6 +72,11 @@ namespace UserProfilerWeb.Controllers
                 }
             }
 
+            if (id == 32 || id == 33)
+            {
+                return result.OrderBy(x=>x.Score).ToList();
+            }
+
             
 
             
