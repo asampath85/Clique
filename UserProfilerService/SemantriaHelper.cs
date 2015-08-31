@@ -16,8 +16,8 @@ namespace UserProfilerService
     public class SemantriaHelper
     {
 
-        const string consumerKey = "7e333636-31ec-0a52-e8f8-ed6625ebce4a";
-        const string consumerSecret = "ea3ab9ac-1058-48e5-f4e5-ec734ec9116b";
+        const string consumerKey = "dc3a2cbc-e4ae-4675-9626-1b37e526bb26";
+        const string consumerSecret = "dba1bc59-77ab-41b2-add0-a0809feb2416";
 
         public static void AddUserFeedbackScore(UserFeedbackModel model)
         {
@@ -39,15 +39,16 @@ namespace UserProfilerService
 
                 List<Document> outgoingBatch = new List<Document>(subscription.BasicSettings.BatchLimit);
 
+                string docId = Guid.NewGuid().ToString();
 
                 Document doc = new Document()
                 {
-                    Id = model.PropertyId.ToString(),
+                    Id = docId,
                     Text = model.Text
                 };
 
                     outgoingBatch.Add(doc);
-                    docsTracker.Add(model.PropertyId.ToString(), Semantria.Com.TaskStatus.QUEUED);
+                    docsTracker.Add(docId, Semantria.Com.TaskStatus.QUEUED);
 
                                 
 
