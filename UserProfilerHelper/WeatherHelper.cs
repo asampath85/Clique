@@ -14,6 +14,7 @@ namespace UserProfilerHelper
     {
         private const string OpenWeatherAPIKey = "3128cb5e2287c9b5c3e2c3eaa18db4ee";
 
+
         public static bool ProcessLocation(IList<CliqueClaimRequestModel> requestList)
         {
             var service = new RequestService();
@@ -70,8 +71,8 @@ namespace UserProfilerHelper
                     MinTemp = el.Element("temperature").Attribute("min").Value + "°",
                     Temp = el.Element("temperature").Attribute("day").Value + "°",
                     Weather = el.Element("symbol").Attribute("name").Value,
-                    WeatherDay = DayOfTheWeek(el),                    
-                    WindDirection = el.Element("windDirection").Attribute("name").Value,
+                    WeatherDay = DayOfTheWeek(el),
+                    WindDirection = WeatherIconPath(el),
                     WindSpeed = el.Element("windSpeed").Attribute("mps").Value + "mps"
                 });
 
@@ -84,6 +85,14 @@ namespace UserProfilerHelper
         {
             DateTime dW = Convert.ToDateTime(el.Attribute("day").Value);
             return dW.ToShortDateString();
+        }
+
+        private static string WeatherIconPath(XElement el)
+        {
+            string symbolVar = el.Element("symbol").Attribute("var").Value;
+            string symbolNumber = el.Element("symbol").Attribute("number").Value;
+            string dayOrNight = symbolVar.ElementAt(2).ToString(); // d or n
+            return String.Format("http://helloworldipl.azurewebsites.net/Content/images/WeatherIcons/{0}{1}.png", symbolNumber, dayOrNight);
         }
 
     }
