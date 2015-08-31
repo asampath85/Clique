@@ -156,7 +156,7 @@ namespace UserProfilerWeb.Controllers
 
                .SetSeries(new Series { Data = new Data(GetEventScore(id)) });
 
-            TimeLineModel model = new TimeLineModel { chart = chart12, TweetScore = GetTweetScore(id), UserScore=GetUserFeedbackScore(id) };
+            TimeLineModel model = new TimeLineModel { chart = chart12, TweetScore = GetTweetScore(id), UserScore = GetUserFeedbackScore(id), WeatherScore = 60, CrimeScore = 20, LocationAura = (GetUserFeedbackScore(id) + 60 + 20)/3};
 
             return View(model);
         }

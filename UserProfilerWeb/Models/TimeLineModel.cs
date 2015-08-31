@@ -18,6 +18,8 @@ namespace UserProfilerWeb.Models
 
         public double TweetScore { get; set; }
 
+        public double LocationAura { get; set; }
+
         public Highcharts chart { get; set; }
     }
 }
