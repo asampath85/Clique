@@ -287,6 +287,9 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\images\Thumbs.db" />
+    <Content Include="Documents\CliqueProcedure.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\PublishProfiles\HelloWorldAswin.pubxml" />
     <None Include="Properties\PublishProfiles\helloworldipl %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\helloworldipl %283%29.pubxml" />

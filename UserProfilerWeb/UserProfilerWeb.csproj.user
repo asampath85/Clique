@@ -9,7 +9,7 @@
     </WebStackScaffolding_LayoutPageFile>
     <WebStackScaffolding_IsAsyncSelected>True</WebStackScaffolding_IsAsyncSelected>
     <WebStackScaffolding_ViewDialogWidth>600</WebStackScaffolding_ViewDialogWidth>
-    <ProjectView>ProjectFiles</ProjectView>
+    <ProjectView>ShowAllFiles</ProjectView>
     <WebStackScaffolding_DbContextTypeFullName>UserProfilerCommon.ipl_userprofilerEntities</WebStackScaffolding_DbContextTypeFullName>
     <NameOfLastUsedPublishProfile>helloworldipl %283%29</NameOfLastUsedPublishProfile>
   </PropertyGroup>
