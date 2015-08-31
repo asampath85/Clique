@@ -17,7 +17,6 @@ namespace UserProfilerCommon
         public CliqueLocation()
         {
             this.CliqueRequests = new HashSet<CliqueRequest>();
-            this.CliqueWeathers = new HashSet<CliqueWeather>();
         }
     
         public int Id { get; set; }
@@ -27,6 +26,5 @@ namespace UserProfilerCommon
         public string Locality { get; set; }
     
         public virtual ICollection<CliqueRequest> CliqueRequests { get; set; }
-        public virtual ICollection<CliqueWeather> CliqueWeathers { get; set; }
     }
 }

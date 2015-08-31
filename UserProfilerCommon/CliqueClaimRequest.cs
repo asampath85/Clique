@@ -18,6 +18,8 @@ namespace UserProfilerCommon
         {
             this.CliqueLocationEvents = new HashSet<CliqueLocationEvent>();
             this.CliqueLocationTweets = new HashSet<CliqueLocationTweet>();
+            this.CliqueClaimRequestFeedbacks = new HashSet<CliqueClaimRequestFeedback>();
+            this.CliqueWeathers = new HashSet<CliqueWeather>();
         }
     
         public int Id { get; set; }
@@ -54,5 +56,7 @@ namespace UserProfilerCommon
     
         public virtual ICollection<CliqueLocationEvent> CliqueLocationEvents { get; set; }
         public virtual ICollection<CliqueLocationTweet> CliqueLocationTweets { get; set; }
+        public virtual ICollection<CliqueClaimRequestFeedback> CliqueClaimRequestFeedbacks { get; set; }
+        public virtual ICollection<CliqueWeather> CliqueWeathers { get; set; }
     }
 }

@@ -54,6 +54,7 @@
     <Compile Include="SemantriaHelper.cs" />
     <Compile Include="TweetHelper.cs" />
     <Compile Include="UserHelper.cs" />
+    <Compile Include="WeatherHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UserProfilerModel\UserProfilerModel.csproj">

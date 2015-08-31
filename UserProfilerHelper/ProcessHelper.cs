@@ -42,6 +42,15 @@ namespace UserProfilerHelper
             {
                 return false;
             }
+            try
+            {
+                WeatherHelper.ProcessLocation(requestist);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
 
             return true;
 

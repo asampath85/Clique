@@ -334,6 +334,20 @@ namespace UserProfilerService
             }
         }
 
+
+
+        public bool IsLocationWeatherExist(CliqueClaimRequestModel model)
+        {
+            using (ipl_userprofilerEntities entity = new ipl_userprofilerEntities())
+            {
+                var response = entity.CliqueWeathers.Where(res => res.RequestId == model.Id);
+                entity.CliqueWeathers.RemoveRange(response);
+                entity.SaveChanges();
+            }
+            return false;
+
+        }
+
         public bool IsLocationTweetExist(CliqueClaimRequestModel model)
         {
             using (ipl_userprofilerEntities entity = new ipl_userprofilerEntities())
@@ -683,6 +697,68 @@ namespace UserProfilerService
                         UserEmail = item.UserEmail,
                         Score = item.Score??0,
                         AddedAt = item.AddedAt
+                    });
+
+                }
+
+            }
+
+            return response;
+        }
+
+        public void AddLocationWeather(IList<WeatherModel> result, int requestId)
+        {
+           
+            using (ipl_userprofilerEntities entity = new ipl_userprofilerEntities())
+            {
+                foreach (var item in result)
+                {
+                    var request = new CliqueWeather
+                    {
+                        CreatedAt = DateTime.Now,
+                        Humidity = item.Humidity,
+                        MaxTemp = item.MaxTemp,
+                        MinTemp = item.MinTemp,
+                        ModifiedAt = DateTime.Now,
+                        RequestId = requestId,
+                        Temp = item.Temp,
+                        Weather = item.Weather,
+                        WeatherDay = item.WeatherDay,
+                        WindDirection = item.WindDirection,
+                        WindSpeed = item.WindSpeed
+
+                    };
+
+                    entity.CliqueWeathers.Add(request);
+                    
+                }
+                
+                entity.SaveChanges();
+
+            }
+           
+        }
+
+        public IList<WeatherModel> GetLocationWeather(int requestId)
+        {
+            List<WeatherModel> response = new List<WeatherModel>();
+            using (ipl_userprofilerEntities entity = new ipl_userprofilerEntities())
+            {
+                
+
+                foreach (var item in entity.CliqueWeathers.Where(res => res.RequestId == requestId))
+                {
+                    response.Add(new WeatherModel
+                    {
+                        Humidity = item.Humidity,
+                        MaxTemp = item.MaxTemp,
+                        MinTemp = item.MinTemp,
+                        Temp = item.Temp,
+                        Weather = item.Weather,
+                        WeatherDay = item.WeatherDay,
+                        WindDirection = item.WindDirection,
+                        WindSpeed = item.WindSpeed,
+                        
                     });
 
                 }

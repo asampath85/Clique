@@ -50,6 +50,7 @@
     <Compile Include="TweetModel.cs" />
     <Compile Include="UserFeedbackModel.cs" />
     <Compile Include="UserModel.cs" />
+    <Compile Include="WeatherModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

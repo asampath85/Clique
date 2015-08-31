@@ -71,6 +71,13 @@ namespace UserProfilerWeb.Controllers
             return service.GetUserFeedback(id);
         }
 
+         [HttpGet]
+         public IList<WeatherModel> GetLocationWeather(int id)
+         {
+             RequestService service = new RequestService();
+             return service.GetLocationWeather(id);
+         }
+
         
 
         [HttpPost]

@@ -23,5 +23,6 @@ namespace UserProfilerCommon
         public Nullable<double> Score { get; set; }
     
         public virtual CliqueRequest CliqueRequest { get; set; }
+        public virtual CliqueClaimRequest CliqueClaimRequest { get; set; }
     }
 }

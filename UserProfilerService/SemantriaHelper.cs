@@ -16,8 +16,8 @@ namespace UserProfilerService
     public class SemantriaHelper
     {
 
-        const string consumerKey = "3ee8fcc2-a50c-419f-b49d-5c5f5d079dc8";
-        const string consumerSecret = "ad6d6661-01e5-4aa4-9294-36d2ffa9d504";
+        const string consumerKey = "7e333636-31ec-0a52-e8f8-ed6625ebce4a";
+        const string consumerSecret = "ea3ab9ac-1058-48e5-f4e5-ec734ec9116b";
 
         public static void AddUserFeedbackScore(UserFeedbackModel model)
         {

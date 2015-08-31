@@ -156,15 +156,17 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="LocationId" Type="int" Nullable="false" />
-          <Property Name="MinTemp" Type="int" />
-          <Property Name="MaxTemp" Type="int" />
-          <Property Name="Wind" Type="int" />
-          <Property Name="Humidity" Type="int" />
-          <Property Name="Date" Type="date" Nullable="false" />
-          <Property Name="Score" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="RequestId" Type="int" Nullable="false" />
+          <Property Name="MinTemp" Type="nvarchar(max)" />
+          <Property Name="MaxTemp" Type="nvarchar(max)" />
+          <Property Name="WindSpeed" Type="nvarchar(max)" />
+          <Property Name="Humidity" Type="nvarchar(max)" />
           <Property Name="CreatedAt" Type="date" Nullable="false" />
           <Property Name="ModifiedAt" Type="date" Nullable="false" />
+          <Property Name="Temp" Type="nvarchar(max)" />
+          <Property Name="WeatherDay" Type="nvarchar(max)" />
+          <Property Name="WindDirection" Type="nvarchar(max)" />
+          <Property Name="Weather" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="HomeAwayFeedback">
           <Key>
@@ -207,11 +209,11 @@
           <Property Name="PropertyId" Type="int" Nullable="false" />
           <Property Name="AmenityId" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK_CliqueClaimRequestFeedback_ToCliqueRequest">
-          <End Role="CliqueRequest" Type="Self.CliqueRequest" Multiplicity="1" />
+        <Association Name="FK_CliqueClaimRequestFeedback_ToCliqueClaimRequest">
+          <End Role="CliqueClaimRequest" Type="Self.CliqueClaimRequest" Multiplicity="1" />
           <End Role="CliqueClaimRequestFeedback" Type="Self.CliqueClaimRequestFeedback" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="CliqueRequest">
+            <Principal Role="CliqueClaimRequest">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="CliqueClaimRequestFeedback">
@@ -316,14 +318,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CliqueWeather_ToCliqueLocation">
-          <End Role="CliqueLocation" Type="Self.CliqueLocation" Multiplicity="1" />
+          <End Role="CliqueClaimRequest" Type="Self.CliqueClaimRequest" Multiplicity="1" />
           <End Role="CliqueWeather" Type="Self.CliqueWeather" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="CliqueLocation">
+            <Principal Role="CliqueClaimRequest">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="CliqueWeather">
-              <PropertyRef Name="LocationId" />
+              <PropertyRef Name="RequestId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -366,8 +368,8 @@
           <EntitySet Name="HomeAwayFeedback" EntityType="Self.HomeAwayFeedback" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HomeAwayProperty" EntityType="Self.HomeAwayProperty" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PropertyAmenityMapping" EntityType="Self.PropertyAmenityMapping" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_CliqueClaimRequestFeedback_ToCliqueRequest" Association="Self.FK_CliqueClaimRequestFeedback_ToCliqueRequest">
-            <End Role="CliqueRequest" EntitySet="CliqueRequest" />
+          <AssociationSet Name="FK_CliqueClaimRequestFeedback_ToCliqueClaimRequest" Association="Self.FK_CliqueClaimRequestFeedback_ToCliqueClaimRequest">
+            <End Role="CliqueClaimRequest" EntitySet="CliqueClaimRequest" />
             <End Role="CliqueClaimRequestFeedback" EntitySet="CliqueClaimRequestFeedback" />
           </AssociationSet>
           <AssociationSet Name="FK_CliqueLocationEvent_ToCliqueClaimRequest" Association="Self.FK_CliqueLocationEvent_ToCliqueClaimRequest">
@@ -403,7 +405,7 @@
             <End Role="CliqueUserTweet" EntitySet="CliqueUserTweet" />
           </AssociationSet>
           <AssociationSet Name="FK_CliqueWeather_ToCliqueLocation" Association="Self.FK_CliqueWeather_ToCliqueLocation">
-            <End Role="CliqueLocation" EntitySet="CliqueLocation" />
+            <End Role="CliqueClaimRequest" EntitySet="CliqueClaimRequest" />
             <End Role="CliqueWeather" EntitySet="CliqueWeather" />
           </AssociationSet>
           <AssociationSet Name="FK_HomeAwayFeedback_ToHomeAwayProperty" Association="Self.FK_HomeAwayFeedback_ToHomeAwayProperty">
@@ -422,14 +424,9 @@
         <EntityContainer Name="ipl_userprofilerEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CliqueLocations" EntityType="ipl_userprofilerModel.CliqueLocation" />
           <EntitySet Name="CliqueRequests" EntityType="ipl_userprofilerModel.CliqueRequest" />
-          <EntitySet Name="CliqueWeathers" EntityType="ipl_userprofilerModel.CliqueWeather" />
           <AssociationSet Name="FK_CliqueRequest_ToCliqueLocation" Association="ipl_userprofilerModel.FK_CliqueRequest_ToCliqueLocation">
             <End Role="CliqueLocation" EntitySet="CliqueLocations" />
             <End Role="CliqueRequest" EntitySet="CliqueRequests" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CliqueWeather_ToCliqueLocation" Association="ipl_userprofilerModel.FK_CliqueWeather_ToCliqueLocation">
-            <End Role="CliqueLocation" EntitySet="CliqueLocations" />
-            <End Role="CliqueWeather" EntitySet="CliqueWeathers" />
           </AssociationSet>
           <EntitySet Name="CliqueTweets" EntityType="ipl_userprofilerModel.CliqueTweet" />
           <EntitySet Name="CliqueUserTweets" EntityType="ipl_userprofilerModel.CliqueUserTweet" />
@@ -482,6 +479,15 @@
             <End Role="CliqueTweet" EntitySet="CliqueTweets" />
             <End Role="CliqueLocationTweet" EntitySet="CliqueLocationTweets" />
           </AssociationSet>
+          <AssociationSet Name="FK_CliqueClaimRequestFeedback_ToCliqueClaimRequest" Association="ipl_userprofilerModel.FK_CliqueClaimRequestFeedback_ToCliqueClaimRequest">
+            <End Role="CliqueClaimRequest" EntitySet="CliqueClaimRequests" />
+            <End Role="CliqueClaimRequestFeedback" EntitySet="CliqueClaimRequestFeedbacks" />
+          </AssociationSet>
+          <EntitySet Name="CliqueWeathers" EntityType="ipl_userprofilerModel.CliqueWeather" />
+          <AssociationSet Name="FK_CliqueWeather_ToCliqueLocation" Association="ipl_userprofilerModel.FK_CliqueWeather_ToCliqueLocation">
+            <End Role="CliqueClaimRequest" EntitySet="CliqueClaimRequests" />
+            <End Role="CliqueWeather" EntitySet="CliqueWeathers" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="CliqueLocation">
           <Key>
@@ -492,7 +498,6 @@
           <Property Name="Pincode" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Score" Type="Decimal" Precision="18" Scale="0" />
           <NavigationProperty Name="CliqueRequests" Relationship="ipl_userprofilerModel.FK_CliqueRequest_ToCliqueLocation" FromRole="CliqueLocation" ToRole="CliqueRequest" />
-          <NavigationProperty Name="CliqueWeathers" Relationship="ipl_userprofilerModel.FK_CliqueWeather_ToCliqueLocation" FromRole="CliqueLocation" ToRole="CliqueWeather" />
           <Property Name="Locality" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="CliqueRequest">
@@ -515,22 +520,6 @@
           <NavigationProperty Name="CliqueUser" Relationship="ipl_userprofilerModel.FK_CliqueRequest_ToCliqueUser" FromRole="CliqueRequest" ToRole="CliqueUser" />
           <NavigationProperty Name="CliqueClaimRequestFeedbacks" Relationship="ipl_userprofilerModel.FK_CliqueClaimRequestFeedback_ToCliqueRequest" FromRole="CliqueRequest" ToRole="CliqueClaimRequestFeedback" />
         </EntityType>
-        <EntityType Name="CliqueWeather">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LocationId" Type="Int32" Nullable="false" />
-          <Property Name="MinTemp" Type="Int32" />
-          <Property Name="MaxTemp" Type="Int32" />
-          <Property Name="Wind" Type="Int32" />
-          <Property Name="Humidity" Type="Int32" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Score" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="ModifiedAt" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="CliqueLocation" Relationship="ipl_userprofilerModel.FK_CliqueWeather_ToCliqueLocation" FromRole="CliqueWeather" ToRole="CliqueLocation" />
-        </EntityType>
         <Association Name="FK_CliqueRequest_ToCliqueLocation">
           <End Type="ipl_userprofilerModel.CliqueLocation" Role="CliqueLocation" Multiplicity="1" />
           <End Type="ipl_userprofilerModel.CliqueRequest" Role="CliqueRequest" Multiplicity="*" />
@@ -539,18 +528,6 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="CliqueRequest">
-              <PropertyRef Name="LocationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CliqueWeather_ToCliqueLocation">
-          <End Type="ipl_userprofilerModel.CliqueLocation" Role="CliqueLocation" Multiplicity="1" />
-          <End Type="ipl_userprofilerModel.CliqueWeather" Role="CliqueWeather" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CliqueLocation">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CliqueWeather">
               <PropertyRef Name="LocationId" />
             </Dependent>
           </ReferentialConstraint>
@@ -686,6 +663,8 @@
           <Property Name="ToDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Latitude" Type="Double" />
           <Property Name="Longitude" Type="Double" />
+          <NavigationProperty Name="CliqueClaimRequestFeedbacks" Relationship="ipl_userprofilerModel.FK_CliqueClaimRequestFeedback_ToCliqueClaimRequest" FromRole="CliqueClaimRequest" ToRole="CliqueClaimRequestFeedback" />
+          <NavigationProperty Name="CliqueWeathers" Relationship="ipl_userprofilerModel.FK_CliqueWeather_ToCliqueLocation" FromRole="CliqueClaimRequest" ToRole="CliqueWeather" />
         </EntityType>
         <EntityType Name="CliqueClaimRequestFeedback">
           <Key>
@@ -699,6 +678,7 @@
           <Property Name="RequestId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="CliqueRequest" Relationship="ipl_userprofilerModel.FK_CliqueClaimRequestFeedback_ToCliqueRequest" FromRole="CliqueClaimRequestFeedback" ToRole="CliqueRequest" />
           <Property Name="Score" Type="Double" />
+          <NavigationProperty Name="CliqueClaimRequest" Relationship="ipl_userprofilerModel.FK_CliqueClaimRequestFeedback_ToCliqueClaimRequest" FromRole="CliqueClaimRequestFeedback" ToRole="CliqueClaimRequest" />
         </EntityType>
         <EntityType Name="HomeAwayFeedback">
           <Key>
@@ -853,6 +833,48 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CliqueClaimRequestFeedback_ToCliqueClaimRequest">
+          <End Type="ipl_userprofilerModel.CliqueClaimRequest" Role="CliqueClaimRequest" Multiplicity="1" />
+          <End Type="ipl_userprofilerModel.CliqueClaimRequestFeedback" Role="CliqueClaimRequestFeedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CliqueClaimRequest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CliqueClaimRequestFeedback">
+              <PropertyRef Name="RequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CliqueWeather">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestId" Type="Int32" Nullable="false" />
+          <Property Name="MinTemp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MaxTemp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WindSpeed" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Humidity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ModifiedAt" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Temp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WeatherDay" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WindDirection" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Weather" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CliqueClaimRequest" Relationship="ipl_userprofilerModel.FK_CliqueWeather_ToCliqueLocation" FromRole="CliqueWeather" ToRole="CliqueClaimRequest" />
+        </EntityType>
+        <Association Name="FK_CliqueWeather_ToCliqueLocation">
+          <End Type="ipl_userprofilerModel.CliqueClaimRequest" Role="CliqueClaimRequest" Multiplicity="1" />
+          <End Type="ipl_userprofilerModel.CliqueWeather" Role="CliqueWeather" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CliqueClaimRequest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CliqueWeather">
+              <PropertyRef Name="RequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -883,22 +905,6 @@
                 <ScalarProperty Name="FromDate" ColumnName="FromDate" />
                 <ScalarProperty Name="LocationId" ColumnName="LocationId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CliqueWeathers">
-            <EntityTypeMapping TypeName="ipl_userprofilerModel.CliqueWeather">
-              <MappingFragment StoreEntitySet="CliqueWeather">
-                <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="Score" ColumnName="Score" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Humidity" ColumnName="Humidity" />
-                <ScalarProperty Name="Wind" ColumnName="Wind" />
-                <ScalarProperty Name="MaxTemp" ColumnName="MaxTemp" />
-                <ScalarProperty Name="MinTemp" ColumnName="MinTemp" />
-                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1070,6 +1076,24 @@
                 <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
                 <ScalarProperty Name="TweetId" ColumnName="TweetId" />
+                <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CliqueWeathers">
+            <EntityTypeMapping TypeName="ipl_userprofilerModel.CliqueWeather">
+              <MappingFragment StoreEntitySet="CliqueWeather">
+                <ScalarProperty Name="Weather" ColumnName="Weather" />
+                <ScalarProperty Name="WindDirection" ColumnName="WindDirection" />
+                <ScalarProperty Name="WeatherDay" ColumnName="WeatherDay" />
+                <ScalarProperty Name="Temp" ColumnName="Temp" />
+                <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Humidity" ColumnName="Humidity" />
+                <ScalarProperty Name="WindSpeed" ColumnName="WindSpeed" />
+                <ScalarProperty Name="MaxTemp" ColumnName="MaxTemp" />
+                <ScalarProperty Name="MinTemp" ColumnName="MinTemp" />
                 <ScalarProperty Name="RequestId" ColumnName="RequestId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

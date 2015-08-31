@@ -27,7 +27,6 @@ namespace UserProfilerCommon
     
         public virtual DbSet<CliqueLocation> CliqueLocations { get; set; }
         public virtual DbSet<CliqueRequest> CliqueRequests { get; set; }
-        public virtual DbSet<CliqueWeather> CliqueWeathers { get; set; }
         public virtual DbSet<CliqueTweet> CliqueTweets { get; set; }
         public virtual DbSet<CliqueUserTweet> CliqueUserTweets { get; set; }
         public virtual DbSet<CliqueEvent> CliqueEvents { get; set; }
@@ -39,5 +38,6 @@ namespace UserProfilerCommon
         public virtual DbSet<PropertyAmenityMapping> PropertyAmenityMappings { get; set; }
         public virtual DbSet<CliqueLocationEvent> CliqueLocationEvents { get; set; }
         public virtual DbSet<CliqueLocationTweet> CliqueLocationTweets { get; set; }
+        public virtual DbSet<CliqueWeather> CliqueWeathers { get; set; }
     }
 }

@@ -15,16 +15,18 @@ namespace UserProfilerCommon
     public partial class CliqueWeather
     {
         public int Id { get; set; }
-        public int LocationId { get; set; }
-        public Nullable<int> MinTemp { get; set; }
-        public Nullable<int> MaxTemp { get; set; }
-        public Nullable<int> Wind { get; set; }
-        public Nullable<int> Humidity { get; set; }
-        public System.DateTime Date { get; set; }
-        public Nullable<decimal> Score { get; set; }
+        public int RequestId { get; set; }
+        public string MinTemp { get; set; }
+        public string MaxTemp { get; set; }
+        public string WindSpeed { get; set; }
+        public string Humidity { get; set; }
         public System.DateTime CreatedAt { get; set; }
         public System.DateTime ModifiedAt { get; set; }
+        public string Temp { get; set; }
+        public string WeatherDay { get; set; }
+        public string WindDirection { get; set; }
+        public string Weather { get; set; }
     
-        public virtual CliqueLocation CliqueLocation { get; set; }
+        public virtual CliqueClaimRequest CliqueClaimRequest { get; set; }
     }
 }
