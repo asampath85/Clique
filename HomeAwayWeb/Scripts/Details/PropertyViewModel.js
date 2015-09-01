@@ -40,6 +40,31 @@
 
 
     }
+
+    self.PrefillData = function () {
+        debugger;
+
+
+        self.model().name("28 SW/2E BUTTERFIELD RD");
+        self.model().description(" A very good apartment for Shared Accommodation");
+        self.model().bedrooms(2);
+        self.model().beds(6);
+        self.model().accomodates(8);
+        self.model().type("House");
+        self.model().address1("28 SW/2E");
+        self.model().address2("BUTTERFIELD RD");
+        self.model().city("Roanoke");
+        self.model().state("Virginia");
+        self.model().country("USA");
+        self.model().zip("60199");
+        self.model().nightPrice(100);
+        self.model().weekPrice(500);
+        self.model().locality("Roanoke");
+        
+
+
+    };
+
     self.add = function () {
         debugger;
 

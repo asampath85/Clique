@@ -17,8 +17,8 @@
                     <th>City</th>                    
                     <th>From Date</th>
                     <th>To Date</th>
-                    <th>Base Price</th>
-                    <th>Score</th>
+                    @*<th>Base Price</th>
+                    <th>Score</th>*@
                     <th>Status</th>
                 </tr>
             </thead>
@@ -30,8 +30,8 @@
                     <td data-bind="text: City"></td>
                     <td data-bind="text: FromDate"></td>
                     <td data-bind="text: ToDate"></td>
-                    <td data-bind="text: Price"></td>
-                    <td data-bind="text: Score"></td>
+                    @*<td data-bind="text: Price"></td>
+                    <td data-bind="text: Score"></td>*@
                     <td>
                         <a data-bind="text: StatusName, click: $root.navigatetoDetails" target="_blank"></a>
                     </td>
