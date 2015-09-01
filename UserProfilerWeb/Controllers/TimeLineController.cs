@@ -143,8 +143,8 @@ namespace UserProfilerWeb.Controllers
                    Options3d = new ChartOptions3d
                    {
                        Enabled = true,
-                       Alpha = 22,
-                       Beta = 4,
+                       Alpha = 0,
+                       Beta = 0,
                        Depth = 50,
                        ViewDistance = 25
                    }

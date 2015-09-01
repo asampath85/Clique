@@ -6,7 +6,7 @@
 </h1>
 <div class="right_b">
     <span>Graphical representation of data based on Time Line. </span>
-    <br />    
+    <br />
     <br />
 </div>
 <div class="row">
@@ -15,9 +15,10 @@
         <a href="~/Documents/Insurance Document.docx" style="color: blue; font-weight: bold;">View Insurance Details here</a>
     </div>
 </div>
+
 <div class="panel with-nav-tabs panel-default">
     <div class="panel-heading">
-        <ul class="nav nav-pills">
+        <ul class="nav nav-tabs">
             <li class="active"><a href="#timelineTab" data-toggle="tab">Timeline</a></li>
             <li><a href="#detailsTab" data-toggle="tab">Details</a></li>
         </ul>
@@ -26,7 +27,7 @@
         <div class="tab-content">
             <div class="tab-pane fade in active" id="timelineTab">
                 <div class="panel-heading">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-pills nav-justified">
                         <li role="presentation" class="active">
                             <a href="#EmptyTab" data-toggle="tab" class="btn-toolbar btn-lg">
                                 Tradtional Score - <span class="badge">67</span>
@@ -50,14 +51,16 @@
 
                         </div>
                         <div class="tab-pane fade in" id="LocationAuraTab">
-                            <div class="col col-md-12">
-                                <h4>Twitter Score - @Model.TweetScore</h4>
-                            </div>
-                            <div class="col col-md-12">
-                                <h4>Weather Score - @Model.WeatherScore</h4>
-                            </div>
-                            <div class="col col-md-12">
-                                <h4>Crime Score - @Model.CrimeScore</h4>
+                            <div style="padding-left:36%">
+                                <div class="col col-md-12">
+                                    <h4>Twitter Score - @Model.TweetScore</h4>
+                                </div>
+                                <div class="col col-md-12">
+                                    <h4>Weather Score - @Model.WeatherScore</h4>
+                                </div>
+                                <div class="col col-md-12">
+                                    <h4>Crime Score - @Model.CrimeScore</h4>
+                                </div>
                             </div>
                             @*<div class="panel-body">*@
                             @*<div class="col-md-12 text-center">*@
@@ -91,7 +94,7 @@
                             @*</div>*@
                         </div>
                         <div class="tab-pane fade in" id="BusinessAuraTab">
-                            <div class="col col-md-12">
+                            <div style="padding-left:70%" class="col col-md-12">
                                 <h4>User Feedbacks - @Model.UserScore</h4>
                             </div>
                         </div>
