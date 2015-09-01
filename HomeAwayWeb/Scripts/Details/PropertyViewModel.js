@@ -80,8 +80,8 @@
         }).done(function (res) {
             debugger;
 
-            //window.location.href = baseUrl;
-            $("#showNotification").removeClass("hide").addClass("show");
+            window.location.href = baseUrl;
+            //$("#showNotification").removeClass("hide").addClass("show");
 
         }).error(function (ex) {
             debugger;
