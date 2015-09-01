@@ -163,13 +163,31 @@ h6 { font-size: 14px; margin: 0 0 5px; padding: 0; }
 	padding: 0; 
 }
 
+#site_title1 { 
+	float: left; 
+}
+
+#site_title1 h1 { 
+	margin: 0; 
+	padding: 0; 
+}
+
 #site_title h1 a { 
 	display: block; 
-	width: 220px; 
+	width: 330px; 
 	height: 46px; 
 	color: #fff; 
 	text-indent: -10000px; 
 	background: url(../images/tooplate_logo.png) no-repeat top left; 
+}
+
+#site_title1 h1 a { 
+	display: block; 
+	width: 330px; 
+	height: 46px; 
+	color: #fff; 
+	text-indent: -10000px; 
+	background: url(../images/cog_ipl_logo.png) no-repeat top left; 
 }
 
 /* menu */

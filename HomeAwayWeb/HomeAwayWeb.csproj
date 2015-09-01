@@ -153,6 +153,7 @@
     <Content Include="Content\css\slider_style.css" />
     <Content Include="Content\css\svwp_style.css" />
     <Content Include="Content\css\tooplate_style.css" />
+    <Content Include="Content\images\cog_ipl_logo.png" />
     <Content Include="Content\images\content_bottom.png" />
     <Content Include="Content\images\content_top.png" />
     <Content Include="Content\images\gallery\image_01.jpg" />
